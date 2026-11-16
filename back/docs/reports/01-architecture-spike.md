@@ -1,5 +1,10 @@
 # Architecture Spike Report - Deno + Lesan + MongoDB
 
+> **Historical note (2026-11-16):** This report is evidence from the superseded v1/v2 draft. CT-DOMAIN-SPEC
+> v3.1 is now canonical. Keep the environment, Lesan/MongoDB mechanics, security negatives, index method,
+> and BSON measurements. Do not reuse its category/third-relation, predicate, claim-type, visibility-scope,
+> or source/snapshot versioning decisions. See `../adr/0001-v3.1-single-canonical-spec.md`.
+
 Date: 2026-11-15
 Plan: `docs/plans/01-architecture-spike.md`
 Status: **Complete with constraints; go for the first read-only slice**

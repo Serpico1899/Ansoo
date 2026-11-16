@@ -1,13 +1,18 @@
 # Agent Prompt - Execute Plan 01 (Architecture Spike)
 
+> **Historical note (2026-11-16):** This prompt targets the superseded v1/v2 draft and is retained for the
+> record. Do not execute it against v3.1. Use prompts 02-11 and
+> `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`. Domain decisions about categories, the third
+> relation, extra predicates/claim types, `visibilityScope`, and snapshot versioning are void.
+
 You are executing `../plans/01-architecture-spike.md` for the Ansoo backend. Your job is to produce
 evidence and decisions, not a production feature. Read the full plan before doing anything.
 
 ## Read First
 
-1. `../../../CONSUMER_TRANSPARENCY_FINAL_ERD.md` - authoritative domain baseline.
-2. `../summary.md` - condensed model, relation boundaries, status matrix, open questions.
-3. `../plans/01-architecture-spike.md` - the plan you are executing.
+1. `../../../CONSUMER_TRANSPARENCY_FINAL_ERD.md` - historical v1/v2 domain baseline (superseded by v3.1).
+2. `../summary.md` - current v3.1 condensed model; use for any still-valid mechanical findings.
+3. `../plans/01-architecture-spike.md` - the historical plan, including the superseded-assumption banner.
 4. `../../AGENTS.md` - critical backend rules.
 5. `../../../AGENTS.md` - repository-wide rules.
 

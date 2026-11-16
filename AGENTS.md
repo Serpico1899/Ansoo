@@ -3,20 +3,22 @@
 ## What This Repository Is
 
 Ansoo lets a consumer resolve a product identifier (scan or manual search) to a transparent product profile:
-identity, brand, category, organizations, time-aware relationships, published claims, evidence, sources,
-organization responses, corrections, and unknowns. It must never reduce this to a single opaque
+identity, brand, category code, organizations, time-aware relationships, published claims, evidence,
+sources, organization responses, corrections, and unknowns. It must never reduce this to a single opaque
 ethical, legal, or boycott score.
 
-**Current status: scaffold only.** There is no application code yet. The canonical domain baseline is
-`CONSUMER_TRANSPARENCY_FINAL_ERD.md`. Treat it as a proposed baseline that must be validated through the
-Architecture Spike before production lock-in. The visual reference is `Example Design page/`.
+**Current status: scaffold only.** The canonical domain contract is
+`CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` (CT-DOMAIN-SPEC v3.1). It supersedes v1/v2 and the old
+`CONSUMER_TRANSPARENCY_FINAL_ERD.md` as domain authority; see
+`back/docs/adr/0001-v3.1-single-canonical-spec.md`. Backend work follows plans 02-11 in
+`back/docs/plans/`. The visual reference is `Example Design page/`.
 
 ## Architecture
 
 | Layer | Technology |
 |---|---|
 | Backend | Deno + Lesan 0.2.3 (MongoDB ODM/API framework) + djwt |
-| Database | MongoDB |
+| Database | MongoDB (single-node replica set in development) |
 | Frontend | Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS v4 + shadcn/ui (base-ui) + next-intl + Zustand + React Hook Form + Zod |
 | Asset bytes | Object storage (S3-compatible in production, local provider in development) |
 | Mongo asset data | Metadata, hashes, visibility, processing state only |
@@ -25,8 +27,9 @@ Architecture Spike before production lock-in. The visual reference is `Example D
 
 ```
 Ansoo/
-├── AGENTS.md                         # This file
-├── CONSUMER_TRANSPARENCY_FINAL_ERD.md # Domain baseline (read before any domain work)
+├── AGENTS.md                          # This file
+├── CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md # Canonical domain contract
+├── CONSUMER_TRANSPARENCY_FINAL_ERD.md # Historical v1/v2 baseline only
 ├── Example Design page/               # UI/visual reference mockups
 ├── ignore-scripts/                    # Local scratch scripts; never committed
 ├── back/
@@ -35,12 +38,12 @@ Ansoo/
 │   ├── mod.ts                         # Entry point (scaffold)
 │   ├── models/                        # One Lesan model file per collection
 │   ├── src/                           # One folder per model/action
-│   ├── utils/                         # Shared domain services and guards
-│   ├── docs/
-│   │   ├── summary.md                 # Condensed domain + scaffold summary
-│   │   ├── plans/01-architecture-spike.md
-│   │   └── prompts/01-architecture-spike.md
-│   └── tests/
+│   ├── utils/                         # Shared domain services, vocabulary, config
+│   ├── scripts/                       # Reproducible dev/verification scripts
+│   ├── archive/                       # Historical spike code; never production-imported
+│   ├── taxonomy.v1.json               # Category-code taxonomy (no Category collection)
+│   ├── docs/                          # README, summary, ADRs, plans, prompts, reports
+│   └── tests/                         # Invariant, domain, and infrastructure tests
 └── front/
     ├── AGENTS.md                      # Critical frontend rules
     ├── package.json
@@ -61,11 +64,14 @@ Ansoo/
 ```bash
 # Backend
 cd back
+deno task db:dev       # single-node MongoDB replica set
 deno task dev          # watch mode
 deno task fmt
 deno task lint
 deno task check
 deno task test
+deno task config:check
+deno task types
 
 # Frontend
 cd front
@@ -82,13 +88,16 @@ Frontend: `http://localhost:3000`. Environment examples live in `back/.env.examp
 
 ## Domain Pillars
 
-1. **Identity** - Product, Brand, Category, Organization.
+1. **Identity** - Product, Brand, Organization. Product uses `categoryCode` from `taxonomy.v1.json`;
+   there is no Category collection in the MVP.
 2. **Relationships** - directed, typed, scoped, time-aware graph edges.
-3. **Research** - Claims, contextual EvidenceLinks, SourceSnapshots, review workflow, evidence assessment, publication decision.
+3. **Research** - Claims, contextual EvidenceLinks, SourceSnapshots, review workflow, evidence assessment,
+   publication gate and decision.
 4. **Accountability** - Corrections, Organization Responses, Users, append-only Audit Events.
 
-Core collections: `products`, `brands`, `categories`, `organizations`, `relationships`, `claims`,
-`sources`, `source_snapshots`, `assets`, `corrections`, `users`, `audit_events`.
+Core collections (exactly 11): `products`, `brands`, `organizations`, `relationships`, `claims`, `sources`,
+`source_snapshots`, `assets`, `corrections`, `users`, `audit_events`. The only derived collection is the
+technical `product_public_profiles` read model, which is never a source of truth.
 
 ## Non-Negotiable Domain Rules
 
@@ -96,29 +105,35 @@ Core collections: `products`, `brands`, `categories`, `organizations`, `relation
 2. **Relationships are independent graph edges, not fields.** Ownership/control/manufacturing/import/distribution changes create a new edge; never rewrite an old edge's subject to represent a new owner. Corrections increment the edge version and create an Audit Event.
 3. **Source is not SourceSnapshot.** A Source is an identity; each changed capture is a new immutable Snapshot with its own hash, retrieval time, and Asset.
 4. **Status dimensions never collapse.** `recordLifecycle`, `review.status`, `assessment.outcome`, and `publication.status` answer different questions. `SUPPORTED` does not mean `PUBLISHED`; `NOT_SUPPORTED` does not mean `FALSE`.
-5. **No arbitrary database patches.** Correction `fieldKey`/`operation`/`proposedValue` must be allowlisted and applied through dedicated domain actions with version checks, idempotency, and an Audit Event. Approval is not application.
+5. **No arbitrary database patches.** Correction `fieldKey`/`operation`/`proposedValue` must be allowlisted and applied through dedicated domain actions with version checks, idempotency, and an Audit Event.
 6. **Audit Events are append-only.** Never update or delete them. Redact secrets and personal data.
 7. **Public projections are explicit.** Never leak emails, phones, internal roles, research notes, unreviewed submissions, restricted sources, or private asset keys through client-requested projections.
-8. **Lesan Relations only where fixed-schema:** Product -> Brand, Product -> Category, SourceSnapshot -> Source. Polymorphic endpoints/targets use typed ObjectId references validated by a server-controlled registry.
+8. **Lesan Relations only where fixed-schema:** exactly `Product.brand` -> Brand and `SourceSnapshot.source` -> Source. Polymorphic endpoints/targets use typed ObjectId references validated by a server-controlled registry.
 9. **Reverse relation arrays are previews.** Any limited reverse relation is a bounded window, never the authoritative list, count, export, or research corpus. Query the owning collection.
 10. **Localization is first-class.** Store canonical values plus localized display values. Persian (`fa`) and Arabic (`ar`) are RTL; English (`en`) is LTR; keep the model extensible. Store dates in UTC and localize display; never guess unknown dates.
 11. **Barcode/GTIN inference is forbidden.** A GS1 prefix or barcode allocation must not infer manufacturing country, nationality, ownership, or legal/ethical status.
 12. **No universal verdict.** The product profile shows separate identity, relationship, claim, evidence, limitation, and publication states. Legal and campaign modules are future, reviewed features.
+13. **Arrays have hard caps.** Exceeding a cap is `422 CAP_EXCEEDED`, never a silent discard or `$slice`.
 
 ## Working Agreement
 
-- Read `CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `back/docs/summary.md` before domain work.
-- No feature implementation without the Architecture Spike or an approved plan.
+- Read `CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` and `back/docs/summary.md` before domain work.
+- No feature implementation outside the approved plans in `back/docs/plans/`.
 - Keep frontend business logic thin; backend domain services enforce authorization, validation, history, and audit.
-- Do not add libraries or frameworks not already planned without checking `package.json`/`deno.json` and the ERD.
+- Do not add libraries or frameworks not already planned without checking `package.json`/`deno.json` and the spec.
 - Do not implement production features in the scaffold phase.
+- Do not silently answer the six open decisions in spec Section 22.
 - Any ad-hoc script belongs in `ignore-scripts/` (git-ignored).
 
 ## Documentation Index
 
-- `back/docs/summary.md` - condensed domain model, relation boundaries, status matrix, open questions.
-- `back/docs/plans/01-architecture-spike.md` - first executable plan: prove the Lesan/MongoDB baseline.
-- `back/docs/prompts/01-architecture-spike.md` - agent prompt for executing plan 01.
+- `CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` - canonical domain contract; wins every conflict.
+- `back/docs/README.md` - documentation entry point and status.
+- `back/docs/summary.md` - the only condensed v3.1 domain reference.
+- `back/docs/adr/` - accepted decisions; ADR-0001 establishes v3.1 authority.
+- `back/docs/plans/00-roadmap.md` - delivery sequence, dependencies, gates.
+- `back/docs/plans/02-11` - executable backend plans; `back/docs/prompts/` mirrors them.
+- `back/docs/reports/` - evidence packs, including the historical spike report.
 - `back/AGENTS.md` - critical Lesan, security, and domain-model rules.
 - `front/AGENTS.md` - routing, i18n/RTL, server actions, and public-profile UI rules.
 

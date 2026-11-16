@@ -1,8 +1,15 @@
 # Plan 01 - Architecture Spike
 
+> **Historical note (2026-11-16):** This plan was executed against the superseded v1/v2 draft. CT-DOMAIN-SPEC
+> v3.1 is now canonical (`../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`). The Lesan/MongoDB mechanics,
+> security tests, index method, and performance evidence remain useful. Its domain decisions about
+> `categories`, `Product.category`, `SUBSIDIARY_OF`/extra predicates, extra claim types, `visibilityScope`,
+> `Source.latestSnapshotId`, and snapshot `version` are **void**. See
+> `../adr/0001-v3.1-single-canonical-spec.md` and `00-roadmap.md`.
+
 **Status:** Complete with constraints (2026-11-15) - see `../reports/01-architecture-spike.md`
 **Scope:** Backend foundation, with a minimal frontend contract check
-**Source of truth:** `../../../CONSUMER_TRANSPARENCY_FINAL_ERD.md`
+**Historical source:** `../../../CONSUMER_TRANSPARENCY_FINAL_ERD.md` (superseded; see banner)
 **Working summary:** `../summary.md`
 
 ## Purpose

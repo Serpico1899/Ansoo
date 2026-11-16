@@ -6,8 +6,9 @@ This backend resolves product identifiers to a transparent product profile and m
 behind it: identity, time-aware relationships, claims, sources, evidence, corrections, users, and audit
 events. It is the enforcement point for authorization, validation, history, provenance, and audit.
 
-**Status: scaffold only.** Do not implement production features until the Architecture Spike in
-`docs/plans/01-architecture-spike.md` is complete and its decisions are recorded.
+**Status: scaffold only.** The canonical contract is
+`../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` (CT-DOMAIN-SPEC v3.1); see
+`docs/adr/0001-v3.1-single-canonical-spec.md`. Production features follow plans 02-11 in `docs/plans/`.
 
 ## Stack
 
@@ -15,7 +16,7 @@ events. It is the enforcement point for authorization, validation, history, prov
 |---|---|
 | Runtime | Deno |
 | Framework | Lesan 0.2.3 (MongoDB ODM, generated API, playground, type generation) |
-| Database | MongoDB |
+| Database | MongoDB 8 (single-node replica set in development) |
 | Auth | JWT via djwt; token in HTTP header `token` (no `Bearer` prefix) |
 | Asset bytes | Object storage (local dev provider; S3-compatible in production) |
 | Asset metadata | `assets` collection only (hashes, MIME, size, visibility, processing) |
@@ -29,28 +30,34 @@ back/
 ├── models/                # One model file per canonical collection + mod.ts
 ├── src/<model>/<action>/  # Lesan action triad: mod.ts, <action>.fn.ts, <action>.val.ts
 ├── src/search/            # Cross-collection identifier and entity search
-├── utils/                 # Auth context, scope guards, reference registry, audit helpers
+├── utils/                 # Auth context, scope guards, reference registry, audit helpers, domain vocabulary
+├── scripts/               # Reproducible dev, config, and type-generation scripts
+├── archive/               # Historical spike code; never imported by production paths
+├── taxonomy.v1.json       # Category-code taxonomy; there is no Category collection
 ├── declarations/          # Generated type declarations (Lesan typeGeneration)
 ├── http/                  # Manual playground/E2E requests
-├── tests/                 # Deno tests
-├── docs/                  # summary.md, plans/, prompts/
+├── tests/                 # Invariant, domain, and infrastructure tests
+├── docs/                  # README, summary, ADRs, plans, prompts, reports
 └── uploads/               # Local development asset bytes (never commit content)
 ```
 
-Scaffolded action groups: `user`, `asset`, `product`, `brand`, `category`, `organization`,
-`relationship`, `claim`, `source`, `sourceSnapshot`, `correction`, `auditEvent`, plus cross-cutting
-`search`. Only `product` has a relation-update group (`brand`/`category`); every other model updates pure
-fields and uses dedicated domain actions.
+Scaffolded action groups: `user`, `asset`, `product`, `brand`, `organization`, `relationship`, `claim`,
+`source`, `sourceSnapshot`, `correction`, `auditEvent`, plus cross-cutting `search`. Only `product` has a
+relation-update group (`brand`); every other model updates pure fields and uses dedicated domain actions.
 
 ## Canonical Collections
 
-The ERD owns the domain. These names are canonical; schema/collection naming in Lesan must be confirmed
-by the spike:
+The v3.1 spec owns the domain. These names are canonical (Lesan schema/collection naming is confirmed by the
+spike as exact snake_case):
 
-`products`, `brands`, `categories`, `organizations`, `relationships`, `claims`, `sources`,
-`source_snapshots`, `assets`, `corrections`, `users`, `audit_events`.
+`products`, `brands`, `organizations`, `relationships`, `claims`, `sources`, `source_snapshots`, `assets`,
+`corrections`, `users`, `audit_events`.
 
-Read `../CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `docs/summary.md` before changing a model.
+The only derived collection is the technical `product_public_profiles` read model; it is never a source of
+truth. There is no category collection: Product stores `categoryCode` validated against
+`taxonomy.v1.json`.
+
+Read `../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` and `docs/summary.md` before changing a model.
 
 ## Critical Lesan Rules
 
@@ -58,9 +65,9 @@ Read `../CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `docs/summary.md` before changi
    ("child"), with `relatedRelations` for the bounded reverse. Never declare the reverse again on the
    parent. Lesan embeds `type: "single"` relations in the parent document; do not duplicate the same data
    as `xId`/`xName` fields.
-2. **Only three fixed-schema Lesan relations are approved:** `Product.brand` -> Brand,
-   `Product.category` -> Category, `SourceSnapshot.source` -> Source. Each is optional except the snapshot
-   source. Reverse names (`productsPreview`, `recentSnapshotsPreview`) are limited previews only.
+2. **Exactly two fixed-schema Lesan relations are approved:** `Product.brand` -> Brand (single, optional)
+   and `SourceSnapshot.source` -> Source (single, required). Reverse names (`productsPreview`,
+   `recentSnapshotsPreview`) are limited previews only.
 3. **Polymorphic references are not Lesan relations.** `Relationship.subject`/`.object`, `Claim.about`,
    `Claim.relatedEntities`, `Correction.target`, `AuditEvent.target`, `EvidenceLink.sourceSnapshotId`, and
    `OrganizationResponse.respondingOrganizationId` are typed ObjectId references. Resolve and validate
@@ -78,7 +85,7 @@ Read `../CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `docs/summary.md` before changi
 8. **Action triad.** Every action is `mod.ts` (registration, preActs, validator), `<action>.fn.ts`
    (implementation), and `<action>.val.ts` (validation + `get` projection). Keep validators strict and
    projections explicit.
-9. **Indexes follow the ERD, not guesswork.** Verify with `explain()` on representative data. Treat
+9. **Indexes follow the spec, not guesswork.** Verify with `explain()` on representative data. Treat
    compound/multikey array constraints and uniqueness carefully. Do not add a unique index before
    identifier scope, jurisdiction, issuer, and real duplicate cases are settled.
 10. **Respect document growth limits.** MongoDB BSON is capped at 16 MiB, but stay far below it. Embedded
@@ -110,9 +117,10 @@ Read `../CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `docs/summary.md` before changi
   and `operation` against a strict per-target allowlist. Approval is not application; application runs
   through a domain action with authorization, expected-version check, idempotency, and an Audit Event.
   The submitter never edits canonical data directly.
-- **Users:** `roles` (`CONTRIBUTOR`, `RESEARCHER`, `LEGAL_REVIEWER`, `MODERATOR`, `ADMIN`) are
-  authorization; `trustLevel` is not. Guests may search/scan without an account. Keep scan history local
-  by default. Never expose email, phone, auth identifiers, roles, or private profile data publicly.
+- **Users:** `roles` (`CONTRIBUTOR`, `RESEARCHER`, `RESEARCH_REVIEWER`, `LEGAL_REVIEWER`, `MODERATOR`,
+  `ADMIN`) are authorization; `trustLevel` is not. Guests may search/scan without an account. Keep scan
+  history local by default. Never expose email, phone, auth identifiers, roles, or private profile data
+  publicly.
 
 ## Assets and Untrusted Input
 
@@ -136,6 +144,7 @@ Read `../CONSUMER_TRANSPARENCY_FINAL_ERD.md` and `docs/summary.md` before changi
 ## Commands
 
 ```bash
+deno task db:dev       # single-node MongoDB replica set
 deno task dev          # watch mode
 deno task start
 deno task fmt
@@ -143,13 +152,15 @@ deno task fmt:check
 deno task lint
 deno task check
 deno task test
+deno task config:check
+deno task types
 ```
 
 Playground: `http://localhost:1370/playground`. Environment: copy `.env.example` to `.env`.
 
 ## Before Writing Backend Code
 
-1. Read the ERD and `docs/summary.md`.
+1. Read the v3.1 spec and `docs/summary.md`.
 2. Confirm the spike decision for collection naming, relation boundaries, projections, and type generation.
 3. Use the existing action folder pattern; do not invent a second architecture.
 4. Add tests for authorization, validation, history, audit, and public-projection leaks.
