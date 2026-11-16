@@ -1,0 +1,106 @@
+VOLUMES {
+  products: 10000,
+  relationships: 50000,
+  snapshots: 50000,
+  auditEvents: 20000
+}
+EXPLAIN identifier {
+  indexName: "products_identifier",
+  stage: "FETCH",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 1,
+  totalKeysExamined: 1,
+  nReturned: 1
+}
+EXPLAIN brandProducts {
+  indexName: "products_brand_lifecycle_name",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 20,
+  totalKeysExamined: 20,
+  nReturned: 20
+}
+EXPLAIN relationshipSubject {
+  indexName: "rel_subject_predicate",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 20,
+  totalKeysExamined: 20,
+  nReturned: 20
+}
+EXPLAIN reviewQueue {
+  indexName: "rel_review_queue",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 20,
+  totalKeysExamined: 20,
+  nReturned: 20
+}
+EXPLAIN claimsAbout {
+  indexName: "claims_about_type",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 1,
+  totalKeysExamined: 2,
+  nReturned: 1
+}
+EXPLAIN snapshotHistory {
+  indexName: "snapshots_source_retrieved",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 10,
+  totalKeysExamined: 10,
+  nReturned: 10
+}
+EXPLAIN correctionQueue {
+  indexName: "corrections_status_date",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 20,
+  totalKeysExamined: 20,
+  nReturned: 20
+}
+EXPLAIN auditTarget {
+  indexName: "audit_target_date",
+  stage: "LIMIT",
+  collectionScan: false,
+  executionTimeMillis: 0,
+  totalDocsExamined: 1,
+  totalKeysExamined: 1,
+  nReturned: 1
+}
+LATENCY identifier {
+  p50: 1.3986149999982445,
+  p95: 2.4067199999990407,
+  min: 0.9099809999970603,
+  max: 2.5780110000050627,
+  runs: 30
+}
+LATENCY brandProducts {
+  p50: 1.7378309999985504,
+  p95: 2.5509969999984605,
+  min: 1.3166300000011688,
+  max: 3.1974219999974594,
+  runs: 30
+}
+LATENCY reviewQueue {
+  p50: 2.3282800000015413,
+  p95: 3.7466310000017984,
+  min: 1.4190509999971255,
+  max: 4.216884999994363,
+  runs: 30
+}
+BSON {
+  representative: 23785,
+  at1000: 1107927,
+  at5000: 5543927,
+  at15000: 16638927,
+  limit: 16777216
+}

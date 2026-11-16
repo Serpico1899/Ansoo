@@ -1,0 +1,35 @@
+$ deno task config:check   # no environment
+[0m[32mTask[0m [0m[36mconfig:check[0m deno run --allow-env scripts/check-config.ts
+Invalid configuration:
+- MONGO_URL is required
+- DB_NAME is required
+- JWT_SECRET is required
+EXIT: nonzero expected
+
+$ ENV=development MONGO_URL=... DB_NAME=ansoo JWT_SECRET=<48 chars> deno task config:check
+[0m[32mTask[0m [0m[36mconfig:check[0m deno run --allow-env scripts/check-config.ts
+{
+  "ok": true,
+  "env": "development",
+  "port": 1370,
+  "mongodb": "mongodb://127.0.0.1:27019/?replicaSet=rs0",
+  "dbName": "ansoo",
+  "corsOrigins": [],
+  "assetProvider": "LOCAL_DEV",
+  "assetMaxBytes": 20971520
+}
+EXIT: 0
+
+$ ENV=development MONGO_URL=mongodb://127.0.0.1:27017 DB_NAME=ansoo JWT_SECRET=short deno task config:check
+[0m[32mTask[0m [0m[36mconfig:check[0m deno run --allow-env scripts/check-config.ts
+Invalid configuration:
+- MONGO_URL must include replicaSet=<name> (or use mongodb+srv://); development requires a replica set
+- JWT_SECRET must be at least 32 characters
+
+$ ENV=development MONGO_URL=mongodb://127.0.0.1:27019/?replicaSet=rs0 DB_NAME=ansoo JWT_SECRET=placeholder deno run --allow-env mod.ts
+[0m[1m[31merror[0m: Uncaught (in promise) ConfigError: Invalid configuration:
+- JWT_SECRET must not be a placeholder or default value
+  if (issues.length > 0) throw new ConfigError(issues);
+[0m[31m                               ^[0m
+    at [0m[1m[3mloadConfig[0m ([0m[36mfile:///home/serpico/Work/Projects/Ansoo/back/utils/config.ts[0m:[0m[33m217[0m:[0m[33m32[0m)
+    at [0m[36mfile:///home/serpico/Work/Projects/Ansoo/back/mod.ts[0m:[0m[33m10[0m:[0m[33m16[0m

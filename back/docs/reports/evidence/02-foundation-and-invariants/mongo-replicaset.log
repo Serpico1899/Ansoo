@@ -1,0 +1,7 @@
+MongoDB already responding on 127.0.0.1:27019; reusing it.
+Replica set already initiated.
+
+MongoDB replica set is PRIMARY.
+MONGO_URL=mongodb://127.0.0.1:27019/?replicaSet=rs0
+DB_NAME=ansoo
+EXIT: 0

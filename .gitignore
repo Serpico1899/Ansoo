@@ -50,3 +50,6 @@ back/http/_tests__/output/
 # Misc
 *.tsbuildinfo
 next-env.d.ts
+
+# Plan evidence logs are documentation artifacts
+!back/docs/reports/evidence/**/*.log

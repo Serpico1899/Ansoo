@@ -1,0 +1,10 @@
+$ deno task fmt:check
+Checked 26 files
+$ deno task lint
+Checked 26 files
+$ deno task check
+Check file:///home/serpico/Work/Projects/Ansoo/back/mod.ts
+$ deno task test
+ok | 10 passed (73 steps) | 0 failed (1m42s)
+$ cd ../front && pnpm typecheck
+tsc --noEmit (exit 0)

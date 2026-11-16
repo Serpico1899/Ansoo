@@ -1,0 +1,117 @@
+Task test deno test --allow-all
+running 1 test from ./tests/spike_01_bootstrap_relations.test.ts
+spike: bootstrap, naming, and Product->Brand relation behavior ...
+  collection names are exact schema names ... ok (10ms)
+  optional relation and snapshot shape ... ok (16ms)
+  replacement updates both sides ... ok (17ms)
+  removal leaves an empty object; treat {} as absent ... ok (11ms)
+  reverse preview is bounded and not authoritative ... ok (58ms)
+  embedded brand _id uses the declared index ... ok (3ms)
+  relation snapshot is stale until refreshed ... ok (13ms)
+  deletion refuses while dependents exist ... ok (5ms)
+spike: bootstrap, naming, and Product->Brand relation behavior ... ok (6s)
+running 1 test from ./tests/spike_02_category_snapshot.test.ts
+spike: category tree and SourceSnapshot->Source behavior ...
+  subtree move updates ancestors and depth ... ok (33ms)
+  cycle is rejected ... ok (3ms)
+  required snapshot source relation ... ok (1ms)
+  reverse preview is bounded; full history is a query ... ok (35ms)
+  metadata-only asset reference; no bytes in MongoDB ... ok (196ms)
+  a changed source creates a new snapshot ... ok (6ms)
+spike: category tree and SourceSnapshot->Source behavior ... ok (5s)
+running 1 test from ./tests/spike_03_registry.test.ts
+spike: polymorphic reference registry rejects unvalidated references ...
+  valid refs resolve on write and read paths ... ok (8ms)
+  unknown types and shapes are rejected ... ok (1ms)
+  type/id mismatches and missing targets are rejected ... ok (2ms)
+  per-field endpoint allowlists are enforced ... ok (2ms)
+  correction and audit target registries are explicit ... ok (13ms)
+  a persisted reference never carries a client collection ... ok (3ms)
+spike: polymorphic reference registry rejects unvalidated references ... ok (5s)
+running 1 test from ./tests/spike_04_status_projection.test.ts
+spike: status dimensions stay independent and public projection is safe ...
+  one dimension changes without collapsing the others ... ok (39ms)
+  SUPPORTED+WITHHELD and NOT_SUPPORTED+PUBLISHED are queryable ... ok (20ms)
+  state transitions write audit events ... ok (4ms)
+  deep client projection cannot leak private fields ... ok (6ms)
+  a published finding cannot publish a restricted source ... ok (1ms)
+spike: status dimensions stay independent and public projection is safe ... ok (5s)
+running 1 test from ./tests/spike_05_audit_correction.test.ts
+spike: audit is append-only and corrections apply exactly once ...
+  audit writes redact secrets and group by request ... ok (25ms)
+  no service-level audit mutation path exists ... ok (1ms)
+  approval does not apply the proposal ... ok (12ms)
+  application is version-checked and audited ... ok (16ms)
+  second application is idempotent or a controlled conflict ... ok (3ms)
+  stale expected version is rejected ... ok (10ms)
+  arbitrary patches and fields are rejected ... ok (114ms)
+  idempotency key is required ... ok (7ms)
+spike: audit is append-only and corrections apply exactly once ... ok (6s)
+running 1 test from ./tests/spike_06_auth.test.ts
+spike: auth derives roles from the database and guests stay public-only ...
+  guests may read public surfaces only ... ok (1ms)
+  the token header rejects the Bearer prefix ... ok (1ms)
+  roles come from the database, not token claims ... ok (7ms)
+  trustLevel is not authorization ... ok (3ms)
+  bad signature, expired token, and bad subject fail ... ok (3ms)
+  suspended and closed accounts are denied ... ok (6ms)
+  capability matrix is role-separated ... ok (11ms)
+  requireRole distinguishes anonymous from under-privileged ... ok (2ms)
+  public surfaces remain open to every role ... ok (11ms)
+spike: auth derives roles from the database and guests stay public-only ... ok (5s)
+running 1 test from ./tests/spike_07_assets_ssrf.test.ts
+spike: assets stay quarantined and URL fetching is SSRF-hardened ...
+  MIME sniffing uses bytes, not the client claim ... ok (2ms)
+  asset bytes go to storage and Mongo holds only metadata ... ok (175ms)
+  a cleaned asset that is not public stays hidden ... ok (7ms)
+  EXIF is stripped before public use ... ok (1ms)
+  asset URLs are signed and expire ... ok (3ms)
+  literal private hosts and schemes are blocked ... ok (2ms)
+  DNS is resolved and revalidated ... ok (0ms)
+  redirects and bodies are capped and credentials are omitted ... ok (7ms)
+spike: assets stay quarantined and URL fetching is SSRF-hardened ... ok (5s)
+running 1 test from ./tests/spike_08_identifiers.test.ts
+spike: identifier resolution is exact and never infers from a GS1 prefix ...
+  normalization validates check digits and preserves strings ... ok (2ms)
+  a verified identifier resolves exactly once ... ok (7ms)
+  statuses are reported, not hidden ... ok (13ms)
+  duplicate identifiers are ambiguous, not guessed ... ok (4ms)
+  jurisdiction narrows an otherwise ambiguous value ... ok (7ms)
+  scheme and leading zeroes are part of identity ... ok (4ms)
+  a product may hold several identifiers ... ok (2ms)
+  an invalid identifier is rejected, not resolved ... ok (1ms)
+  GS1 prefix is metadata, never an inference ... ok (2ms)
+  name search normalization is stable across widths ... ok (0ms)
+spike: identifier resolution is exact and never infers from a GS1 prefix ... ok (12s)
+running 1 test from ./tests/spike_09_benchmark.test.ts
+spike: representative queries use indexes and documents stay small ...
+  seed volumes are present ... ok (13ms)
+  identifier resolution uses the identifier index ... ok (5ms)
+  brand product listing uses its compound index ... ok (3ms)
+  relationship endpoint and queue queries use indexes ... ok (5ms)
+  claim, snapshot, correction, and audit queries use indexes ... ok (8ms)
+  identifier latency stays acceptable ... ok (35ms)
+  embedded relationship documents stay far below BSON 16 MiB ...
+------- post-test output -------
+BSON sizes {
+  representative: 23785,
+  at1000: 1107927,
+  at5000: 5543927,
+  at15000: 16638927,
+  limit: 16777216
+}
+----- post-test output end -----
+  embedded relationship documents stay far below BSON 16 MiB ... ok (456ms)
+spike: representative queries use indexes and documents stay small ... ok (18s)
+running 1 test from ./tests/spike_10_type_contract.test.ts
+spike: generated types and the frontend contract are usable ...
+  type generation emits ReqType for custom actions ... ok (15ms)
+  generated declarations include validator fields ... ok (0ms)
+  the generated action returns an allowlisted profile ... ok (9ms)
+  the claims action keeps assessment and publication separate ... ok (2ms)
+  locale message placeholders wrap, not replace, the data ... ok (1ms)
+  token header and error envelope are client-safe ... ok (1ms)
+spike: generated types and the frontend contract are usable ... ok (29s)
+
+ok | 10 passed (73 steps) | 0 failed (1m42s)
+

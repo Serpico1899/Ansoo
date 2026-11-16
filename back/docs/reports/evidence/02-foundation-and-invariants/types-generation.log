@@ -1,0 +1,3 @@
+[0m[32mTask[0m [0m[36mtypes[0m deno run --allow-all scripts/generate-types.ts
+Generated declarations/selectInp.ts from models/mod.ts.
+EXIT: 0

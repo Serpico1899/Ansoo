@@ -1,0 +1,71 @@
+===== deno task fmt:check =====
+[0m[32mTask[0m [0m[36mfmt:check[0m deno fmt --check
+Checked 30 files
+EXIT: 0
+
+===== deno task lint =====
+[0m[32mTask[0m [0m[36mlint[0m deno lint
+Checked 29 files
+EXIT: 0
+
+===== deno task check =====
+[0m[32mTask[0m [0m[36mcheck[0m deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts
+EXIT: 0
+
+===== deno task test =====
+[0m[32mTask[0m [0m[36mtest[0m deno test --allow-all tests/
+[0m[38;5;245mrunning 10 tests from ./tests/domain/constants.test.ts[0m
+closed entity registry is exactly v3.1 Section 4.1 ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+per-field endpoint allowlists are exact ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+exactly five predicates with the spec matrix ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+exactly three claim types, no OTHER escape hatch ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+status domains are declared separately and closure is exact ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+publication gate checks and waivers match v3.1 Section 10.5 ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+audit actions are the exact Section 9.3 allowlist ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+hard caps match v3.1 Section 4.5 and fail with 422 ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier, source, asset, response, correction, and user vocabularies are closed ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+assertNever throws on an unexpected runtime value ... [0m[32mok[0m [0m[38;5;245m(14ms)[0m
+[0m[38;5;245mrunning 4 tests from ./tests/domain/taxonomy.test.ts[0m
+the repository taxonomy file loads with schema version 1 ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+valid taxonomy codes are known and parent links resolve ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+duplicate, missing-parent, self-parent, and cyclic codes are rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+taxonomy structure requires labels and a known schema version ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 7 tests from ./tests/infrastructure/config.test.ts[0m
+valid development configuration loads with redacted URL ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+missing required configuration is reported together ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+placeholder and short JWT secrets are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+non-replica-set MongoDB is rejected outside test ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+asset provider configuration fails fast when incomplete ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+invalid numeric and CORS values are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+Mongo credentials are redacted ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/infrastructure/time.test.ts[0m
+UTC Date round-trips through ISO without losing precision ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+unknown dates stay null and invalid dates are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+UTC Date and null round-trip through a MongoDB replica set ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 15 tests from ./tests/invariants/invariants.test.ts[0m
+I01 - Product, Brand, and Organization are distinct identity types ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I02 - UNKNOWN is not FALSE and NOT_SUPPORTED is not a negative boolean ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I03 - Review, assessment, publication, legal, and campaign statuses stay separate ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I12 - No universal score, color, badge, or verdict is produced ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I04 - Public projections never return internal data ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I05 - SUPPORTED requires evidence and an assessor other than the creator ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I06 - PUBLISHED requires a passing publication gate ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I07 - SENSITIVE and HIGH_RISK findings require author, assessor, and publisher separation ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I08 - SourceSnapshot content identity is immutable ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I09 - AuditEvent is append-only ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I10 - Corrections never apply a raw patch ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I11 - No transitive ownership or control inference without written methodology ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I13 - Identifiers are strings and leading zeros are preserved ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I14 - Array caps are enforced in validators with 422, never silent discard ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+I15 - Identity merge is tombstone plus redirect; historical references are never rewritten ... [0m[33mignored[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/invariants/inventory.test.ts[0m
+invariant inventory is complete, unique, and mapped ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+
+[0m[32mok[0m | 28 passed | 0 failed | 12 ignored [0m[38;5;245m(929ms)[0m
+
+EXIT: 0
+
+===== deno task types =====
+[0m[32mTask[0m [0m[36mtypes[0m deno run --allow-all scripts/generate-types.ts
+Generated declarations/selectInp.ts from models/mod.ts.
+EXIT: 0

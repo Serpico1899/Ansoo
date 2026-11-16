@@ -1,0 +1,18 @@
+Production backend paths and instruction files
+pattern: \bcategories\b|SUBSIDIARY_OF|visibilityScope|latestSnapshotId|OTHER_REVIEWED|Product\.category|Product -> Category|MANUFACTURING_LOCATION|CORPORATE_ACTIVITY|EXPORTS_TO_MARKET|\bOPERATES\b|\bSUPPLIES\b|\bLICENSES\b|\bFRANCHISES\b
+
+NO MATCHES (forbidden v1/v2 terms absent)
+
+Archive (not production) matches are expected:
+back/archive/01-architecture-spike/tests/spike_09_benchmark.test.ts
+back/archive/01-architecture-spike/tests/spike_02_category_snapshot.test.ts
+back/archive/01-architecture-spike/tests/spike_01_bootstrap_relations.test.ts
+back/archive/01-architecture-spike/tests/spike_03_registry.test.ts
+back/archive/01-architecture-spike/spike/benchmark.ts
+back/archive/01-architecture-spike/spike/projection.ts
+back/archive/01-architecture-spike/spike/models.ts
+back/archive/01-architecture-spike/spike/indexes.ts
+back/archive/01-architecture-spike/spike/registry.ts
+back/archive/01-architecture-spike/spike/category.ts
+back/archive/01-architecture-spike/spike/harness.ts
+back/archive/README.md
