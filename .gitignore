@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+vendor/
+
+# Build output
+.next/
+out/
+dist/
+build/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!.env.local.example
+!.env.backend.example
+!.env.frontend.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Deno
+.deno/
+
+# Runtime uploads (keep the directory, not the content)
+back/uploads/*
+!back/uploads/.gitkeep
+
+# Local scratch scripts must never be committed
+ignore-scripts/
+!ignore-scripts/.gitkeep
+
+# Test artifacts
+back/http/_tests__/output/
+*.hurl.html
+
+# Misc
+*.tsbuildinfo
+next-env.d.ts
