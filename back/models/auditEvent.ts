@@ -1,4 +1,4 @@
 // audit_events - append-only accountability stream.
-// ERD: Section 7.12.
-// TODO(Architecture Spike): implement append-only writes, actor/target registry validation,
-// correlation ids, version deltas, and redacted before/after summaries.
+// v3.1 spec: Section 9.3.
+// TODO(Plan 07): implement append-only writes, actor/target registry validation,
+// correlation ids, version deltas, and redacted flat before/after summaries.

@@ -1,4 +1,4 @@
 // users - consumer/contributor and internal staff accounts.
-// ERD: Section 7.11.
-// TODO(Architecture Spike): implement private identity fields, roles, trust level,
-// and account status. Trust level is not an authorization role.
+// v3.1 spec: Section 9.2.
+// TODO(Plan 07): implement private identity fields, six authorization roles,
+// trust level, and account status. Trust level is not an authorization role.

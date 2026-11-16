@@ -1,4 +1,4 @@
 // products - exact trade item / packaging configuration.
-// ERD: Section 7.1.
-// TODO(Architecture Spike): implement pure fields plus the optional brand and
-// category Lesan relations after collection naming and relation behavior are verified.
+// v3.1 spec: Section 5.1.
+// TODO(Plan 03): implement pure fields, categoryCode from taxonomy.v1.json, typed
+// attributes, and the optional brand Lesan relation. No category relation exists.
