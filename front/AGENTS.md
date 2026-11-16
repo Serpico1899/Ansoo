@@ -7,8 +7,9 @@ provides the research workspace for internal staff. It must show identity, relat
 sources, responses, corrections, and unknowns separately. It must never present a single opaque ethical,
 legal, or boycott score.
 
-**Status: scaffold only.** Do not implement production pages until the Architecture Spike and the first
-approved feature plan are complete.
+**Status: scaffold only.** The canonical contract is
+`../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md` (CT-DOMAIN-SPEC v3.1). Do not implement production pages until
+the relevant backend plan in `../back/docs/plans/` is complete and its API contract exists.
 
 ## Next.js Version Warning
 
@@ -55,7 +56,7 @@ src/
 │   ├── claims/[id]/
 │   ├── research/              # internal research workspace
 │   │   ├── queue/
-│   │   ├── products/ brands/ categories/ organizations/
+│   │   ├── products/ brands/ organizations/
 │   │   ├── relationships/ claims/ sources/ snapshots/
 │   │   ├── assets/ corrections/ users/ audit-events/
 │   └── actions/               # Server Actions, one folder per backend model
@@ -91,7 +92,7 @@ src/
 The profile is a set of explicit, separately labeled sections, not a verdict:
 
 1. Product identity, identifiers approved for display, and brand-mapping state.
-2. Accepted brand and category, or a clear "not verified" state.
+2. Accepted brand and category code, or a clear "not verified" state. There is no Category collection.
 3. Relationships with predicate, market/jurisdiction, validity dates, and evidence state.
 4. Published claims with exact wording, scope, assessment outcome, and publication status.
 5. Evidence and source citations with capture/update dates and access limitations.
@@ -146,7 +147,7 @@ The backend must be running for real data. Playground: `http://localhost:1370/pl
 
 ## Before Writing Frontend Code
 
-1. Read the ERD and the approved plan for the feature.
+1. Read the v3.1 spec and the approved plan for the feature.
 2. Check the installed Next.js 16 docs for any routing/rendering API you use.
 3. Confirm the backend action and generated types exist; do not invent endpoints.
 4. Add all copy to every supported locale catalog.
