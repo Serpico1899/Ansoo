@@ -3,24 +3,35 @@
   "version": "0.1.0",
   "exports": "./mod.ts",
   "tasks": {
+    "db:dev": "bash scripts/mongo-dev.sh",
     "dev": "deno run --allow-all --watch mod.ts",
-    "bc-dev": "deno run --allow-all --watch mod.ts",
     "start": "deno run --allow-all mod.ts",
-    "test": "deno test --allow-all",
+    "test": "deno test --allow-all tests/",
+    "test:invariants": "deno test --allow-all tests/invariants/",
     "fmt": "deno fmt",
     "fmt:check": "deno fmt --check",
     "lint": "deno lint",
-    "check": "deno check mod.ts"
+    "check": "deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts",
+    "config:check": "deno run --allow-env scripts/check-config.ts",
+    "types": "deno run --allow-all scripts/generate-types.ts"
   },
   "fmt": {
-    "include": ["src/", "models/", "utils/", "tests/", "mod.ts"],
+    "include": [
+      "src/",
+      "models/",
+      "utils/",
+      "scripts/",
+      "tests/",
+      "mod.ts",
+      "taxonomy.v1.json"
+    ],
     "semiColons": true,
     "singleQuote": false,
     "indentWidth": 2,
     "lineWidth": 100
   },
   "lint": {
-    "include": ["src/", "models/", "utils/", "tests/", "mod.ts"],
+    "include": ["src/", "models/", "utils/", "scripts/", "tests/", "mod.ts"],
     "rules": {
       "tags": ["recommended"]
     }

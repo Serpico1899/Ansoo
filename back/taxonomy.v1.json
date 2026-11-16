@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "version": "v1",
+  "description": "Ansoo category-code taxonomy. There is no Category collection. Nodes are populated by research; an empty list means no category codes are accepted yet.",
+  "nodes": []
+}
