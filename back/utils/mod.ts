@@ -5,4 +5,5 @@
 // plans 03-09.
 export * from "./config.ts";
 export * from "./domain/mod.ts";
+export * as identity from "./identity/mod.ts";
 export * from "./time.ts";
