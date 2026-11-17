@@ -181,6 +181,10 @@ export type FindingRecordLifecycle = typeof FINDING_RECORD_LIFECYCLE[number];
 
 export const MERGE_MAX_DEPTH = 5;
 
+// 10.1 - EvidenceLink stance. Stance belongs to the link, not the Source.
+export const EVIDENCE_STANCES = ["SUPPORTS", "CONTRADICTS", "CONTEXTUALIZES", "NEUTRAL"] as const;
+export type EvidenceStance = typeof EVIDENCE_STANCES[number];
+
 // 10.2 - ReviewWorkflow
 export const REVIEW_WORKFLOW_STATUSES = [
   "NOT_QUEUED",
@@ -561,6 +565,32 @@ export type CharacterCapKey = keyof typeof CHARACTER_CAPS;
 
 export const CAPTURE_METADATA_MAX_KEYS = 20;
 export const CAPTURE_METADATA_MAX_DEPTH = 2;
+
+// 4.5 / 8.2 - captureMetadata is a bounded, allowlisted diagnostic record.
+// Unknown fetcher/processor keys are rejected instead of silently stored.
+export const CAPTURE_METADATA_ALLOWED_KEYS = [
+  "httpStatus",
+  "requestedUrl",
+  "finalUrl",
+  "contentType",
+  "contentLength",
+  "encoding",
+  "filename",
+  "pageCount",
+  "userAgent",
+  "redirectCount",
+  "fetchedAt",
+  "etag",
+  "lastModified",
+  "language",
+  "title",
+  "author",
+  "publishedAt",
+  "archiveUrl",
+  "warcRecordId",
+  "warcDigest",
+] as const;
+export type CaptureMetadataKey = typeof CAPTURE_METADATA_ALLOWED_KEYS[number];
 
 export const CAP_EXCEEDED_STATUS = 422 as const;
 export const CAP_EXCEEDED_CODE = "CAP_EXCEEDED" as const;

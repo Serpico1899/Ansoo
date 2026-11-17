@@ -124,8 +124,7 @@ export const INVARIANTS: readonly InvariantRecord[] = [
     title: "Array caps are enforced in validators with 422, never silent discard",
     implementedBy: [3],
     scenarios: ["S26"],
-    foundation: "blocked",
-    blockedBy: "Plan 03: model validators",
+    foundation: "enforced",
   },
   {
     id: "I15",

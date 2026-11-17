@@ -146,10 +146,51 @@ export async function loadTaxonomy(
   return parseTaxonomy(raw);
 }
 
+export function loadTaxonomySync(path: string | URL = TAXONOMY_DEFAULT_PATH): Taxonomy {
+  let text: string;
+  try {
+    text = Deno.readTextFileSync(path);
+  } catch (error) {
+    fail(`cannot read taxonomy at ${String(path)}: ${(error as Error).message}`);
+  }
+
+  try {
+    return parseTaxonomy(JSON.parse(text));
+  } catch (error) {
+    if (error instanceof TaxonomyError) throw error;
+    fail(`taxonomy is not valid JSON: ${(error as Error).message}`);
+  }
+}
+
+let defaultTaxonomy: Taxonomy | undefined;
+
+export function getDefaultTaxonomy(): Taxonomy {
+  return defaultTaxonomy ??= loadTaxonomySync();
+}
+
 export function categoryCodeSet(taxonomy: Taxonomy): ReadonlySet<string> {
   return new Set(taxonomy.nodes.map((node) => node.code));
 }
 
 export function isKnownCategoryCode(taxonomy: Taxonomy, code: string): boolean {
   return taxonomy.nodes.some((node) => node.code === code);
+}
+
+export class UnknownCategoryCodeError extends Error {
+  readonly status = 422 as const;
+  readonly code = "UNKNOWN_CATEGORY_CODE" as const;
+
+  constructor(readonly categoryCode: string) {
+    super(`UNKNOWN_CATEGORY_CODE: ${categoryCode} is not in taxonomy.v1.json`);
+    this.name = "UnknownCategoryCodeError";
+  }
+}
+
+export function assertKnownCategoryCode(
+  code: string,
+  taxonomy: Taxonomy = getDefaultTaxonomy(),
+): void {
+  if (!isKnownCategoryCode(taxonomy, code)) {
+    throw new UnknownCategoryCodeError(code);
+  }
 }

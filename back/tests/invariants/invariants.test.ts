@@ -98,6 +98,19 @@ Deno.test({
 });
 
 Deno.test({
+  name: TEST_NAMES.I14,
+  fn() {
+    const cap = domain.HARD_CAPS.identifiers;
+    assertEquals(domain.hardCapViolation("identifiers", cap), null);
+    const violation = domain.hardCapViolation("identifiers", cap + 1);
+    assertEquals(violation?.status, 422);
+    assertEquals(violation?.code, "CAP_EXCEEDED");
+    assertEquals(violation?.cap, cap);
+    assertEquals(violation?.actual, cap + 1);
+  },
+});
+
+Deno.test({
   name: TEST_NAMES.I12,
   fn() {
     const forbiddenValues = new Set(["SCORE", "VERDICT", "BADGE", "COLOR", "RATING", "BOYCOTT"]);
