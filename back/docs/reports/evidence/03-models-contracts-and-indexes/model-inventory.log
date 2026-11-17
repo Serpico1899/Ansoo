@@ -1,0 +1,101 @@
+{
+  "models": [
+    "assets",
+    "audit_events",
+    "brands",
+    "claims",
+    "corrections",
+    "organizations",
+    "products",
+    "relationships",
+    "source_snapshots",
+    "sources",
+    "users"
+  ],
+  "relations": [
+    {
+      "parent": "products",
+      "name": "brand",
+      "target": "brands",
+      "type": "single",
+      "optional": true,
+      "reverse": {
+        "name": "productsPreview",
+        "type": "multiple",
+        "limit": 20,
+        "sort": {
+          "field": "updatedAt",
+          "order": "desc"
+        }
+      }
+    },
+    {
+      "parent": "source_snapshots",
+      "name": "source",
+      "target": "sources",
+      "type": "single",
+      "optional": false,
+      "reverse": {
+        "name": "recentSnapshotsPreview",
+        "type": "multiple",
+        "limit": 10,
+        "sort": {
+          "field": "retrievedAt",
+          "order": "desc"
+        }
+      }
+    }
+  ],
+  "indexes": {
+    "products": [
+      "products_identifier",
+      "products_matchValue",
+      "products_matchKey",
+      "products_brand_lifecycle",
+      "products_category_lifecycle"
+    ],
+    "brands": [
+      "brands_matchKey",
+      "brands_alias_matchKey",
+      "brands_lifecycle_updatedAt"
+    ],
+    "organizations": [
+      "organizations_matchKey",
+      "organizations_identifier",
+      "organizations_kind_lifecycle"
+    ],
+    "relationships": [
+      "relationships_subject_predicate",
+      "relationships_object_predicate",
+      "relationships_review_queue",
+      "relationships_review_assignee",
+      "relationships_publication",
+      "relationships_market_predicate"
+    ],
+    "claims": [
+      "claims_about_type",
+      "claims_review_queue",
+      "claims_review_assignee",
+      "claims_publication"
+    ],
+    "sources": [
+      "sources_canonicalUrl",
+      "sources_type_lifecycle"
+    ],
+    "source_snapshots": [
+      "snapshots_source_retrievedAt",
+      "snapshots_contentHash"
+    ],
+    "corrections": [
+      "corrections_status_submittedAt",
+      "corrections_submitter_submittedAt",
+      "corrections_target_status",
+      "corrections_application_idempotency"
+    ],
+    "audit_events": [
+      "audit_target_occurredAt",
+      "audit_actor_occurredAt",
+      "audit_correlationId"
+    ]
+  }
+}

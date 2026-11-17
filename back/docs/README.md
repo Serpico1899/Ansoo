@@ -24,7 +24,7 @@ override v3.1. See `adr/0001-v3.1-single-canonical-spec.md`.
 | Domain specification | v3.1 canonical (LOCKED baseline) |
 | Backend code | Scaffold only; no production model or action implemented |
 | Architecture spike | Complete against the superseded draft; archived under `archive/01-architecture-spike/` |
-| Execution plans | Plan 02 complete (2026-11-16); plans 03-11 defined for v3.1; plan 01 is historical |
+| Execution plans | Plans 02-03 complete (2026-11-17); plans 04-11 defined for v3.1; plan 01 is historical |
 | Data acquisition | Not started; equal priority to engineering |
 | Production readiness | Not started |
 

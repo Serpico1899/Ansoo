@@ -29,7 +29,7 @@ A report must not claim a test passed, a target was met, or a decision was final
 |---|---|---|
 | `01-architecture-spike.md` | 01 (historical) | Complete with constraints; domain assumptions superseded by v3.1 |
 | `02-foundation-and-invariants.md` | 02 | Complete with one documented process deviation |
-| `03-models-contracts-and-indexes.md` | 03 | Not started |
+| `03-models-contracts-and-indexes.md` | 03 | Complete |
 | `04-identity-normalization-and-resolution.md` | 04 | Not started |
 | `05-graph-claims-and-publication-gates.md` | 05 | Not started |
 | `06-provenance-assets-and-capture.md` | 06 | Not started |

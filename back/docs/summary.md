@@ -6,10 +6,12 @@ disagree, the spec wins and this summary must be corrected.
 
 ## Status
 
-- **Scaffold only.** Directory structure, configuration, and documentation exist; no production models or
-  actions are implemented.
+- **Models implemented; actions are scaffold only.** The eleven v3.1 models, embedded contracts, cap
+  validators, two Lesan relations, and starting indexes exist; HTTP actions are still scaffolds.
+- **Plan 03 complete (2026-11-17).** Eleven collections, shared contracts, cap enforcement, relation
+  boundaries, and verified indexes are in place. Plans 04-11 build on this foundation.
 - **Plan 02 complete (2026-11-16).** Shared v3.1 vocabulary/caps, invariant harness, replica-set dev
-  topology, fail-fast config, and archived spike are in place. Plans 03-11 build on this foundation.
+  topology, fail-fast config, and archived spike are in place.
 - v3.1 is the **single canonical baseline**. It supersedes v1.0, v2.0, and the old
   `CONSUMER_TRANSPARENCY_FINAL_ERD.md` as domain authority. See
   `adr/0001-v3.1-single-canonical-spec.md`.

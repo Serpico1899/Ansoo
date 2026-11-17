@@ -1,0 +1,30 @@
+[0m[38;5;245mrunning 3 tests from ./tests/models/relations.integration.test.ts[0m
+relations: Product.brand snapshot and bounded Brand.productsPreview ...
+  optional brand may be absent ... [0m[32mok[0m [0m[38;5;245m(189ms)[0m
+  brand snapshot embeds identity fields and excludes aliases ... [0m[32mok[0m [0m[38;5;245m(30ms)[0m
+  reverse preview is limited to 20 and not authoritative ... [0m[32mok[0m [0m[38;5;245m(972ms)[0m
+  relation snapshots are stale until refreshed through the API ... [0m[32mok[0m [0m[38;5;245m(657ms)[0m
+relations: Product.brand snapshot and bounded Brand.productsPreview ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ...
+  required source relation cannot be omitted ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  reverse preview is limited to 10, newest first ... [0m[32mok[0m [0m[38;5;245m(785ms)[0m
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+relations: removed single relation is represented as {} and treated as absent ... [0m[32mok[0m [0m[38;5;245m(549ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/models/indexes.integration.test.ts[0m
+indexes: every declared index supports its named query with IXSCAN ...
+  declared indexes exist ... [0m[32mok[0m [0m[38;5;245m(28ms)[0m
+  only the allowed unique indexes exist ... [0m[32mok[0m [0m[38;5;245m(22ms)[0m
+  each named query returns an IXSCAN plan ...
+[0m[38;5;245m------- post-test output -------[0m
+PLAN03_INDEX_EVIDENCE [{"index":"products_identifier","query":"resolve a scanned identifier by scheme/value/jurisdiction","used":"products_identifier"},{"index":"products_matchValue","query":"resolve a GTIN matchValue","used":"products_matchValue"},{"index":"products_matchKey","query":"exact normalized product name candidate lookup","used":"products_matchKey"},{"index":"products_brand_lifecycle","query":"list active products for a brand","used":"products_brand_lifecycle"},{"index":"products_category_lifecycle","query":"list active products in a category","used":"products_category_lifecycle"},{"index":"brands_matchKey","query":"exact normalized brand lookup","used":"brands_matchKey"},{"index":"brands_alias_matchKey","query":"brand lookup through an alias","used":"brands_alias_matchKey"},{"index":"brands_lifecycle_updatedAt","query":"recently updated active/archived brands","used":"brands_lifecycle_updatedAt"},{"index":"organizations_matchKey","query":"exact normalized organization lookup","used":"organizations_matchKey"},{"index":"organizations_identifier","query":"resolve an organization official identifier","used":"organizations_identifier"},{"index":"organizations_kind_lifecycle","query":"list organizations by kind and lifecycle","used":"organizations_kind_lifecycle"},{"index":"relationships_subject_predicate","query":"find outgoing edges for a subject and predicate","used":"relationships_subject_predicate"},{"index":"relationships_object_predicate","query":"find incoming edges for an object and predicate","used":"relationships_object_predicate"},{"index":"relationships_review_queue","query":"global review queue by status, newest first","used":"relationships_review_queue"},{"index":"relationships_review_assignee","query":"assignee review queue by status, newest first","used":"relationships_review_assignee"},{"index":"relationships_publication","query":"publication queue by status, newest first","used":"relationships_publication"},{"index":"relationships_market_predicate","query":"market-scoped active edges by predicate","used":"relationships_market_predicate"},{"index":"claims_about_type","query":"find claims about an entity and claim type","used":"claims_about_type"},{"index":"claims_review_queue","query":"global claim review queue, newest first","used":"claims_review_queue"},{"index":"claims_review_assignee","query":"assignee claim review queue, newest first","used":"claims_review_assignee"},{"index":"claims_publication","query":"claim publication queue, newest first","used":"claims_publication"},{"index":"sources_canonicalUrl","query":"find a source by canonical URL","used":"sources_canonicalUrl"},{"index":"sources_type_lifecycle","query":"list sources by type and lifecycle","used":"sources_type_lifecycle"},{"index":"snapshots_source_retrievedAt","query":"recent snapshots for a source","used":"snapshots_source_retrievedAt"},{"index":"snapshots_contentHash","query":"deduplicate captured bytes by SHA-256","used":"snapshots_contentHash"},{"index":"corrections_status_submittedAt","query":"correction queue by status, newest first","used":"corrections_status_submittedAt"},{"index":"corrections_submitter_submittedAt","query":"a submitter's corrections, newest first","used":"corrections_submitter_submittedAt"},{"index":"corrections_target_status","query":"corrections for one target by status","used":"corrections_target_status"},{"index":"corrections_application_idempotency","query":"prevent double application by idempotency key","used":"corrections_application_idempotency"},{"index":"audit_target_occurredAt","query":"audit trail for one target, newest first","used":"audit_target_occurredAt"},{"index":"audit_actor_occurredAt","query":"audit trail for one actor, newest first","used":"audit_actor_occurredAt"},{"index":"audit_correlationId","query":"group audit events by workflow correlation","used":"audit_correlationId"}]
+[0m[38;5;245m----- post-test output end -----[0m
+  each named query returns an IXSCAN plan ... [0m[32mok[0m [0m[38;5;245m(128ms)[0m
+  representative Relationship/Claim BSON stays far below 1 MiB ...
+[0m[38;5;245m------- post-test output -------[0m
+PLAN03_BSON_SIZES {"relationship":497,"claim":467}
+[0m[38;5;245m----- post-test output end -----[0m
+  representative Relationship/Claim BSON stays far below 1 MiB ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+indexes: every declared index supports its named query with IXSCAN ... [0m[32mok[0m [0m[38;5;245m(10s)[0m
+
+[0m[32mok[0m | 4 passed (10 steps) | 0 failed [0m[38;5;245m(14s)[0m
+
