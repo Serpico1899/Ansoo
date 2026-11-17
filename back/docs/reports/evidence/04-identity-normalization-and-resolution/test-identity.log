@@ -1,0 +1,105 @@
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/brandMapping.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/entities.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/identifier.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/merge.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/normalize.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/registry.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/resolution.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/search.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/url.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/verifyIdentifier.integration.test.ts
+[0m[38;5;245mrunning 1 test from ./tests/identity/brandMapping.integration.test.ts[0m
+brand mapping: only VERIFIED populates Product.brand, history is audited ...
+  a candidate does not populate the brand relation ... [0m[32mok[0m [0m[38;5;245m(240ms)[0m
+  VERIFIED sets Product.brand through the relation API ... [0m[32mok[0m [0m[38;5;245m(88ms)[0m
+  a later dispute removes the verified relation ... [0m[32mok[0m [0m[38;5;245m(73ms)[0m
+  a different verified brand replaces the relation ... [0m[32mok[0m [0m[38;5;245m(75ms)[0m
+  every review writes a valid AuditEvent ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  a contributor may not review a mapping ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  stale version is a CAS conflict ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  VERIFIED without a candidate and unknown brands fail closed ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+brand mapping: only VERIFIED populates Product.brand, history is audited ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/entities.integration.test.ts[0m
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ...
+  S01 brand creation normalizes the two keys and audits ... [0m[32mok[0m [0m[38;5;245m(401ms)[0m
+  S02 a product resolves through its brand relation snapshot ... [0m[32mok[0m [0m[38;5;245m(328ms)[0m
+  organization creation keeps identity kinds separate ... [0m[32mok[0m [0m[38;5;245m(244ms)[0m
+  rename re-normalizes and enforces CAS ... [0m[32mok[0m [0m[38;5;245m(70ms)[0m
+  a contributor may not create identities ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/identity/identifier.test.ts[0m
+identifier: GTIN strips separators and preserves leading zeros ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+identifier: GTIN accepts 8/12/13/14 digits and rejects bad check digits ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: unknown or unruled schemes fail closed ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: different schemes are never compared ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: status transitions are explicit and RETIRED is terminal ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: GS1 prefix is metadata only, never country/ownership inference ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/identity/merge.integration.test.ts[0m
+merge: tombstone, audit, and historical references are never rewritten ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ...
+  contradictory GTINs block a product merge ... [0m[32mok[0m [0m[38;5;245m(215ms)[0m
+  stale expected version is a CAS conflict ... [0m[32mok[0m [0m[38;5;245m(290ms)[0m
+  source and target may not be the same identity ... [0m[32mok[0m [0m[38;5;245m(14ms)[0m
+  a contributor may not merge identities ... [0m[32mok[0m [0m[38;5;245m(42ms)[0m
+  target of a different type is rejected ... [0m[32mok[0m [0m[38;5;245m(203ms)[0m
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/identity/normalize.test.ts[0m
+normalization: all six mandatory vectors pass exactly ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+normalization: idempotent for both keys ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: whitespace variants are invariant ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: Persian and Arabic digits fold to ASCII ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: scripts and punctuation never merge accidentally ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/identity/registry.integration.test.ts[0m
+registry: only closed {type,id} refs with per-field allowlists are accepted ... [0m[32mok[0m [0m[38;5;245m(55ms)[0m
+registry: existence and lifecycle distinguish missing, archived, and wrong type ...
+  active target resolves ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  missing target is NOT_FOUND ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  archived target is ARCHIVED ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  a ref to another type is a wrong-type error ... [0m[32mok[0m [0m[38;5;245m(188ms)[0m
+  collection/model/path/operator inputs are rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+registry: existence and lifecycle distinguish missing, archived, and wrong type ... [0m[32mok[0m [0m[38;5;245m(631ms)[0m
+registry: merge chains follow at most five hops and cycles raise an admin flag ...
+  chain follows to the survivor ... [0m[32mok[0m [0m[38;5;245m(232ms)[0m
+  cycle denies resolution with an admin flag ... [0m[32mok[0m [0m[38;5;245m(27ms)[0m
+  a chain longer than five hops is denied and flagged ... [0m[32mok[0m [0m[38;5;245m(25ms)[0m
+registry: merge chains follow at most five hops and cycles raise an admin flag ... [0m[32mok[0m [0m[38;5;245m(399ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/identity/resolution.integration.test.ts[0m
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ...
+  exact verified identifier is FOUND ... [0m[32mok[0m [0m[38;5;245m(13ms)[0m
+  unknown identifier is NOT_FOUND, not an error ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  leading-zero GTIN resolves by matchValue ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  jurisdiction narrows the exact lookup ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ... [0m[32mok[0m [0m[38;5;245m(508ms)[0m
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ...
+  two verified products for one identifier are AMBIGUOUS ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  a disputed identifier returns DISPUTED with a note ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  an unverified identifier returns UNVERIFIED ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  retired identifiers do not resolve ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  a merged tombstone redirects to the survivor ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  invalid check digits fail before query ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ... [0m[32mok[0m [0m[38;5;245m(421ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/search.integration.test.ts[0m
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ...
+  exact matchKey ranks before prefix and tombstones are excluded ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+  a non-matching query is an explicit empty result ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  regex metacharacters are escaped, not interpreted ... [0m[32mok[0m [0m[38;5;245m(12ms)[0m
+  resolving a tombstone directly redirects to the survivor ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  search never compares across types or schemes ... [0m[32mok[0m [0m[38;5;245m(183ms)[0m
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ... [0m[32mok[0m [0m[38;5;245m(672ms)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/identity/url.test.ts[0m
+url: lowercases host, removes default port and fragment ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+url: strips tracking parameters and keeps meaningful query values ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: trailing slash policy removes one slash except at the root ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: internationalized hosts become punycode ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: non-http schemes and malformed URLs are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/verifyIdentifier.integration.test.ts[0m
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ...
+  adds a GTIN string with a 14-digit lookup value ... [0m[32mok[0m [0m[38;5;245m(230ms)[0m
+  moves UNVERIFIED to VERIFIED without losing the raw value ... [0m[32mok[0m [0m[38;5;245m(63ms)[0m
+  a retired identifier is terminal ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+  invalid GTIN and blocked schemes fail before write ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  stale version and a contributor fail closed ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ... [0m[32mok[0m [0m[38;5;245m(912ms)[0m
+
+[0m[32mok[0m | 27 passed (46 steps) | 0 failed [0m[38;5;245m(11s)[0m
+

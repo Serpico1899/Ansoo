@@ -6,10 +6,13 @@ disagree, the spec wins and this summary must be corrected.
 
 ## Status
 
-- **Models implemented; actions are scaffold only.** The eleven v3.1 models, embedded contracts, cap
-  validators, two Lesan relations, and starting indexes exist; HTTP actions are still scaffolds.
+- **Models and identity services implemented; HTTP actions are scaffold only.** The eleven v3.1 models,
+  embedded contracts, cap validators, two Lesan relations, starting indexes, and identity domain services
+  exist; HTTP actions are still scaffolds.
+- **Plan 04 complete (2026-11-17).** Persian normalization, GTIN identifiers, URL canonicalization, the
+  closed reference registry, merge/unmerge, resolution, brand mapping, and MVP search are in place.
 - **Plan 03 complete (2026-11-17).** Eleven collections, shared contracts, cap enforcement, relation
-  boundaries, and verified indexes are in place. Plans 04-11 build on this foundation.
+  boundaries, and verified indexes are in place.
 - **Plan 02 complete (2026-11-16).** Shared v3.1 vocabulary/caps, invariant harness, replica-set dev
   topology, fail-fast config, and archived spike are in place.
 - v3.1 is the **single canonical baseline**. It supersedes v1.0, v2.0, and the old

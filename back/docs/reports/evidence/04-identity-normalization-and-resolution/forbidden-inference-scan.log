@@ -1,0 +1,3 @@
+utils/identity/resolution.ts:4:// It never infers a Product from a Brand, category, barcode prefix, or name
+utils/identity/identifier.ts:134:export function gs1PrefixMetadata(value: string): {
+utils/identity/identifier.ts:138:  return { prefix: value.slice(0, 3), inference: "FORBIDDEN" };

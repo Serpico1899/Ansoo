@@ -1,6 +1,6 @@
 # Plan 04 - Identity, Normalization, and Resolution (v3.1)
 
-**Status:** Not started
+**Status:** Complete (2026-11-17)
 **Depends on:** 03
 **Blocks:** 05, 09
 **Canonical contract:** `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`
@@ -21,10 +21,10 @@ identifier normalization, the closed polymorphic reference registry, merge/redir
 
 ## Pre-Flight
 
-- [ ] Read spec Sections 4.1, 4.4, 5, 13, 15.2, 16.1.
-- [ ] Confirm the models from plan 03 exist and the shared enums are closed.
-- [ ] Confirm the installed Lesan/MongoDB query behavior for multikey identifier lookups.
-- [ ] Record the target identifier schemes for the first category; if unknown, keep the decision blocked.
+- [x] Read spec Sections 4.1, 4.4, 5, 13, 15.2, 16.1.
+- [x] Confirm the models from plan 03 exist and the shared enums are closed.
+- [x] Confirm the installed Lesan/MongoDB query behavior for multikey identifier lookups.
+- [x] Record the target identifier schemes for the first category; GTIN supported, other schemes blocked.
 
 ## Tasks
 
@@ -32,13 +32,13 @@ identifier normalization, the closed polymorphic reference registry, merge/redir
 
 Implement exactly the two-key algorithm in spec Section 13.1. Do not "improve" it without an ADR.
 
-- [ ] `normalizedName`: NFKC; remove harakat `U+064B..U+0652` and `U+0670`; remove tatweel `U+0640`;
+- [x] `normalizedName`: NFKC; remove harakat `U+064B..U+0652` and `U+0670`; remove tatweel `U+0640`;
   fold `U+064A`/`U+0649` -> `U+06CC`, `U+0643` -> `U+06A9`; fold Persian/Arabic digits to ASCII; map ZWNJ
   and Unicode separators to space; collapse whitespace; trim; lowercase Latin.
-- [ ] `matchKey`: apply `normalizedName`, then fold `U+0629` -> `U+0647`; `U+0623`/`U+0625`/`U+0622`/
+- [x] `matchKey`: apply `normalizedName`, then fold `U+0629` -> `U+0647`; `U+0623`/`U+0625`/`U+0622`/
   `U+0671` -> `U+0627`; `U+0624` -> `U+0648`; `U+0626` -> `U+06CC`; remove `U+0621`; remove all whitespace
   and punctuation.
-- [ ] Mandatory vectors must pass exactly:
+- [x] Mandatory vectors must pass exactly:
 
 | Input | `normalizedName` | `matchKey` |
 |---|---|---|
@@ -49,58 +49,58 @@ Implement exactly the two-key algorithm in spec Section 13.1. Do not "improve" i
 | `ميهن` | `میهن` | `میهن` |
 | `دامدارانِ` | `دامداران` | `دامداران` |
 
-- [ ] Add property tests for idempotence, whitespace invariance, digit folding, and no accidental
+- [x] Add property tests for idempotence, whitespace invariance, digit folding, and no accidental
   cross-script merging.
-- [ ] `matchKey` is for candidate retrieval only; never merge automatically on it.
+- [x] `matchKey` is for candidate retrieval only; never merge automatically on it.
 
 **Exit:** all mandatory vectors and property tests pass; no second normalization implementation exists.
 
 ### 2. Identifier normalization
 
-- [ ] Support the product schemes in spec Section 5.1 and organization schemes in Section 5.3.
-- [ ] Store every identifier as a string; preserve leading zeros.
-- [ ] GTIN: strip spaces/hyphens, digits only, validate length 8/12/13/14 and mod-10 check digit;
+- [x] Support the product schemes in spec Section 5.1 and organization schemes in Section 5.3.
+- [x] Store every identifier as a string; preserve leading zeros.
+- [x] GTIN: strip spaces/hyphens, digits only, validate length 8/12/13/14 and mod-10 check digit;
   `matchValue` zero-padded to 14 digits for lookup only.
-- [ ] Iranian schemes: allow only scheme-valid characters; never convert between schemes.
-- [ ] Never compare values from two different schemes.
-- [ ] Validate identifier status transitions: `UNVERIFIED`, `VERIFIED`, `DISPUTED`, `RETIRED`.
-- [ ] Do not create a unique index on identifiers.
-- [ ] Reject a GS1 prefix or barcode as a source of country, nationality, ownership, or legal status.
+- [x] Iranian schemes: allow only scheme-valid characters; never convert between schemes.
+- [x] Never compare values from two different schemes.
+- [x] Validate identifier status transitions: `UNVERIFIED`, `VERIFIED`, `DISPUTED`, `RETIRED`.
+- [x] Do not create a unique index on identifiers.
+- [x] Reject a GS1 prefix or barcode as a source of country, nationality, ownership, or legal status.
 
 **Exit:** I13 passes; a leading-zero GTIN round-trips; invalid check digits are rejected before query.
 
 ### 3. URL canonicalization
 
-- [ ] Lowercase host, remove default port, remove fragment, strip `utm_*`, `gclid`, `fbclid`, normalize
+- [x] Lowercase host, remove default port, remove fragment, strip `utm_*`, `gclid`, `fbclid`, normalize
   trailing slash per a written policy, IDN -> punycode, preserve HTTPS.
-- [ ] Canonicalized equality is suggestive for Source dedup, never automatic.
-- [ ] Store the original URL where required for provenance; store the canonical form for matching.
+- [x] Canonicalized equality is suggestive for Source dedup, never automatic.
+- [x] Store the original URL where required for provenance; store the canonical form for matching.
 
 **Exit:** canonicalization tests cover tracking parameters, case, default ports, fragments, and IDN.
 
 ### 4. Closed entity registry and resolver
 
-- [ ] Implement `EntityRef<T> = { type: T; id: ObjectId }` exactly; reject extra keys.
-- [ ] Use the closed `EntityType` registry and per-field allowlists:
+- [x] Implement `EntityRef<T> = { type: T; id: ObjectId }` exactly; reject extra keys.
+- [x] Use the closed `EntityType` registry and per-field allowlists:
   `RelationshipEndpointType`, `ClaimAboutType`, `CorrectionTargetType`, `AuditTargetType`.
-- [ ] Resolve every reference through one server-side registry. Never accept a collection name, model name,
+- [x] Resolve every reference through one server-side registry. Never accept a collection name, model name,
   Mongo path, or operator from a client.
-- [ ] Enforce existence, type/id match, lifecycle, and merge-following on both write and read paths.
-- [ ] Follow `mergedIntoId` max depth 5 with cycle detection; a cycle returns an error and raises an admin
+- [x] Enforce existence, type/id match, lifecycle, and merge-following on both write and read paths.
+- [x] Follow `mergedIntoId` max depth 5 with cycle detection; a cycle returns an error and raises an admin
   flag; never loop.
-- [ ] Distinguish "target missing", "target archived", "target merged", and "wrong type".
+- [x] Distinguish "target missing", "target archived", "target merged", and "wrong type".
 
 **Exit:** no action can persist or resolve an unvalidated polymorphic reference; merge chain and cycle tests
 pass (S20).
 
 ### 5. Merge and redirect
 
-- [ ] Merge creates a tombstone on the old document and sets `mergedIntoId`, `mergedAt`, `mergedBy`,
+- [x] Merge creates a tombstone on the old document and sets `mergedIntoId`, `mergedAt`, `mergedBy`,
   `mergeReason`; historical references are never rewritten.
-- [ ] Public reads redirect to the survivor with a notice: "this record was merged into X."
-- [ ] Block merges with contradictory official identifiers; require a human decision.
-- [ ] Support unmerge through AuditEvent + lifecycle restoration; keep it rare and audited.
-- [ ] Enforce CAS on merge and record an AuditEvent.
+- [x] Public reads redirect to the survivor with a notice: "this record was merged into X."
+- [x] Block merges with contradictory official identifiers; require a human decision.
+- [x] Support unmerge through AuditEvent + lifecycle restoration; keep it rare and audited.
+- [x] Enforce CAS on merge and record an AuditEvent.
 
 **Exit:** I15 and S20 pass; after merge, historical documents still carry the old ID.
 
@@ -117,33 +117,33 @@ type ResolutionResult =
   | { state: "UNVERIFIED"; productId: ObjectId };
 ```
 
-- [ ] Resolve by exact scheme + normalized value + applicable jurisdiction/scope.
-- [ ] Return `AMBIGUOUS` with candidates when more than one exact match exists; never pick arbitrarily.
-- [ ] Return `NOT_FOUND` as a valid answer, not an error.
-- [ ] Do not infer a Product from a Brand, category, barcode prefix, or name similarity.
-- [ ] Use `matchValue` only as a lookup key; padding never auto-merges distinct trade items.
+- [x] Resolve by exact scheme + normalized value + applicable jurisdiction/scope.
+- [x] Return `AMBIGUOUS` with candidates when more than one exact match exists; never pick arbitrarily.
+- [x] Return `NOT_FOUND` as a valid answer, not an error.
+- [x] Do not infer a Product from a Brand, category, barcode prefix, or name similarity.
+- [x] Use `matchValue` only as a lookup key; padding never auto-merges distinct trade items.
 
 **Exit:** S19 resolution cases pass: exact, not found, ambiguous duplicate, invalid check digit, jurisdiction
 narrowing, leading zeros, disputed, unverified.
 
 ### 7. Brand mapping workflow
 
-- [ ] `brandMapping.status` defaults to `UNREVIEWED`.
-- [ ] `candidateBrandId` is a proposal; only a `VERIFIED` mapping populates `Product.brand`.
-- [ ] `setBrandMapping` is a domain action with authorization, validation, audit, and relation update.
-- [ ] `DISPUTED` and `REJECTED` mappings preserve the previous decision history in audit.
-- [ ] A Product may temporarily have no verified brand; expose that state explicitly.
+- [x] `brandMapping.status` defaults to `UNREVIEWED`.
+- [x] `candidateBrandId` is a proposal; only a `VERIFIED` mapping populates `Product.brand`.
+- [x] `setBrandMapping` is a domain action with authorization, validation, audit, and relation update.
+- [x] `DISPUTED` and `REJECTED` mappings preserve the previous decision history in audit.
+- [x] A Product may temporarily have no verified brand; expose that state explicitly.
 
 **Exit:** brand mapping states are independently queryable; a candidate never leaks as a verified brand.
 
 ### 8. Search baseline
 
-- [ ] Exact `matchKey` lookup plus escaped prefix on `normalizedName`.
-- [ ] No fuzzy matching, stemming, or typo tolerance in the MVP.
-- [ ] Do not promise Persian full-text search on MongoDB.
-- [ ] Query only public/live records; exclude merged tombstones from normal results and redirect when a
+- [x] Exact `matchKey` lookup plus escaped prefix on `normalizedName`.
+- [x] No fuzzy matching, stemming, or typo tolerance in the MVP.
+- [x] Do not promise Persian full-text search on MongoDB.
+- [x] Query only public/live records; exclude merged tombstones from normal results and redirect when a
   tombstone is addressed directly.
-- [ ] Return explicit empty/ambiguous results; never a fabricated match.
+- [x] Return explicit empty/ambiguous results; never a fabricated match.
 
 **Exit:** search tests prove prefix escaping, tombstone handling, and no cross-scheme comparison.
 
@@ -151,13 +151,13 @@ narrowing, leading zeros, disputed, unverified.
 
 Implement the identity actions (names may follow the scaffold):
 
-- [ ] `product.resolveIdentifier`, `product.verifyIdentifier`, `product.setBrandMapping`.
-- [ ] `search.resolveProduct`, `search.searchEntities`.
-- [ ] Brand/organization/product add/get/update actions required by this plan, all with strict validators
+- [x] `product.resolveIdentifier`, `product.verifyIdentifier`, `product.setBrandMapping`.
+- [x] `search.resolveProduct`, `search.searchEntities`.
+- [x] Brand/organization/product add/get/update actions required by this plan, all with strict validators
   and audit.
-- [ ] `entity.merge` / `entity.unmerge` (or the equivalent reviewed action) with CAS and audit.
-- [ ] Tests: S01, S02, S20, S25, I13, I15, plus identifier negative cases.
-- [ ] Record the first supported schemes and any blocked scheme decision.
+- [x] `entity.merge` / `entity.unmerge` (or the equivalent reviewed action) with CAS and audit.
+- [x] Tests: S01, S02, S20, S25, I13, I15, plus identifier negative cases.
+- [x] Record the first supported schemes and any blocked scheme decision.
 
 ## Deliverables
 
