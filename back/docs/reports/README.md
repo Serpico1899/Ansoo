@@ -33,7 +33,7 @@ A report must not claim a test passed, a target was met, or a decision was final
 | `04-identity-normalization-and-resolution.md` | 04 | Complete |
 | `05-graph-claims-and-publication-gates.md` | 05 | Complete |
 | `06-provenance-assets-and-capture.md` | 06 | Complete |
-| `07-governance-audit-corrections-and-users.md` | 07 | Not started |
+| `07-governance-audit-corrections-and-users.md` | 07 | Complete |
 | `08-auth-projections-and-api-contract.md` | 08 | Not started |
 | `09-public-profile-read-model-and-vertical-slice.md` | 09 | Not started |
 | `10-data-acquisition-and-research-operations.md` | 10 | Not started |
