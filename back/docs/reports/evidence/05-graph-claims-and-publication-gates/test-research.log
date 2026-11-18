@@ -1,0 +1,75 @@
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/assessment.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/claim.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/gate.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/relationship.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/response.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/retraction.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/status.integration.test.ts
+[0m[38;5;245mrunning 2 tests from ./tests/research/assessment.integration.test.ts[0m
+assessment: I05 self-assessment and SUPPORTED evidence are enforced ...
+  SENSITIVE needs two independent sources or one official registry snapshot ... [0m[32mok[0m [0m[38;5;245m(453ms)[0m
+  republications of one wire are one source ... [0m[32mok[0m [0m[38;5;245m(120ms)[0m
+  one official registry snapshot satisfies SENSITIVE evidence ... [0m[32mok[0m [0m[38;5;245m(101ms)[0m
+  ROUTINE needs one verified snapshot ... [0m[32mok[0m [0m[38;5;245m(109ms)[0m
+assessment: I05 self-assessment and SUPPORTED evidence are enforced ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+assessment: HIGH_RISK, partial wording, dispute basis, and neutral NOT_SUPPORTED ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/research/claim.integration.test.ts[0m
+claim: three closed types, registry resolution, and audit ...
+  adds MARKET_PRESENCE with default ROUTINE sensitivity ... [0m[32mok[0m [0m[38;5;245m(378ms)[0m
+  accepts PRODUCT_ORIGIN and OFFICIAL_STATEMENT only with their shapes ... [0m[32mok[0m [0m[38;5;245m(70ms)[0m
+  rejects OTHER_* and unknown claim types ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  relatedEntities are capped and resolved through the registry ... [0m[32mok[0m [0m[38;5;245m(22ms)[0m
+  caps statement and public wording at 2,000 characters ... [0m[32mok[0m [0m[38;5;245m(114ms)[0m
+claim: three closed types, registry resolution, and audit ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+claim: boundary lint returns 409 USE_RELATIONSHIP_INSTEAD ... [0m[32mok[0m [0m[38;5;245m(712ms)[0m
+claim: pure updates are CAS-guarded and cannot change identity ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/research/gate.integration.test.ts[0m
+gate: PASS stores every check, is audited, and allows publication ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+gate: any failed check blocks publication (S22) ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+gate: waivers are narrow, ADMIN-only, reasoned, and audited ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+gate: HIGH_RISK legal sign-off is required and non-waivable (I07) ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+gate: restricted sources and stale gates block publication ... [0m[32mok[0m [0m[38;5;245m(4s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/research/relationship.integration.test.ts[0m
+relationship: S06 endpoint matrix, context, and forbidden rewrites ...
+  creates a directed OWNS edge with registry fields and audit ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+  rejects incompatible endpoints ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  requires CONTROLS basis and market context ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  rejects extra keys instead of storing untyped context ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  S07 endEdge sets validTo but never recordLifecycle ... [0m[32mok[0m [0m[38;5;245m(211ms)[0m
+  owner change is a new edge; pure updates cannot rewrite endpoints ... [0m[32mok[0m [0m[38;5;245m(124ms)[0m
+  overlap is a review flag, never a rejection ... [0m[32mok[0m [0m[38;5;245m(140ms)[0m
+relationship: S06 endpoint matrix, context, and forbidden rewrites ... [0m[32mok[0m [0m[38;5;245m(4s)[0m
+relationship: canonical key normalizes context and is not unique ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/research/response.integration.test.ts[0m
+response: right-of-reply truth table blocks SENSITIVE publication (S23) ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+response: solicitation deadline, proof, outcomes, and caps ...
+  defaults the deadline to sentAt + 14 days and audits ... [0m[32mok[0m [0m[38;5;245m(35ms)[0m
+  records each outcome with CAS and audit ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+  rejects missing organizations and invalid deadlines ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  caps responseSolicitations at 10 ... [0m[32mok[0m [0m[38;5;245m(435ms)[0m
+response: solicitation deadline, proof, outcomes, and caps ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+response: attributed response links to solicitation and never changes assessment ...
+  links the response and marks the solicitation RESPONDED ... [0m[32mok[0m [0m[38;5;245m(237ms)[0m
+  caps responseText and rejects unsafe public attachments ... [0m[32mok[0m [0m[38;5;245m(35ms)[0m
+  PUBLIC requires reviewer approval and safe assets ... [0m[32mok[0m [0m[38;5;245m(61ms)[0m
+  VERIFIED representative authority requires a reviewer ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+response: attributed response links to solicitation and never changes assessment ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/research/retraction.integration.test.ts[0m
+retraction: synchronous public read-model purge and append-only audit (S24) ...
+  rejects unauthorized retraction without purging ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  purges affected profiles and records FINDING_RETRACTED ... [0m[32mok[0m [0m[38;5;245m(33ms)[0m
+  a retracted finding is not returned as published ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+retraction: synchronous public read-model purge and append-only audit (S24) ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+retraction: revision preview is capped and newest first ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/research/status.integration.test.ts[0m
+status: review, assessment, publication stay independent ...
+  review transitions touch review only and are audited ... [0m[32mok[0m [0m[38;5;245m(73ms)[0m
+  DRAFT cannot jump straight to PUBLISHED ... [0m[32mok[0m [0m[38;5;245m(12ms)[0m
+  DRAFT -> PENDING_REVIEW is allowed and changes only publication ... [0m[32mok[0m [0m[38;5;245m(25ms)[0m
+  PUBLISHED without a PASS gate is rejected ... [0m[32mok[0m [0m[38;5;245m(58ms)[0m
+  PUBLISHED requires a publisher role and four distinct eyes ... [0m[32mok[0m [0m[38;5;245m(17ms)[0m
+  withholding and re-review follow the truth table ... [0m[32mok[0m [0m[38;5;245m(122ms)[0m
+status: review, assessment, publication stay independent ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+
+[0m[32mok[0m | 18 passed (33 steps) | 0 failed [0m[38;5;245m(37s)[0m
+
