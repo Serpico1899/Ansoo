@@ -6,9 +6,11 @@ disagree, the spec wins and this summary must be corrected.
 
 ## Status
 
-- **Models, identity, and research services implemented; HTTP actions are scaffold only.** The eleven v3.1
-  models, embedded contracts, cap validators, two Lesan relations, starting indexes, identity services, and
-  research services exist; HTTP actions are still scaffolds.
+- **Models, identity, research, and provenance services implemented; HTTP actions are scaffold only.** The
+  eleven v3.1 models, embedded contracts, cap validators, two Lesan relations, starting indexes, identity,
+  research, and provenance services exist; HTTP actions are still scaffolds.
+- **Plan 06 complete (2026-11-18).** Source identity, immutable snapshots, redaction lineage, asset
+  quarantine/visibility, signed delivery, SSRF-safe fetching, and evidence links are in place.
 - **Plan 05 complete (2026-11-18).** Relationship edges, three claim types, independent status machines,
   sensitivity/evidence rules, assessment, publication gates, right of reply, responses, and retraction are
   in place.

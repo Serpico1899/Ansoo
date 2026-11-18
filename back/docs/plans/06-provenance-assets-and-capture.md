@@ -1,6 +1,6 @@
 # Plan 06 - Provenance, Assets, and Capture (v3.1)
 
-**Status:** Not started
+**Status:** Complete (2026-11-18)
 **Depends on:** 03
 **Feeds:** 05 (evidence links), 09 (public evidence views)
 **Canonical contract:** `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`
