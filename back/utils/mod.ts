@@ -6,4 +6,5 @@
 export * from "./config.ts";
 export * from "./domain/mod.ts";
 export * as identity from "./identity/mod.ts";
+export * as provenance from "./provenance/mod.ts";
 export * from "./time.ts";
