@@ -120,6 +120,7 @@ export function createEntityRegistry(db: Db) {
   const resolve = async <F extends EntityRefField>(
     field: F,
     input: unknown,
+    options: { allowArchived?: boolean; followMerges?: boolean } = {},
   ): Promise<ResolvedReference> => {
     const reference = assertRef(field, input);
     let currentId = reference.id;
@@ -148,8 +149,15 @@ export function createEntityRegistry(db: Db) {
       }
 
       const lifecycle = (doc.lifecycle ?? doc.recordLifecycle) as string | undefined;
-      if (lifecycle === "ARCHIVED") {
+      if (lifecycle === "ARCHIVED" && options.allowArchived !== true) {
         throw new ReferenceError("ARCHIVED", `${reference.type} reference target is archived`, 409);
+      }
+      if (lifecycle === "MERGED" && options.followMerges === false) {
+        return {
+          ref: { type: reference.type, id: currentId },
+          doc: doc as Record<string, unknown> & { _id: ObjectId },
+          mergedFrom,
+        };
       }
       if (lifecycle === "MERGED") {
         if (!doc.mergedIntoId) {

@@ -185,10 +185,19 @@ async function assertUploadQuota(db: Db, actor: ProvenanceActor, now: Date): Pro
     uploadedAt: { $gte: startOfUtcDay(now) },
   });
   if (count >= SECURITY_LIMITS.uploadsPerDay) {
-    throw new ProvenanceError("CAP_EXCEEDED", "daily upload cap exceeded", 422, {
+    throw new ProvenanceError("RATE_LIMITED", "daily upload quota exceeded", 429, {
       path: "uploadsPerDay",
       cap: SECURITY_LIMITS.uploadsPerDay,
       actual: count + 1,
+      retryAfterSeconds: 86_400,
+      error: {
+        code: "RATE_LIMITED",
+        message: "daily upload quota exceeded",
+        path: "uploadsPerDay",
+        cap: SECURITY_LIMITS.uploadsPerDay,
+        actual: count + 1,
+        retryAfterSeconds: 86_400,
+      },
     });
   }
 }
@@ -439,14 +448,28 @@ export async function purgeAsset(input: {
   const now = input.now ?? new Date();
   await requireRoles(input.db, input.actor, ["ADMIN"], "actor may not purge assets");
   const doc = await getDocument(input.db, "assets", input.assetId, "asset");
+  if (doc.purgedAt instanceof Date) {
+    return { assetId: input.assetId, auditId: new ObjectId() };
+  }
   if (doc.legalHold === true) {
     throw new ProvenanceError("LEGAL_HOLD", "legal hold blocks asset purge", 409);
+  }
+  const retentionUntil = doc.retentionUntil;
+  if (retentionUntil instanceof Date && retentionUntil.getTime() > now.getTime()) {
+    throw new ProvenanceError(
+      "RETENTION_NOT_ELAPSED",
+      "asset retention period has not elapsed",
+      409,
+    );
   }
   const storage = doc.storage as Record<string, unknown>;
   await input.provider.delete({ key: String(storage.objectKey) });
   await input.db.collection("assets").updateOne(
     { _id: input.assetId, legalHold: { $ne: true } },
-    { $set: { lifecycle: "DELETED_PENDING_PURGE" }, $inc: { version: 1 } },
+    {
+      $set: { lifecycle: "DELETED_PENDING_PURGE", purgedAt: now },
+      $inc: { version: 1 },
+    },
   );
   const auditId = await appendAudit(input.db, {
     action: "ASSET_PURGED",
@@ -455,7 +478,10 @@ export async function purgeAsset(input: {
     targetVersionBefore: Number(doc.version ?? 0),
     targetVersionAfter: Number(doc.version ?? 0) + 1,
     beforeSummary: { lifecycle: String(doc.lifecycle) },
-    afterSummary: { lifecycle: "DELETED_PENDING_PURGE" },
+    afterSummary: {
+      lifecycle: "DELETED_PENDING_PURGE",
+      previousLifecycle: String(doc.lifecycle),
+    },
     changedPaths: ["lifecycle"],
     reason: input.reason,
     now,

@@ -41,11 +41,13 @@ async function actor(
   return { type: "USER" as const, id: _id };
 }
 
-async function rejection(promise: Promise<unknown>): Promise<{ code: string; status: number }> {
+async function rejection(
+  promise: Promise<unknown>,
+): Promise<{ code: string; status: number; details?: Record<string, unknown> }> {
   try {
     await promise;
   } catch (error) {
-    return error as { code: string; status: number };
+    return error as { code: string; status: number; details?: Record<string, unknown> };
   }
   throw new Error("expected rejection");
 }
@@ -529,6 +531,31 @@ Deno.test({
             now: new Date("2026-01-12T00:01:30Z"),
           }))).code,
           "ASSET_HASH_MISMATCH",
+        );
+      });
+
+      await t.step("daily upload quota uses the shared 429 envelope", async () => {
+        const quotaUser = await actor(h, ["CONTRIBUTOR"]);
+        const today = new Date();
+        for (let i = 0; i < 5; i++) {
+          await h.db.collection("assets").insertOne({
+            uploadedBy: quotaUser.id,
+            uploadedAt: today,
+          });
+        }
+        const quota = await rejection(createAsset({
+          db: h.db,
+          provider,
+          bytes: text("quota bytes"),
+          declaredMimeType: "text/plain",
+          actor: quotaUser,
+          now: today,
+        }));
+        assertEquals(quota.code, "RATE_LIMITED");
+        assertEquals(quota.status, 429);
+        assertEquals(
+          (quota.details?.error as Record<string, unknown> | undefined)?.path,
+          "uploadsPerDay",
         );
       });
 

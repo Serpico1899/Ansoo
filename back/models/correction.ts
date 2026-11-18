@@ -63,6 +63,9 @@ export const correctionFields = {
   evidenceReferences: cappedArray(correctionEvidenceReferenceStruct, "evidenceReferences"),
   submittedBy: objectIdValidation,
   submittedAt: date(),
+  // Caller-supplied HMAC of the client IP. Never the raw address; used only
+  // for the per-IP daily quota in Plan 07.
+  submissionIpHash: optional(string()),
   idempotencyKey: string(),
   status: enums(CORRECTION_STATUSES),
   review: correctionReviewStruct,

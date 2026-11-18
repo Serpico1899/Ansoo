@@ -43,6 +43,9 @@ export const assetFields = {
   exifStripped: boolean(),
   retentionUntil: optional(date()),
   legalHold: boolean(),
+  // Set by the retention purge after bytes have been removed. A purged asset is
+  // a metadata tombstone and is never purged again.
+  purgedAt: optional(date()),
   lifecycle: enums(ASSET_LIFECYCLE),
   version: number(),
   schemaVersion: number(),
