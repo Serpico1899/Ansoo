@@ -86,6 +86,16 @@ Backend playground: `http://localhost:1370/playground` after the server is imple
 Frontend: `http://localhost:3000`. Environment examples live in `back/.env.example` and
 `front/.env.local.example`.
 
+## Scripting Conventions
+
+- Any ad-hoc script (data entry, migration, automation, or one-off verification) belongs in
+  `ignore-scripts/` at the project root, never in `back/scripts/`, `front/`, or a source directory.
+- `ignore-scripts/` is git-ignored; do not force-add it. A script that must be reviewed, shared, or
+  rerun belongs in `back/scripts/` (with a Deno task) or `front/package.json` instead.
+- Run temporary scripts from the project root, for example
+  `python3 ignore-scripts/_someScript.py`.
+- Do not put secrets, tokens, private personal data, or restricted source content in scratch scripts.
+
 ## Domain Pillars
 
 1. **Identity** - Product, Brand, Organization. Product uses `categoryCode` from `taxonomy.v1.json`;
@@ -123,7 +133,6 @@ technical `product_public_profiles` read model, which is never a source of truth
 - Do not add libraries or frameworks not already planned without checking `package.json`/`deno.json` and the spec.
 - Do not implement production features in the scaffold phase.
 - Do not silently answer the six open decisions in spec Section 22.
-- Any ad-hoc script belongs in `ignore-scripts/` (git-ignored).
 
 ## Documentation Index
 
@@ -139,7 +148,29 @@ technical `product_public_profiles` read model, which is never a source of truth
 
 ## Git Conventions
 
-When explicitly asked to commit, use conventional commit messages with a scope
-(`feat`, `fix`, `refactor`, `docs`, `test`, `chore`). Group changes into logical atomic commits.
-**Never use `git reset`** - it has caused data loss in this workspace's history. Do not force-push or
-amend unless explicitly requested.
+When I say `git commit` please do the following. If I have not said `git commit`, do not commit.
+
+```
+Please act as an expert Git commit assistant. Your task is to carefully review the recent project changes (e.g., via git diff or staged files) and generate a series of clear, conventional commit messages following best practices. Use Gitmoji emojis at the start of each commit message to make them more expressive and readable (e.g., :sparkles: for new features, :bug: for fixes).
+Key guidelines:
+Conventional structure: Each commit message should start with a Gitmoji, followed by a type (e.g., feat, fix, refactor, docs, test, chore), a scope in parentheses if applicable (e.g., (ui)), a colon, and a concise description. Include a body if needed for more details, and reference issues if relevant.
+Grouping: Break changes into logical, atomic commits. Group related files or changes together (e.g., one commit for UI updates, another for bug fixes), rather than lumping everything into a single commit. Avoid overly large or unrelated groupings.
+Execution: Directly output and execute the necessary Git shell commands (e.g., git add for specific files, followed by git commit -m "message") to apply these commits. Do not ask for confirmation, additional input, or perform unrelated actions like rebasing, squashing, or amending existing commits. Only create new commits on the current branch.
+Best practices: Ensure messages are imperative, concise (aim for ~72 characters or fewer for the subject), and descriptive. Focus on what changed and why, not how.
+Additional notes:
+- Use present tense for the subject line (e.g., "Add feature" not "Added feature")
+- Be specific about what was changed (e.g., "Fix user login validation" rather than just "Fix bug")
+- When making breaking changes, indicate this with an exclamation mark after the type (e.g., "feat!: Remove deprecated API endpoint")
+- Reference issue numbers if applicable (e.g., "fix(auth): Resolve login issue #123")
+- For multiple related changes, create separate commits for each logical change
+- When updating dependencies, mention the specific packages (e.g., "chore(deps): Update react and react-dom to v18")
+- For documentation changes, be clear about what documentation was added or updated
+- When changing configuration files, explain the purpose of the changes
+Proceed step-by-step: First, analyze the changes, then propose the grouped commits, and finally execute the Git commands in sequence.
+```
+
+⚠️ **WARNING**: Under no circumstances should you ever use the `git reset` command when performing git
+operations, as it can permanently erase work that took days to complete. This command has caused
+significant data loss in the past and should be avoided entirely.
+
+Never commit secrets, unintended generated artifacts, or scratch scripts.
