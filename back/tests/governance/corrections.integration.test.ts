@@ -554,6 +554,12 @@ Deno.test({
           assertEquals(applied.notice?.previousWording, "Original public wording");
           assertEquals(applied.notice?.reason, "The published wording misstates the source.");
           assertEquals(applied.notice?.auditEventId instanceof ObjectId, true);
+          const stored = await h.db.collection("corrections").findOne({
+            _id: submitted.correctionId,
+          });
+          assertEquals(stored?.publicNotice?.previousWording, "Original public wording");
+          assertEquals(stored?.publicNotice?.reason, "The published wording misstates the source.");
+          assertEquals(stored?.publicNotice?.auditEventId instanceof ObjectId, true);
           assertEquals(
             await h.db.collection("product_public_profiles").countDocuments({
               _id: claim.profileId,

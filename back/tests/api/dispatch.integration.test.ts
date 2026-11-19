@@ -164,7 +164,7 @@ Deno.test({
         assertEquals(status, 200);
         assertEquals(json.success, true);
         assertEquals(json.body.product.name, "Public Soap");
-        assertEquals(json.body.claims.length, 1);
+        assertEquals(json.body.findings.length, 1);
         const raw = JSON.stringify(json);
         assertEquals(raw.includes("private research note"), false);
         assertEquals(raw.includes("assessedBy"), false);
@@ -181,7 +181,7 @@ Deno.test({
         });
         assertEquals(status, 200);
         assertEquals(json.body.product.name, "Public Soap");
-        assertEquals(json.body.claims.length, 1);
+        assertEquals(json.body.findings.length, 1);
       });
 
       await t.step("ambiguous id plus GTIN is rejected", async () => {
