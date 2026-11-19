@@ -6,9 +6,12 @@ disagree, the spec wins and this summary must be corrected.
 
 ## Status
 
-- **Models, identity, research, and provenance services implemented; HTTP actions are scaffold only.** The
-  eleven v3.1 models, embedded contracts, cap validators, two Lesan relations, starting indexes, identity,
-  research, and provenance services exist; HTTP actions are still scaffolds.
+- **Models, domain services, and authenticated HTTP actions implemented.** The eleven v3.1 models,
+  embedded contracts, cap validators, two Lesan relations, starting indexes, identity, research,
+  provenance, governance, auth, projections, and the dispatcher exist. Plan 09 owns final profile assembly.
+- **Plan 08 complete (2026-11-19).** JWT auth with DB-derived roles, the capability matrix, the stable error
+  envelope, Public/Research/Admin projections, the I04 role x field matrix, and the generated frontend
+  contract are in place.
 - **Plan 07 complete (2026-11-18).** Append-only audit with per-action allowlists, correction
   submission/review/transactional application, user roles/trust/status/PII purge, and legal-hold-aware
   asset retention are in place.

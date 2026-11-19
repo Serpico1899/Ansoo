@@ -34,7 +34,7 @@ A report must not claim a test passed, a target was met, or a decision was final
 | `05-graph-claims-and-publication-gates.md` | 05 | Complete |
 | `06-provenance-assets-and-capture.md` | 06 | Complete |
 | `07-governance-audit-corrections-and-users.md` | 07 | Complete |
-| `08-auth-projections-and-api-contract.md` | 08 | Not started |
+| `08-auth-projections-and-api-contract.md` | 08 | Complete |
 | `09-public-profile-read-model-and-vertical-slice.md` | 09 | Not started |
 | `10-data-acquisition-and-research-operations.md` | 10 | Not started |
 | `11-verification-hardening-and-launch.md` | 11 | Not started |

@@ -1,0 +1,11 @@
+[0m[32mTask[0m [0m[36mconfig:check[0m deno run --allow-env scripts/check-config.ts
+{
+  "ok": true,
+  "env": "development",
+  "port": 1370,
+  "mongodb": "mongodb://127.0.0.1:27019/?replicaSet=rs0",
+  "dbName": "ansoo",
+  "corsOrigins": [],
+  "assetProvider": "LOCAL_DEV",
+  "assetMaxBytes": 20971520
+}

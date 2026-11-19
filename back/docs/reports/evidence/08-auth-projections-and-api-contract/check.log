@@ -1,0 +1,5 @@
+[0m[32mTask[0m [0m[36mcheck[0m deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/mod.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/utils/mod.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/scripts/generate-types.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/scripts/check-config.ts

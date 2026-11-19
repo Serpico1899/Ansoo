@@ -29,12 +29,12 @@ it orders the work and names the gates that must pass before the next plan start
 |---|---|---|---|---|
 | 01 | Architecture Spike (historical) | old v1/v2 | scaffold | - |
 | 02 | Foundation and Invariants (complete) | 1, 2, 4, 23 | none | 10 |
-| 03 | Models, Contracts, and Indexes | 3-10, 17 | 02 | 10 |
-| 04 | Identity, Normalization, and Resolution | 5, 13 | 03 | 10 |
-| 05 | Graph, Claims, and Publication Gates | 6, 7, 10-11, 16 | 03, 04 | 10 |
-| 06 | Provenance, Assets, and Capture | 8, 12, 18 | 03 | 10 |
-| 07 | Governance, Audit, Corrections, and Users | 9, 12, 16 | 03, 05 | 10 |
-| 08 | Auth, Projections, and API Contract | 4, 12, 14 | 03, 07 | 10 |
+| 03 | Models, Contracts, and Indexes (complete) | 3-10, 17 | 02 | 10 |
+| 04 | Identity, Normalization, and Resolution (complete) | 5, 13 | 03 | 10 |
+| 05 | Graph, Claims, and Publication Gates (complete) | 6, 7, 10-11, 16 | 03, 04 | 10 |
+| 06 | Provenance, Assets, and Capture (complete) | 8, 12, 18 | 03 | 10 |
+| 07 | Governance, Audit, Corrections, and Users (complete) | 9, 12, 16 | 03, 05 | 10 |
+| 08 | Auth, Projections, and API Contract (complete) | 4, 12, 14 | 03, 07 | 10 |
 | 09 | Public Profile, Read Model, and Vertical Slice | 14, 12, 20 | 04-08 | 10 |
 | 10 | Data Acquisition and Research Operations | 18, 19, 21 | none | 02-09 |
 | 11 | Verification, Hardening, and Launch | 12, 16, 20, 21, 24 | 02-10 | - |

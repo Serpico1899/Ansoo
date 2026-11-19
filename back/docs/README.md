@@ -22,9 +22,9 @@ override v3.1. See `adr/0001-v3.1-single-canonical-spec.md`.
 | Area | State |
 |---|---|
 | Domain specification | v3.1 canonical (LOCKED baseline) |
-| Backend code | Models and identity domain services implemented; HTTP actions are scaffold only |
+| Backend code | Models, domain services, and the authenticated action/dispatcher layer implemented |
 | Architecture spike | Complete against the superseded draft; archived under `archive/01-architecture-spike/` |
-| Execution plans | Plans 02-05 complete (2026-11-17); plans 05-11 defined for v3.1; plan 01 is historical |
+| Execution plans | Plans 02-08 complete (2026-11-19); plans 09-11 defined for v3.1; plan 01 is historical |
 | Data acquisition | Not started; equal priority to engineering |
 | Production readiness | Not started |
 

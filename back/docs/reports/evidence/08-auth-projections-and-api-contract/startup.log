@@ -1,0 +1,3 @@
+[0m[32mTask[0m [0m[36mstart[0m deno run --allow-all mod.ts
+Ansoo API listening on port 1371 (env=development, db=ansoo_plan08_startup)
+Listening on http://0.0.0.0:1371/ (http://localhost:1371/)
