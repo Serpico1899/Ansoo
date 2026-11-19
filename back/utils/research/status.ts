@@ -23,6 +23,7 @@ import {
   ResearchError,
 } from "./common.ts";
 import { invalidatePublicProjections, type ProjectionInvalidationHook } from "./invalidation.ts";
+import { requestRebuildsForFinding } from "../publicProfile/readModel.ts";
 
 const PUBLICATION_TRANSITIONS: Record<PublicationStatus, readonly PublicationStatus[]> = {
   DRAFT: ["PENDING_REVIEW", "WITHHELD"],
@@ -242,6 +243,13 @@ export async function transitionPublication(input: {
     reason,
     now,
   });
+  await requestRebuildsForFinding({
+    db: input.db,
+    targetType: input.targetType,
+    targetId: input.targetId,
+    reason: `publication:${from}->${input.to}`,
+    now,
+  });
   return { version: nextVersion, auditId, from };
 }
 
@@ -254,7 +262,19 @@ export async function retractFinding(input: {
   actor: ResearchActor;
   invalidationHook?: ProjectionInvalidationHook;
   now?: Date;
-}): Promise<{ version: number; auditId: ObjectId; from: PublicationStatus }> {
+}): Promise<{
+  version: number;
+  auditId: ObjectId;
+  from: PublicationStatus;
+  surfaceTimings: Array<{
+    surface: string;
+    productIds: string[];
+    findingId: string;
+    startedAt: Date;
+    completedAt: Date;
+    durationMs: number;
+  }>;
+}> {
   const now = input.now ?? new Date();
   await requireRoles(input.db, input.actor, PUBLISH_ROLES, "actor may not retract findings");
   const reason = requireString(input.reason, "REASON_REQUIRED", "retraction requires a reason");
@@ -270,15 +290,7 @@ export async function retractFinding(input: {
       409,
     );
   }
-  await invalidatePublicProjections({
-    db: input.db,
-    targetType: input.targetType,
-    targetId: input.targetId,
-    reason,
-    now,
-    hook: input.invalidationHook,
-  });
-  return await transitionPublication({
+  const transition = await transitionPublication({
     db: input.db,
     targetType: input.targetType,
     targetId: input.targetId,
@@ -288,4 +300,16 @@ export async function retractFinding(input: {
     actor: input.actor,
     now,
   });
+  const invalidation = await invalidatePublicProjections({
+    db: input.db,
+    targetType: input.targetType,
+    targetId: input.targetId,
+    reason,
+    now,
+    hook: input.invalidationHook,
+  });
+  return {
+    ...transition,
+    surfaceTimings: invalidation?.surfaceTimings ?? [],
+  };
 }

@@ -11,4 +11,5 @@ export * as auth from "./auth/mod.ts";
 export * as projections from "./projections/mod.ts";
 export * as api from "./api/mod.ts";
 export * as provenance from "./provenance/mod.ts";
+export * as publicProfile from "./publicProfile/mod.ts";
 export * from "./time.ts";

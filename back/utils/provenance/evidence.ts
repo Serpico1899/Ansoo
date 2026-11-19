@@ -10,6 +10,7 @@ import { EVIDENCE_STANCES, HARD_CAPS } from "../domain/constants.ts";
 import { createEntityRegistry } from "../identity/registry.ts";
 import { validateClaim } from "../../models/claim.ts";
 import { validateRelationship } from "../../models/relationship.ts";
+import { requestRebuildsForFinding } from "../publicProfile/readModel.ts";
 import {
   appendAudit,
   assertNoUnknownKeys,
@@ -234,7 +235,7 @@ async function persist(input: {
       409,
     );
   }
-  return await appendAudit(input.db, {
+  const auditId = await appendAudit(input.db, {
     action: input.auditAction,
     target: { type: input.type, id: input.target._id },
     actor: input.actor,
@@ -246,6 +247,14 @@ async function persist(input: {
     reason: input.reason,
     now: input.now,
   });
+  await requestRebuildsForFinding({
+    db: input.db,
+    targetType: input.type,
+    targetId: input.target._id,
+    reason: input.auditAction,
+    now: input.now,
+  });
+  return auditId;
 }
 
 async function classifyAppendFailure(

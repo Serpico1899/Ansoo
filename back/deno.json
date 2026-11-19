@@ -11,9 +11,11 @@
     "fmt": "deno fmt",
     "fmt:check": "deno fmt --check",
     "lint": "deno lint",
-    "check": "deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts",
+    "check": "deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts scripts/rebuild-public-profiles.ts",
     "config:check": "deno run --allow-env scripts/check-config.ts",
-    "types": "deno run --allow-all scripts/generate-types.ts"
+    "types": "deno run --allow-all scripts/generate-types.ts",
+    "read-model:rebuild": "deno run --allow-all scripts/rebuild-public-profiles.ts",
+    "read-model:repair": "deno run --allow-all scripts/rebuild-public-profiles.ts --repair"
   },
   "fmt": {
     "include": [

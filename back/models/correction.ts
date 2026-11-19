@@ -50,6 +50,13 @@ export const correctionApplicationStruct = object({
   idempotencyKey: string(),
 });
 
+export const publicCorrectionNoticeStruct = object({
+  correctedAt: date(),
+  reason: string(),
+  previousWording: string(),
+  auditEventId: objectIdValidation,
+});
+
 export const correctionFields = {
   target: optional(entityRefStruct(CORRECTION_TARGET_TYPES)),
   submissionKind: enums(CORRECTION_SUBMISSION_KINDS),
@@ -70,6 +77,7 @@ export const correctionFields = {
   status: enums(CORRECTION_STATUSES),
   review: correctionReviewStruct,
   application: optional(correctionApplicationStruct),
+  publicNotice: optional(publicCorrectionNoticeStruct),
   ...docMetaFields(),
 };
 

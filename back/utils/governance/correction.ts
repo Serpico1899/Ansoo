@@ -1017,6 +1017,20 @@ export async function applyCorrection(input: {
             action: "PUBLIC_WORDING_CHANGED",
             fieldKey: proposal.fieldKey,
           };
+          await input.db.collection("corrections").updateOne(
+            { _id: input.correctionId },
+            {
+              $set: {
+                publicNotice: {
+                  correctedAt: notice.correctedAt,
+                  reason: notice.reason,
+                  previousWording: notice.previousWording,
+                  auditEventId: notice.auditEventId,
+                },
+              },
+            },
+            { session },
+          );
         }
       }
     });

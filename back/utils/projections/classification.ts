@@ -163,6 +163,7 @@ export const FIELD_CLASSIFICATION: Record<CanonicalCollection, FieldMap> = {
     status: "RESEARCH",
     review: "RESEARCH",
     application: "RESEARCH",
+    publicNotice: "PUBLIC",
     schemaVersion: "ADMIN",
     version: "ADMIN",
     createdAt: "ADMIN",

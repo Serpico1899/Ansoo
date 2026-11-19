@@ -7,6 +7,7 @@ import type { ClientSession, Db, MongoClient } from "lesan";
 import { ObjectId } from "lesan";
 import { ENTITY_COLLECTION, type EntityType } from "../domain/constants.ts";
 import { createEntityRegistry } from "./registry.ts";
+import { requestRebuildsForEntity } from "../publicProfile/readModel.ts";
 
 export type MergeActor = {
   type: "USER" | "SYSTEM" | "SERVICE";
@@ -207,6 +208,23 @@ export async function mergeEntity(input: {
     await run();
   }
 
+  if (entityType === "PRODUCT" || entityType === "BRAND" || entityType === "ORGANIZATION") {
+    await requestRebuildsForEntity({
+      db,
+      entityType,
+      entityId: sourceId,
+      reason: "entity merged",
+      now,
+    });
+    await requestRebuildsForEntity({
+      db,
+      entityType,
+      entityId: survivor._id,
+      reason: "entity merged",
+      now,
+    });
+  }
+
   return { survivorId: survivor._id, mergedId: sourceId, auditIds: [audit._id] };
 }
 
@@ -272,6 +290,15 @@ export async function unmergeEntity(input: {
     }
   } else {
     await run();
+  }
+  if (entityType === "PRODUCT" || entityType === "BRAND" || entityType === "ORGANIZATION") {
+    await requestRebuildsForEntity({
+      db,
+      entityType,
+      entityId: sourceId,
+      reason: "entity unmerged",
+      now,
+    });
   }
   return { restoredId: sourceId, auditIds: [audit._id] };
 }

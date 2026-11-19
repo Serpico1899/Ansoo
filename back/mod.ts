@@ -9,6 +9,7 @@ import { registerModels } from "./models/mod.ts";
 import { registerActions } from "./src/mod.ts";
 import { createApi } from "./utils/api/mod.ts";
 import { loadConfig } from "./utils/config.ts";
+import { ensureReadModelIndexes } from "./utils/publicProfile/readModel.ts";
 
 const config = loadConfig();
 const client = new MongoClient(config.mongoUrl);
@@ -20,6 +21,7 @@ try {
   core.odm.setDb(db);
   registerModels(core);
   await createIndexes(db);
+  await ensureReadModelIndexes(db);
   registerActions(core, { db, config });
 
   if (Deno.env.get("GENERATE_TYPES") === "1") {
