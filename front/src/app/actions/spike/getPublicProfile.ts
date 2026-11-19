@@ -5,57 +5,68 @@ import type { ReqType } from "@/types/declarations/selectInp";
 type GetPublicProfile = ReqType["main"]["products"]["getPublicProfile"];
 
 export type ApiEnvelope<T> =
-  | { success: true; body: T }
-  | { success: false; body: { code: string; message: string; requestId?: string } };
+  | { success: true; body: T; requestId?: string }
+  | {
+    success: false;
+    body: {
+      error: {
+        code: string;
+        message: string;
+        requestId?: string;
+        fields?: Record<string, string>;
+        retryAfterSeconds?: number;
+      };
+    };
+  };
 
 export type PublicProfilePayload = {
-  outcome: "MATCH" | "NOT_FOUND";
-  profile: {
-    product: { _id?: string; name: string; brand: { _id?: string; name: string } | null };
-    relationships: Array<{
-      _id?: string;
-      predicate: string;
-      assessment: { outcome?: string };
-      publication: { status?: string };
-    }>;
-    claims: Array<{
-      _id?: string;
-      statement: string;
-      assessment: { outcome?: string };
-      publication: { status?: string };
-    }>;
-    unknowns: string[];
-  } | null;
+  outcome: "ACTIVE" | "MERGED" | "NOT_FOUND";
+  product: { _id?: string; name?: string; brand?: { _id?: string; name?: string } | null } | null;
+  claims: Array<{
+    _id?: string;
+    statement?: string;
+    assessment?: { outcome?: string };
+    publication?: { status?: string };
+  }>;
+  relationships: Array<{
+    _id?: string;
+    predicate?: string;
+    assessment?: { outcome?: string };
+    publication?: { status?: string };
+  }>;
+  unknowns: string[];
+  limitations: string[];
 };
 
 export async function getPublicProfile(
   set: GetPublicProfile["set"],
 ): Promise<ApiEnvelope<PublicProfilePayload>> {
   const token = process.env.ANSOO_API_TOKEN;
-  if (!token) {
-    return { success: false, body: { code: "CONFIG", message: "backend token missing" } };
+  const headers: Record<string, string> = { "content-type": "application/json" };
+  if (token !== undefined) {
+    if (token.startsWith("Bearer ")) {
+      return {
+        success: false,
+        body: {
+          error: {
+            code: "UNAUTHENTICATED",
+            message: "send token without Bearer",
+          },
+        },
+      };
+    }
+    headers.token = token;
   }
-  if (token.startsWith("Bearer ")) {
-    return {
-      success: false,
-      body: { code: "INVALID_TOKEN_HEADER", message: "send token without Bearer" },
-    };
-  }
+
   const response = await fetch(`${process.env.ANSOO_API_URL}/lesan`, {
     method: "POST",
-    headers: { "content-type": "application/json", token },
+    headers,
     cache: "no-store",
     body: JSON.stringify({
       model: "products",
       act: "getPublicProfile",
-      details: { set, get: { profile: true } },
+      details: { set },
     }),
   });
-  if (!response.ok) {
-    return {
-      success: false,
-      body: { code: `HTTP_${response.status}`, message: "backend request failed" },
-    };
-  }
   return (await response.json()) as ApiEnvelope<PublicProfilePayload>;
 }
