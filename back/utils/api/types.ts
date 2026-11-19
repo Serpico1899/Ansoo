@@ -62,9 +62,10 @@ export const ACTION_INVENTORY = [
   {
     action: "products.getPublicProfile",
     implemented: true,
-    plan: "08",
+    plan: "08/09",
     access: "GUEST",
-    tests: "tests/api/dispatch.integration.test.ts",
+    tests:
+      "tests/api/dispatch.integration.test.ts; tests/publicProfile/profile.integration.test.ts",
   },
   {
     action: "claims.getResearch",
