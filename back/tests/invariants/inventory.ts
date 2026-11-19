@@ -45,8 +45,7 @@ export const INVARIANTS: readonly InvariantRecord[] = [
     title: "Public projections never return internal data",
     implementedBy: [8, 9],
     scenarios: ["S14", "S19"],
-    foundation: "blocked",
-    blockedBy: "Plan 08: role x internal-field projection matrix",
+    foundation: "enforced",
   },
   {
     id: "I05",

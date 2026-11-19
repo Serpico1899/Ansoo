@@ -7,6 +7,7 @@
 
 import { assert, assertEquals } from "@std/assert";
 import * as domain from "../../utils/domain/constants.ts";
+import { assertCompleteClassification } from "../../utils/projections/mod.ts";
 import { type InvariantRecord, INVARIANTS } from "./inventory.ts";
 
 // Literal names let the CI inventory check prove every ID is registered. Keep
@@ -107,6 +108,13 @@ Deno.test({
     assertEquals(violation?.code, "CAP_EXCEEDED");
     assertEquals(violation?.cap, cap);
     assertEquals(violation?.actual, cap + 1);
+  },
+});
+
+Deno.test({
+  name: TEST_NAMES.I04,
+  fn() {
+    assertCompleteClassification();
   },
 });
 
