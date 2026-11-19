@@ -20,6 +20,13 @@ export type AppConfig = {
   dbName: string;
   jwtSecret: string;
   jwtExpiresInSeconds: number;
+  jwtIssuer?: string;
+  jwtAudience?: string;
+  authAssertion: {
+    secret?: string;
+    issuer?: string;
+    audience?: string;
+  };
   asset: {
     provider: typeof ASSET_STORAGE_PROVIDERS[number];
     localRoot: string;
@@ -85,6 +92,11 @@ export function redactMongoUrl(url: string): string {
   return url.replace(/\/\/([^/@]+)@/, "//***:***@");
 }
 
+function optionalNonEmpty(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed === undefined || trimmed === "" ? undefined : trimmed;
+}
+
 function parseMongoReplicaSet(url: string): string | undefined {
   try {
     return new URL(url).searchParams.get("replicaSet") ?? undefined;
@@ -132,6 +144,19 @@ export function loadConfig(
   } else if (jwtSecret.length < MIN_SECRET_LENGTH) {
     issues.push(`JWT_SECRET must be at least ${MIN_SECRET_LENGTH} characters`);
   }
+
+  const jwtIssuer = optionalNonEmpty(env.JWT_ISSUER);
+  const jwtAudience = optionalNonEmpty(env.JWT_AUDIENCE);
+  const assertionSecret = optionalNonEmpty(env.AUTH_ASSERTION_SECRET);
+  if (assertionSecret !== undefined) {
+    if (PLACEHOLDER_SECRETS.has(assertionSecret)) {
+      issues.push("AUTH_ASSERTION_SECRET must not be a placeholder or default value");
+    } else if (assertionSecret.length < MIN_SECRET_LENGTH) {
+      issues.push(`AUTH_ASSERTION_SECRET must be at least ${MIN_SECRET_LENGTH} characters`);
+    }
+  }
+  const assertionIssuer = optionalNonEmpty(env.AUTH_ASSERTION_ISSUER);
+  const assertionAudience = optionalNonEmpty(env.AUTH_ASSERTION_AUDIENCE);
 
   const port = parseInteger(issues, "APP_PORT", env.APP_PORT, 1370, 1, 65535);
   const jwtExpiresInSeconds = parseInteger(
@@ -225,6 +250,13 @@ export function loadConfig(
     dbName,
     jwtSecret,
     jwtExpiresInSeconds,
+    ...(jwtIssuer === undefined ? {} : { jwtIssuer }),
+    ...(jwtAudience === undefined ? {} : { jwtAudience }),
+    authAssertion: {
+      ...(assertionSecret === undefined ? {} : { secret: assertionSecret }),
+      ...(assertionIssuer === undefined ? {} : { issuer: assertionIssuer }),
+      ...(assertionAudience === undefined ? {} : { audience: assertionAudience }),
+    },
     asset: {
       provider: provider as typeof ASSET_STORAGE_PROVIDERS[number],
       localRoot,
