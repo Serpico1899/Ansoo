@@ -811,6 +811,12 @@ result: ("APPLIED" | "FAILED" | "NOT_APPLICABLE" );
 failureReason?: string;
 idempotencyKey: string;
 };
+publicNotice?: {
+correctedAt: Date;
+reason: string;
+previousWording: string;
+auditEventId: string;
+};
 schemaVersion: number;
 version: number;
 createdAt: Date;
@@ -866,6 +872,10 @@ occurredAt: Date;
 set: {
 id?: string;
 gtin?: string;
+scheme?: string;
+value?: string;
+jurisdiction?: string;
+issuer?: string;
 };
 };
 

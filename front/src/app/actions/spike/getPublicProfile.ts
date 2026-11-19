@@ -20,22 +20,52 @@ export type ApiEnvelope<T> =
   };
 
 export type PublicProfilePayload = {
-  outcome: "ACTIVE" | "MERGED" | "NOT_FOUND";
-  product: { _id?: string; name?: string; brand?: { _id?: string; name?: string } | null } | null;
-  claims: Array<{
-    _id?: string;
-    statement?: string;
-    assessment?: { outcome?: string };
-    publication?: { status?: string };
-  }>;
-  relationships: Array<{
-    _id?: string;
+  resolution:
+    | { state: "FOUND"; productId: string; confidence: "EXACT" }
+    | { state: "NOT_FOUND" }
+    | { state: "AMBIGUOUS"; candidates: Array<{ productId: string; reason: string }> }
+    | { state: "DISPUTED"; productId: string; disputeNote: string }
+    | { state: "UNVERIFIED"; productId: string };
+  product?: {
+    id: string;
+    name: string;
+    packaging?: Record<string, unknown>;
+    identifiersApprovedForDisplay: Array<{ scheme: string; value: string }>;
+    brandMappingStatus: string;
+    categoryCode?: string;
+  };
+  brand?: { id: string; name: string };
+  findings: Array<{
+    findingId: string;
+    findingKind: "RELATIONSHIP" | "CLAIM";
+    scope: "PRODUCT" | "BRAND" | "ORGANIZATION";
+    inheritedFrom?: { type: "BRAND" | "ORGANIZATION"; id: string; name: string };
     predicate?: string;
-    assessment?: { outcome?: string };
-    publication?: { status?: string };
+    claimType?: string;
+    publicWording: string;
+    assessmentOutcome: string;
+    limitations: string[];
+    publishedAt: string;
+    evidence: Array<{
+      sourceTitle: string;
+      publisherName?: string;
+      stance: string;
+      isRedacted: boolean;
+    }>;
+    organizationResponses: Array<{
+      organizationName: string;
+      responseText: string;
+      representativeVerified: boolean;
+    }>;
+    correctionNotice?: {
+      correctedAt: string;
+      reason: string;
+      previousWording: string;
+    };
   }>;
-  unknowns: string[];
-  limitations: string[];
+  unknowns: Array<{ code: string; message: string }>;
+  noUniversalScore: true;
+  builtAt: string;
 };
 
 export async function getPublicProfile(
