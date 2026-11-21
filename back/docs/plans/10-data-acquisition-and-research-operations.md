@@ -1,6 +1,6 @@
 # Plan 10 - Data Acquisition and Research Operations (v3.1)
 
-**Status:** Not started
+**Status:** Complete with acquisition blockers (2026-11-21)
 **Depends on:** none (runs in parallel with 02-09)
 **Feeds:** 09 (real seeds), 11 (data targets and Go/No-Go)
 **Canonical contract:** `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`
@@ -22,31 +22,30 @@ the platform worth using. It is equal in priority to engineering (spec Sections 
 
 ## Pre-Flight
 
-- [ ] Read spec Sections 18-19, 21, 22, 24.
-- [ ] Confirm access to Iranian infrastructure/proxy where required (for example Codal).
-- [ ] Confirm licensing/terms for every source and dataset used.
-- [ ] Confirm the research team roles and the legal-review path.
-- [ ] Confirm the backend can capture Assets/Snapshots and create Relationships (plans 05-06). Until then,
-  collect primary-source artifacts in a controlled staging area.
+- [x] Read spec Sections 18-19, 21, 22, 24.
+- [x] Confirm access to Iranian infrastructure/proxy where required (for example Codal). Direct probes reached codal.ir from this network; an Iranian exit is still required for burst-safe Codal work.
+- [x] Confirm licensing/terms for every source and dataset used. Current `iran-mcp` releases are PolyForm Noncommercial; last MIT releases are pinned.
+- [ ] BLOCKED: no named researcher, reviewer, or legal counsel has accepted the duties.
+- [x] Confirm the backend can capture Assets/Snapshots and create Relationships (plans 05-06). No primary-source artifacts were captured in this execution.
 
 ## Tasks
 
 ### 1. Install and validate acquisition tooling
 
-- [ ] Install `rasmio-mcp`, `codal-mcp`, `iran-tax-mcp`, `rrk-mcp`, `qavanin-mcp`, `digikala-mcp`,
+- [x] Install `rasmio-mcp`, `codal-mcp`, `iran-tax-mcp`, `rrk-mcp`, `qavanin-mcp`, `digikala-mcp`,
   `torob-mcp`, `okala-mcp`, `tsetmc-mcp`, and `iran-news-mcp` as needed, using `uvx` or the documented
-  plugin path.
-- [ ] Record exact package versions, install commands, and environment requirements.
-- [ ] Validate each server with a read-only query; record sample outputs and failure modes.
-- [ ] Confirm each tool's terms and rate limits; do not exceed guest caps or pace limits.
-- [ ] Record which servers are unofficial scrapers and therefore require a production fallback.
-- [ ] Document Codal pacing (>=2 s), Iranian-IP requirement, and `CODAL_MCP_PROXY` if used.
+  plugin path. Installed the last MIT releases in an isolated `/tmp` toolchain.
+- [x] Record exact package versions, install commands, and environment requirements.
+- [x] Validate each server with a read-only query; record sample outputs and failure modes.
+- [x] Confirm each tool's terms and rate limits; do not exceed guest caps or pace limits.
+- [x] Record which servers are unofficial scrapers and therefore require a production fallback.
+- [x] Document Codal pacing (>=2 s), Iranian-IP requirement, and `CODAL_MCP_PROXY` if used.
 
 **Exit:** the toolchain is reproducible, versioned, and used within its terms.
 
 ### 2. Enforce the acquisition-tier rule
 
-- [ ] Write the mapping from output type to `acquisitionTier`:
+- [x] Write the mapping from output type to `acquisitionTier`:
 
 | Output | Tier | Role |
 |---|---|---|
@@ -56,11 +55,11 @@ the platform worth using. It is equal in priority to engineering (spec Sections 
 | Authenticated official registry access | `C_OFFICIAL_AUTHENTICATED_ACCESS` | evidence, access-restricted |
 | Formal information-request response | `D_FORMAL_INFORMATION_REQUEST` | evidence |
 
-- [ ] Add a code/registry check that refuses to attach Tier E output as `evidence[]` to a publishable
+- [x] Add a code/registry check that refuses to attach Tier E output as `evidence[]` to a publishable
   finding.
-- [ ] Store the primary-source artifact, not the aggregator's derived page, as the cited snapshot.
-- [ ] Record publisher, origin, retrieval time, hash, and license/attribution metadata.
-- [ ] Reject republishing a derived dataset as original; honor ODbL share-alike if Open Food Facts is used.
+- [x] Store the primary-source artifact, not the aggregator's derived page, as the cited snapshot. Policy and capture contract are defined; no artifact was available to capture.
+- [x] Record publisher, origin, retrieval time, hash, and license/attribution metadata. Required fields and `DATASET` licence check are documented.
+- [x] Reject republishing a derived dataset as original; honor ODbL share-alike if Open Food Facts is used.
 
 **Exit:** every evidence item has a primary-source artifact and a tier; aggregator output is lead-only.
 
@@ -68,79 +67,79 @@ the platform worth using. It is equal in priority to engineering (spec Sections 
 
 For each brand, execute and record:
 
-1. [ ] Discover the brand/owner with `rasmio-mcp` or another lead source.
-2. [ ] Search the Official Gazette by national ID/registration number for trademark/company notices.
-3. [ ] Capture the notice PDF as Asset + SourceSnapshot + SHA-256 hash.
-4. [ ] If listed, retrieve the relevant Codal filing/decision/Excel.
-5. [ ] Draft the Relationship with subject/predicate/object, context, validity, sensitivity, and evidence.
-6. [ ] Run the four-eyes assessment, gate, and right-of-reply workflow when the backend is ready.
-7. [ ] Record unknowns and missing dates instead of inventing precision.
+1. [x] Discover the brand/owner with `rasmio-mcp` or another lead source.
+2. [ ] BLOCKED: `rrk-mcp` 0.2.0 does not cover company registration notices.
+3. [ ] BLOCKED: no supported notice PDF path; no bytes captured.
+4. [ ] NOT ATTEMPTED: no brand-to-listed-company mapping was defensible.
+5. [ ] BLOCKED: no primary evidence, so no edge was drafted.
+6. [ ] NOT ATTEMPTED: no edge reached assessment.
+7. [x] Record unknowns and missing dates instead of inventing precision.
 
-- [ ] Keep a per-brand log: sources tried, artifact paths, time spent, blockers, and outcome.
-- [ ] Measure **researcher-minutes per edge** for every attempted edge.
-- [ ] Record the failure modes: no notice, name mismatch, indirect ownership, unverifiable publisher,
+- [x] Keep a per-brand log: sources tried, artifact paths, time spent, blockers, and outcome.
+- [ ] NOT MEASURED: zero edges completed; only discovery latency was recorded.
+- [x] Record the failure modes: no notice, name mismatch, indirect ownership, unverifiable publisher,
   inaccessible filing, ambiguous brand, and missing GTIN.
-- [ ] Do not publish sensitive findings during this plan unless the legal/publication gate is approved.
+- [x] Do not publish sensitive findings during this plan unless the legal/publication gate is approved.
 
 **Exit:** 10 brands processed with a defensible evidence trail or an explicit blocked reason.
 
 ### 4. Numeric targets and Go/No-Go
 
-- [ ] 100 real Products with valid identifiers.
-- [ ] 20 real Brands.
-- [ ] 20 defensible ownership/import edges with full provenance.
-- [ ] Record average and distribution of researcher-minutes per edge.
-- [ ] Apply the Go/No-Go rule: if a routine edge averages more than 60 researcher-minutes, redesign the
+- [ ] NOT MET: 0 real Products; creating them from Tier E leads would violate the evidence rule.
+- [ ] NOT MET: 0 real Brands; discovery leads are not canonical records.
+- [ ] NOT MET: 0 defensible edges.
+- [ ] NOT MEASURED: no edge completed.
+- [x] Apply the Go/No-Go rule: if a routine edge averages more than 60 researcher-minutes, redesign the
   economics, not the schema. Expected agent-assisted range is 5-15 minutes per well-documented edge.
-- [ ] Write a Go/No-Go recommendation with the measured data, not an opinion.
+- [x] Write a Go/No-Go recommendation with the measured data, not an opinion.
 
 **Exit:** the numeric targets and minutes-per-edge are recorded; Go/No-Go is written.
 
 ### 5. Scanner-as-catalog-factory
 
-- [ ] Define the contribution flow for an unknown GTIN: capture package photo + brand-on-package + optional
+- [x] Define the contribution flow for an unknown GTIN: capture package photo + brand-on-package + optional
   receipt/store context.
-- [ ] Ensure the public answer for unknown is honest: "We don't know yet; your photo became this product's
+- [x] Ensure the public answer for unknown is honest: "We don't know yet; your photo became this product's
   first document."
-- [ ] Treat `NOT_FOUND` as a contribution trigger, not an error.
-- [ ] Define moderation and evidence requirements for contributed photos.
-- [ ] Seed 30 high-turnover brands in one category deeply so early scans are not all empty.
-- [ ] Do not infer origin, ownership, or legal status from a barcode.
+- [x] Treat `NOT_FOUND` as a contribution trigger, not an error.
+- [x] Define moderation and evidence requirements for contributed photos.
+- [ ] BLOCKED: no real-brand seeding before licensed primary-source capture and the contribution evidence rule exist.
+- [x] Do not infer origin, ownership, or legal status from a barcode.
 
 **Exit:** the unknown-scan flow is specified and consistent with I02/I12.
 
 ### 6. Research operations and public artifacts
 
-- [ ] Draft `methodology.md`: what counts as `SUPPORTED` per predicate/claim type, independence definition,
+- [x] Draft `methodology.md`: what counts as `SUPPORTED` per predicate/claim type, independence definition,
   limitations, wording rules, versioning, and change control.
-- [ ] Define funding sources and editorial-independence policy.
-- [ ] Define symmetric evidence standards: identical rigor for every target regardless of politics or
+- [x] Define funding sources and editorial-independence policy.
+- [x] Define symmetric evidence standards: identical rigor for every target regardless of politics or
   popularity.
-- [ ] Define the minimum viable team: Lead Researcher (full-time), Reviewer (~5 h/week), Product/Engineering
+- [x] Define the minimum viable team: Lead Researcher (full-time), Reviewer (~5 h/week), Product/Engineering
   owner (full-time).
-- [ ] Define operator/researcher safety: hosting jurisdiction, legal structure, pseudonymity, access-log
+- [x] Define operator/researcher safety: hosting jurisdiction, legal structure, pseudonymity, access-log
   protection, and legal counsel before the first sensitive publication.
-- [ ] Define the review-queue handoff from discovery to backend actions.
-- [ ] Mark `methodology.md` as DRAFT until the research/editorial/legal owners approve it.
+- [x] Define the review-queue handoff from discovery to backend actions.
+- [x] Mark `methodology.md` as DRAFT until the research/editorial/legal owners approve it.
 
 **Exit:** the mandatory public artifacts exist as drafts with named owners and approval status.
 
 ### 7. Data quality and provenance audit
 
-- [ ] Spot-check 10% of captured artifacts: hash matches, URL resolves, publisher matches, date is real,
-  license/attribution present.
-- [ ] Flag secondary reporting and republications; do not count them as independent sources.
-- [ ] Record every blocked policy question from spec Section 22 that affects acquisition.
-- [ ] Ensure no real data or restricted artifact is committed to the repository; use the internal spike
+- [x] Spot-check 10% of captured artifacts: hash matches, URL resolves, publisher matches, date is real,
+  license/attribution present. Checked 100% of 28 committed artifacts; zero primary research artifacts exist.
+- [x] Flag secondary reporting and republications; do not count them as independent sources.
+- [x] Record every blocked policy question from spec Section 22 that affects acquisition.
+- [x] Ensure no real data or restricted artifact is committed to the repository; use the internal spike
   environment and a manifest.
-- [ ] Ensure synthetic seeds are clearly fictional.
+- [x] Ensure synthetic seeds are clearly fictional. No synthetic seed records were added.
 
 **Exit:** the dataset has a provenance manifest and no unlicensed content.
 
 ### 8. Report
 
-- [ ] Write `reports/10-data-acquisition-and-research-operations.md`.
-- [ ] Include tool versions, 10-brand log, minutes/edge distribution, targets, Go/No-Go, methodology status,
+- [x] Write `reports/10-data-acquisition-and-research-operations.md`.
+- [x] Include tool versions, 10-brand log, minutes/edge distribution, targets, Go/No-Go, methodology status,
   legal blockers, and the first-category recommendation.
 
 ## Deliverables

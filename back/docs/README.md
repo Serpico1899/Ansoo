@@ -24,8 +24,8 @@ override v3.1. See `adr/0001-v3.1-single-canonical-spec.md`.
 | Domain specification | v3.1 canonical (LOCKED baseline) |
 | Backend code | Models, domain services, the authenticated action/dispatcher layer, and the public profile/read model implemented |
 | Architecture spike | Complete against the superseded draft; archived under `archive/01-architecture-spike/` |
-| Execution plans | Plans 02-09 complete (2026-11-19); plans 10-11 defined for v3.1; plan 01 is historical |
-| Data acquisition | Not started; equal priority to engineering |
+| Execution plans | Plans 02-10 complete (2026-11-21); plan 11 defined for v3.1; plan 01 is historical |
+| Data acquisition | Toolchain and tier rule validated; primary-source capture blocked (plan 10) |
 | Production readiness | Not started |
 
 ## Documentation Map
@@ -33,7 +33,7 @@ override v3.1. See `adr/0001-v3.1-single-canonical-spec.md`.
 | Path | Purpose |
 |---|---|
 | `summary.md` | Condensed v3.1 domain model, boundaries, decisions, open questions |
-| `methodology.md` | DRAFT public methodology skeleton; owned by research/editorial/legal |
+| `methodology.md` | DRAFT operating methodology; owned by research/editorial/legal |
 | `adr/` | Architecture Decision Records and the ADR index |
 | `plans/00-roadmap.md` | Master delivery sequence and dependency graph |
 | `plans/01-architecture-spike.md` | Historical spike plan (superseded domain assumptions) |

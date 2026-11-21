@@ -36,7 +36,7 @@ it orders the work and names the gates that must pass before the next plan start
 | 07 | Governance, Audit, Corrections, and Users (complete) | 9, 12, 16 | 03, 05 | 10 |
 | 08 | Auth, Projections, and API Contract (complete) | 4, 12, 14 | 03, 07 | 10 |
 | 09 | Public Profile, Read Model, and Vertical Slice (complete) | 14, 12, 20 | 04-08 | 10 |
-| 10 | Data Acquisition and Research Operations | 18, 19, 21 | none | 02-09 |
+| 10 | Data Acquisition and Research Operations (complete with blockers) | 18, 19, 21 | none | 02-09 |
 | 11 | Verification, Hardening, and Launch | 12, 16, 20, 21, 24 | 02-10 | - |
 
 ## Execution Order
