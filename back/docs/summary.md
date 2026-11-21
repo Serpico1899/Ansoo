@@ -6,9 +6,14 @@ disagree, the spec wins and this summary must be corrected.
 
 ## Status
 
-- **Models, domain services, and authenticated HTTP actions implemented.** The eleven v3.1 models,
-  embedded contracts, cap validators, two Lesan relations, starting indexes, identity, research,
-  provenance, governance, auth, projections, and the dispatcher exist. Plan 09 owns final profile assembly.
+- **Models, domain services, authenticated HTTP actions, and the public profile implemented.** The eleven
+  v3.1 models, embedded contracts, cap validators, two Lesan relations, starting indexes, identity,
+  research, provenance, governance, auth, projections, the dispatcher, public-profile assembly, and the
+  rebuildable read model exist.
+- **Plan 09 complete (2026-11-19).** Honest identifier resolution, scoped/inherited public findings with
+  explicit unknowns and no universal score, the `product_public_profiles` read model with rebuild/repair,
+  and synchronous retraction invalidation are in place. S19 p95 was measured at 15.29 ms for 60 warm
+  samples; S24 end-to-end retraction at 1,287.63 ms; S30 rebuild payloads were byte-identical.
 - **Plan 08 complete (2026-11-19).** JWT auth with DB-derived roles, the capability matrix, the stable error
   envelope, Public/Research/Admin projections, the I04 role x field matrix, and the generated frontend
   contract are in place.
@@ -275,8 +280,8 @@ conflicting official identifiers is blocked for human decision.
   organization responses, right-of-reply state, and correction notice.
 - `PublicCorrectionNotice` is displayed when previously published wording is corrected or retracted.
 - Read model `product_public_profiles` is keyed by `productId`, carries `sourceVersions`, is rebuilt on
-  publication/evidence/merge/brand-relation/retraction changes, is fully rebuildable (S30), and targets p95
-  profile read < 400 ms.
+  publication/evidence/merge/brand-relation/retraction changes, and is fully rebuildable. `builtAt` is the
+  canonical-state watermark so a same-state rebuild is byte-identical (S30); p95 profile read < 400 ms.
 - Retraction is synchronous across document, read model, cache/CDN, and search index; p95 < 60 s (S24).
 
 ## Concurrency and Integrity

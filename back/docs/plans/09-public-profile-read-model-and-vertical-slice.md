@@ -1,6 +1,6 @@
 # Plan 09 - Public Profile, Read Model, and Vertical Slice (v3.1)
 
-**Status:** Not started
+**Status:** Complete (2026-11-19)
 **Depends on:** 04, 05, 06, 07, 08
 **Feeds:** 11 (S19/S24/S30), frontend
 **Canonical contract:** `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`
@@ -21,11 +21,12 @@ rebuildable `product_public_profiles` read model and the synchronous retraction 
 
 ## Pre-Flight
 
-- [ ] Read spec Sections 12, 14, 20.1 (S19, S24, S30), 24.
-- [ ] Confirm resolution (plan 04), publication (plan 05), evidence (plan 06), corrections (plan 07), and
+- [x] Read spec Sections 12, 14, 20.1 (S19, S24, S30), 24.
+- [x] Confirm resolution (plan 04), publication (plan 05), evidence (plan 06), corrections (plan 07), and
   projections/auth (plan 08).
-- [ ] Confirm the public projection builder cannot be widened by a client.
-- [ ] Confirm a seeded dataset exists for S19; coordinate with plan 10 for real data.
+- [x] Confirm the public projection builder cannot be widened by a client.
+- [x] Confirm a seeded dataset exists for S19; the deterministic synthetic dataset is used here and
+  the real corpus remains plan 10.
 
 ## Tasks
 
@@ -33,109 +34,109 @@ rebuildable `product_public_profiles` read model and the synchronous retraction 
 
 Implement the typed output in spec Section 14.2:
 
-- [ ] `PublicProductProfile`: resolution, product identity, brand, findings, unknowns,
+- [x] `PublicProductProfile`: resolution, product identity, brand, findings, unknowns,
   `noUniversalScore: true`, `builtAt`.
-- [ ] Product view: id, name, packaging, identifiers approved for display, brand-mapping status,
+- [x] Product view: id, name, packaging, identifiers approved for display, brand-mapping status,
   categoryCode.
-- [ ] Brand view: id, name (or explicit absent state).
-- [ ] `PublicFindingView`: finding id/kind, scope, inheritedFrom?, predicate?/claimType?, public wording,
+- [x] Brand view: id, name (or explicit absent state).
+- [x] `PublicFindingView`: finding id/kind, scope, inheritedFrom?, predicate?/claimType?, public wording,
   counterparties, validity, assessment outcome, limitations, publishedAt, lastReviewedAt, evidence,
   organization responses, right-of-reply state, correction notice.
-- [ ] `PublicEvidenceView`: source title, publisher, capture/publication dates, excerpt, locator, stance,
+- [x] `PublicEvidenceView`: source title, publisher, capture/publication dates, excerpt, locator, stance,
   public source URL, isRedacted.
-- [ ] `PublicResponseView`: organization name, response text, submittedAt, representative verified.
-- [ ] `PublicCorrectionNotice`: correctedAt, reason, previous wording, auditEventId.
-- [ ] Unknowns are explicit codes/messages; never omit a gap silently.
-- [ ] No `score`, `verdict`, `badge`, or legal/ethical conclusion field exists in the type.
+- [x] `PublicResponseView`: organization name, response text, submittedAt, representative verified.
+- [x] `PublicCorrectionNotice`: correctedAt, reason, previous wording, auditEventId.
+- [x] Unknowns are explicit codes/messages; never omit a gap silently.
+- [x] No `score`, `verdict`, `badge`, or legal/ethical conclusion field exists in the type.
 
 **Exit:** the type is fully specified and every field is classified for public display.
 
 ### 2. Inheritance and scope rules
 
-- [ ] Product-level finding displayed directly with `scope: "PRODUCT"`.
-- [ ] Brand-level findings displayed on all Products of that Brand with `scope: "BRAND"` and
+- [x] Product-level finding displayed directly with `scope: "PRODUCT"`.
+- [x] Brand-level findings displayed on all Products of that Brand with `scope: "BRAND"` and
   `inheritedFrom`; the scope label is visible in the payload.
-- [ ] Organization-level findings included only through a **published** edge in Product -> Brand -> Org.
-- [ ] Maximum depth 2 hops; no automatic traversal for ultimate ownership (I11).
-- [ ] A finding missing its evidence/source access is withheld or flagged, not silently published.
-- [ ] No finding is duplicated when multiple paths reach it; deduplicate by finding id with explicit scope.
+- [x] Organization-level findings included only through a **published** edge in Product -> Brand -> Org.
+- [x] Maximum depth 2 hops; no automatic traversal for ultimate ownership (I11).
+- [x] A finding missing its evidence/source access is withheld or flagged, not silently published.
+- [x] No finding is duplicated when multiple paths reach it; deduplicate by finding id with explicit scope.
 
 **Exit:** I11 and inheritance tests pass; no multi-hop conclusion appears.
 
 ### 3. Public profile read action
 
-- [ ] `getPublicProductProfile` accepts an identifier or product id and returns a `ResolutionResult` plus
+- [x] `getPublicProductProfile` accepts an identifier or product id and returns a `ResolutionResult` plus
   profile.
-- [ ] Resolution states are preserved: `FOUND`, `NOT_FOUND`, `AMBIGUOUS`, `DISPUTED`, `UNVERIFIED`.
-- [ ] `NOT_FOUND` returns a useful empty profile with contribution guidance, not an error.
-- [ ] `AMBIGUOUS` returns candidates; never chooses one.
-- [ ] Public profile excludes research notes, reviewer IDs, role/PII data, restricted sources, private asset
+- [x] Resolution states are preserved: `FOUND`, `NOT_FOUND`, `AMBIGUOUS`, `DISPUTED`, `UNVERIFIED`.
+- [x] `NOT_FOUND` returns a useful empty profile with contribution guidance, not an error.
+- [x] `AMBIGUOUS` returns candidates; never chooses one.
+- [x] Public profile excludes research notes, reviewer IDs, role/PII data, restricted sources, private asset
   keys, and security metadata.
-- [ ] Retracted findings are absent or explicitly marked; never returned as published.
-- [ ] Merged identities redirect with a notice.
-- [ ] Response time target: p95 < 400 ms server-side on representative data.
+- [x] Retracted findings are absent or explicitly marked; never returned as published.
+- [x] Merged identities redirect with a notice.
+- [x] Response time target: p95 < 400 ms server-side on representative data.
 
 **Exit:** S19 passes with correct answer, separated statuses, evidence, and p95 < 400 ms.
 
 ### 4. Read model `product_public_profiles`
 
-- [ ] Derived collection keyed by `productId`; payload is the Section 14.2 output plus `sourceVersions`.
-- [ ] The read model is technical, not a domain source of truth; no client writes.
-- [ ] Rebuild on publication change, evidence change, merge, brand-relation change, and retraction.
-- [ ] Use an outbox/repair path for rebuild triggers; never assume a multi-document write is atomic.
-- [ ] Record `sourceVersions` so stale payloads are detectable.
-- [ ] Add a full rebuild command that reads only canonical collections.
-- [ ] Rebuild output must be byte-identical for the same canonical state (S30).
-- [ ] Add a repair job for missed/failed rebuilds; log queue depth and repair count.
-- [ ] Unique index on `productId`.
+- [x] Derived collection keyed by `productId`; payload is the Section 14.2 output plus `sourceVersions`.
+- [x] The read model is technical, not a domain source of truth; no client writes.
+- [x] Rebuild on publication change, evidence change, merge, brand-relation change, and retraction.
+- [x] Use an outbox/repair path for rebuild triggers; never assume a multi-document write is atomic.
+- [x] Record `sourceVersions` so stale payloads are detectable.
+- [x] Add a full rebuild command that reads only canonical collections.
+- [x] Rebuild output must be byte-identical for the same canonical state (S30).
+- [x] Add a repair job for missed/failed rebuilds; log queue depth and repair count.
+- [x] Unique index on `productId`.
 
 **Exit:** S30 passes; a stale or missing read model is detectable and repairable.
 
 ### 5. Retraction and invalidation SLO
 
-- [ ] Implement the synchronous retraction path: canonical document -> read model -> cache/CDN -> search
+- [x] Implement the synchronous retraction path: canonical document -> read model -> cache/CDN -> search
   index.
-- [ ] The path must be idempotent and audited; failure leaves a visible error and a repair record.
-- [ ] Target p95 < 60 seconds until the finding is invisible on all public surfaces (S24).
-- [ ] Add a test harness that measures each surface and the end-to-end SLO.
-- [ ] A retracted finding must not reappear after a rebuild.
-- [ ] A published correction updates the public correction notice and the profile content.
+- [x] The path must be idempotent and audited; failure leaves a visible error and a repair record.
+- [x] Target p95 < 60 seconds until the finding is invisible on all public surfaces (S24).
+- [x] Add a test harness that measures each surface and the end-to-end SLO.
+- [x] A retracted finding must not reappear after a rebuild.
+- [x] A published correction updates the public correction notice and the profile content.
 
 **Exit:** S24 passes; retraction cannot be undone by a stale cache or rebuild.
 
 ### 6. Unknowns, conflicts, and limitations
 
-- [ ] Emit explicit unknowns for missing brand, unverified identifiers, no published findings, missing
+- [x] Emit explicit unknowns for missing brand, unverified identifiers, no published findings, missing
   evidence, unresolved disputes, and absent dates.
-- [ ] Show limitations separately from assessment outcome.
-- [ ] Represent conflicting evidence without collapsing to a verdict.
-- [ ] Never convert unknown to false, or unsupported to a negative boolean (I02).
-- [ ] Add a public-wording check: no prose that implies a universal verdict.
+- [x] Show limitations separately from assessment outcome.
+- [x] Represent conflicting evidence without collapsing to a verdict.
+- [x] Never convert unknown to false, or unsupported to a negative boolean (I02).
+- [x] Add a public-wording check: no prose that implies a universal verdict.
 
 **Exit:** I02 and I12 pass in the assembled profile.
 
 ### 7. Vertical slice S19
 
-- [ ] Seed or load a representative dataset: Products with GTINs, Brands, Organizations, published
+- [x] Seed or load a representative dataset: Products with GTINs, Brands, Organizations, published
   Relationships, Claims, Sources, Snapshots, Assets, responses, and unknowns.
-- [ ] Exercise: scan GTIN -> normalize -> resolve -> profile with evidence, dates, statuses, and limitations.
-- [ ] Verify a leading-zero GTIN, an ambiguous duplicate, a not-found code, and a disputed record.
-- [ ] Verify a Brand-level finding is inherited with a visible scope label.
-- [ ] Verify an Organization-level finding appears only through a published edge and max 2 hops.
-- [ ] Verify no internal field appears for guest/public.
-- [ ] Measure p95 server-side and record hardware, MongoDB version, Lesan version, document count, payload
+- [x] Exercise: scan GTIN -> normalize -> resolve -> profile with evidence, dates, statuses, and limitations.
+- [x] Verify a leading-zero GTIN, an ambiguous duplicate, a not-found code, and a disputed record.
+- [x] Verify a Brand-level finding is inherited with a visible scope label.
+- [x] Verify an Organization-level finding appears only through a published edge and max 2 hops.
+- [x] Verify no internal field appears for guest/public.
+- [x] Measure p95 server-side and record hardware, MongoDB version, Lesan version, document count, payload
   size, and query type.
-- [ ] Hand the generated contract to the frontend for a minimal render check; no production UI.
+- [x] Hand the generated contract to the frontend for a minimal render check; no production UI.
 
 **Exit:** Stage F vertical-slice criterion is met with evidence.
 
 ### 8. Tests and report
 
-- [ ] Tests: S19, S24, S30, I02, I04, I11, I12; inheritance, unknown, retraction, rebuild, and read-model
+- [x] Tests: S19, S24, S30, I02, I04, I11, I12; inheritance, unknown, retraction, rebuild, and read-model
   repair.
-- [ ] Negative tests: deep client projection, restricted source, retracted finding, merged identity,
+- [x] Negative tests: deep client projection, restricted source, retracted finding, merged identity,
   ambiguous identifier, absent brand.
-- [ ] Write `reports/09-public-profile-read-model-and-vertical-slice.md`.
+- [x] Write `reports/09-public-profile-read-model-and-vertical-slice.md`.
 
 ## Deliverables
 

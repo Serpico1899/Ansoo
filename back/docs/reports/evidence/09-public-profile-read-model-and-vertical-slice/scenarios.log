@@ -1,0 +1,4 @@
+{"scenario":"S19-scan","input":"gtin:0006381333935","resolution":"FOUND","findings":4,"unknowns":5}
+{"scenario":"S30","byteIdentical":true,"firstBytes":5112,"secondBytes":5112,"firstSha256":"a6ffc97b3e9f98c7d61daf76dd957274eec60f2f102e2de813ac92ab262b368e","secondSha256":"a6ffc97b3e9f98c7d61daf76dd957274eec60f2f102e2de813ac92ab262b368e","sourceVersionKeys":10}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":1287.63,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S19","query":"products.getPublicProfile by id (read model hit)","samples":60,"p50Ms":10.38,"p95Ms":15.29,"payloadBytes":5112,"platform":"linux x86_64","deno":"2.4.5","mongo":"8.0.13","lesan":"0.2.3","documents":{"products":1,"claims":4,"relationships":3,"sources":1,"snapshots":1}}

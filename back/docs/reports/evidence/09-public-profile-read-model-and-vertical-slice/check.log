@@ -1,0 +1,6 @@
+Task check deno check mod.ts utils/mod.ts scripts/generate-types.ts scripts/check-config.ts scripts/rebuild-public-profiles.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/mod.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/utils/mod.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/scripts/generate-types.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/scripts/check-config.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/scripts/rebuild-public-profiles.ts

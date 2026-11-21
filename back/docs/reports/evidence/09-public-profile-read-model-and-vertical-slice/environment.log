@@ -1,0 +1,18 @@
+Thu Nov 19 12:02:43 PM UTC 2026
+Linux Palestine 7.0.0-43-generic #43~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Sat Oct 31 06:52:47 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+deno 2.4.5 (stable, release, x86_64-unknown-linux-gnu)
+v8 13.7.152.14-rusty
+typescript 5.8.3
+db version v8.0.13
+Build Info: {
+    "version": "8.0.13",
+    "lesan": "jsr:@hemedani/lesan@^0.2.3",
+
+CPU(s):                                  8
+Model name:                              Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+Thread(s) per core:                      2
+Core(s) per socket:                      4
+Socket(s):                               1
+CPU(s) scaling MHz:                      74%
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       5.1Gi       360Mi       642Mi       2.7Gi       2.6Gi

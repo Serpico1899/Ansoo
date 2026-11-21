@@ -1,0 +1,2 @@
+Task types deno run --allow-all scripts/generate-types.ts
+Generated declarations/selectInp.ts and copied it to the frontend.

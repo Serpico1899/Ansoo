@@ -1,0 +1,495 @@
+Task test deno test --allow-all tests/
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/api/dispatch.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/api/errors.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/api/inventory.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/auth/capabilities.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/auth/jwt.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/domain/constants.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/domain/taxonomy.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/audit-coverage.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/audit.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/corrections.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/retention.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/users.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/brandMapping.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/entities.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/identifier.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/merge.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/normalize.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/registry.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/resolution.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/search.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/url.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/verifyIdentifier.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/infrastructure/config.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/infrastructure/time.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/invariants/invariants.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/invariants/inventory.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/common.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/governance.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/graph-research.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/identity.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/indexes.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/provenance.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/models/relations.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/projections/classification.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/projections/i04.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/capture.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/evidence.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/fetcher.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/publicProfile/contract.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/publicProfile/profile.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/assessment.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/claim.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/gate.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/relationship.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/response.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/retraction.integration.test.ts
+Check file:///home/serpico/Work/Projects/Ansoo/back/tests/research/status.integration.test.ts
+running 1 test from ./tests/api/dispatch.integration.test.ts
+api: auth, capability, envelope, projections, and strict validation ...
+  guests may read public data; deep get cannot widen it ... ok (439ms)
+  valid GTIN resolves the same public projection ... ok (11ms)
+  ambiguous id plus GTIN is rejected ... ok (3ms)
+  invalid GTIN is a sanitized validation error ... ok (2ms)
+  suspended accounts are denied before the action runs ... ok (4ms)
+  Bearer prefix and malformed tokens are 401 ... ok (3ms)
+  research reads require a DB-derived role ... ok (9ms)
+  audit reads are limited to legal, moderator, and admin ... ok (5ms)
+  getMe returns a safe self projection only ... ok (2ms)
+  unknown actions are 404 and never list registered names ... ok (0ms)
+  validators reject unknown keys and opaque paths without echoing values ... ok (9ms)
+  request ids are accepted or generated and returned ... ok (15ms)
+  login is rate limited with the stable 429 envelope ... ok (7ms)
+api: auth, capability, envelope, projections, and strict validation ... ok (1s)
+running 1 test from ./tests/api/errors.test.ts
+errors: codes, statuses, and messages are stable and sanitized ... ok (2ms)
+running 1 test from ./tests/api/inventory.test.ts
+actions: registered actions match the documented inventory ... ok (1ms)
+running 5 tests from ./tests/auth/capabilities.test.ts
+capabilities: every role can read public data and guests are public-only ... ok (1ms)
+capabilities: baseline matrix matches the approved plan ... ok (0ms)
+capabilities: every role x capability cell obeys the matrix ... ok (0ms)
+capabilities: denials are 403 and trustLevel never grants access ... ok (0ms)
+capabilities: uploads are a separate policy from research writes ... ok (0ms)
+running 1 test from ./tests/auth/jwt.integration.test.ts
+auth: tokens carry identity only; roles and status come from the database ...
+  valid token authenticates with DB roles ... ok (25ms)
+  inflated token claims are ignored ... ok (4ms)
+  Bearer prefix is rejected ... ok (1ms)
+  missing, malformed, expired, and wrong-signature tokens fail 401 ... ok (3ms)
+  issuer, audience, subject, and user existence are validated ... ok (4ms)
+  suspended and closed accounts are denied even with a valid token ... ok (4ms)
+  login exchanges a provider assertion for a session token ... ok (4ms)
+  login rejects bad assertions, unknown users, and disabled providers ... ok (4ms)
+auth: tokens carry identity only; roles and status come from the database ... ok (931ms)
+running 10 tests from ./tests/domain/constants.test.ts
+closed entity registry is exactly v3.1 Section 4.1 ... ok (1ms)
+per-field endpoint allowlists are exact ... ok (0ms)
+exactly five predicates with the spec matrix ... ok (0ms)
+exactly three claim types, no OTHER escape hatch ... ok (0ms)
+status domains are declared separately and closure is exact ... ok (0ms)
+publication gate checks and waivers match v3.1 Section 10.5 ... ok (0ms)
+audit actions are the exact Section 9.3 allowlist ... ok (0ms)
+hard caps match v3.1 Section 4.5 and fail with 422 ... ok (0ms)
+identifier, source, asset, response, correction, and user vocabularies are closed ... ok (15ms)
+assertNever throws on an unexpected runtime value ... ok (0ms)
+running 4 tests from ./tests/domain/taxonomy.test.ts
+the repository taxonomy file loads with schema version 1 ... ok (1ms)
+valid taxonomy codes are known and parent links resolve ... ok (0ms)
+duplicate, missing-parent, self-parent, and cyclic codes are rejected ... ok (1ms)
+taxonomy structure requires labels and a known schema version ... ok (0ms)
+running 2 tests from ./tests/governance/audit-coverage.test.ts
+audit coverage: every mutation action is mapped and tested ... ok (0ms)
+audit coverage: governance actions are covered by Plan 07 tests ... ok (0ms)
+running 2 tests from ./tests/governance/audit.test.ts
+I09 - AuditEvent is append-only ...
+  appends and lists through the closed repository ... ok (426ms)
+  rejects unknown actions and unregistered targets ... ok (8ms)
+  rejects nested, array, forbidden-key, and secret summaries ... ok (27ms)
+  rejects non-allowlisted summary keys per action ... ok (6ms)
+  every closed action has an explicit summary allowlist ... ok (0ms)
+I09 - AuditEvent is append-only ... ok (1s)
+I09 - production audit role denies update and delete ... ok (0ms)
+running 1 test from ./tests/governance/corrections.integration.test.ts
+corrections: submit, review, and apply are separate and audited ...
+  S12 rejects unknown target, field, operation, and value shapes ... ok (46ms)
+  submits an allowlisted proposal and is idempotent per submitter ... ok (610ms)
+  enforces per-user and per-IP daily quotas with a 429 envelope ... ok (2s)
+  flags coordinated dispute floods without auto-penalizing ... ok (299ms)
+  submission does not mutate the target ... ok (2ms)
+  only reviewers decide, and the submitter cannot self-approve ... ok (104ms)
+  approval changes review metadata only, never the target ... ok (37ms)
+  S13 rejects a stale target version and records FAILED ... ok (30ms)
+  re-applies the approved proposal through CAS and audits it ... ok (16ms)
+  repeated application is idempotent and never double-writes ... ok (5ms)
+  S17 failure after target write rolls back and can be repaired ... ok (85ms)
+  published public wording changes emit a notice and purge profiles ... ok (568ms)
+  withdrawal is submitter-only and only before a terminal decision ... ok (84ms)
+corrections: submit, review, and apply are separate and audited ... ok (5s)
+running 1 test from ./tests/governance/retention.integration.test.ts
+retention: purge is legal-hold aware, due-date aware, and audited ...
+  explicit purge refuses before retentionUntil ... ok (11ms)
+  scheduler purges only due, non-held, unpurged assets ... ok (569ms)
+  a second run is a no-op ... ok (3ms)
+  held bytes remain readable ... ok (1ms)
+retention: purge is legal-hold aware, due-date aware, and audited ... ok (1s)
+running 1 test from ./tests/governance/users.integration.test.ts
+users: roles, trust, status, and PII purge are authorized and audited ...
+  roles require ADMIN and are validated against the closed enum ... ok (630ms)
+  trust is not authorization and never bypasses roles ... ok (189ms)
+  status changes are moderated and suspended users cannot act ... ok (239ms)
+  PII purge leaves a tombstone and never mutates audit ... ok (206ms)
+  public projection never exposes PII or roles ... ok (1ms)
+users: roles, trust, status, and PII purge are authorized and audited ... ok (1s)
+running 1 test from ./tests/identity/brandMapping.integration.test.ts
+brand mapping: only VERIFIED populates Product.brand, history is audited ...
+  a candidate does not populate the brand relation ... ok (547ms)
+  VERIFIED sets Product.brand through the relation API ... ok (263ms)
+  a later dispute removes the verified relation ... ok (453ms)
+  a different verified brand replaces the relation ... ok (248ms)
+  every review writes a valid AuditEvent ... ok (10ms)
+  a contributor may not review a mapping ... ok (3ms)
+  stale version is a CAS conflict ... ok (5ms)
+  VERIFIED without a candidate and unknown brands fail closed ... ok (6ms)
+brand mapping: only VERIFIED populates Product.brand, history is audited ... ok (2s)
+running 1 test from ./tests/identity/entities.integration.test.ts
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ...
+  S01 brand creation normalizes the two keys and audits ... ok (881ms)
+  S02 a product resolves through its brand relation snapshot ... ok (1s)
+  organization creation keeps identity kinds separate ... ok (403ms)
+  rename re-normalizes and enforces CAS ... ok (158ms)
+  a contributor may not create identities ... ok (3ms)
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ... ok (3s)
+running 6 tests from ./tests/identity/identifier.test.ts
+identifier: GTIN strips separators and preserves leading zeros ... ok (1ms)
+identifier: GTIN accepts 8/12/13/14 digits and rejects bad check digits ... ok (1ms)
+identifier: unknown or unruled schemes fail closed ... ok (0ms)
+identifier: different schemes are never compared ... ok (0ms)
+identifier: status transitions are explicit and RETIRED is terminal ... ok (0ms)
+identifier: GS1 prefix is metadata only, never country/ownership inference ... ok (0ms)
+running 2 tests from ./tests/identity/merge.integration.test.ts
+merge: tombstone, audit, and historical references are never rewritten ... ok (1s)
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ...
+  contradictory GTINs block a product merge ... ok (443ms)
+  stale expected version is a CAS conflict ... ok (419ms)
+  source and target may not be the same identity ... ok (27ms)
+  a contributor may not merge identities ... ok (102ms)
+  target of a different type is rejected ... ok (452ms)
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ... ok (2s)
+running 5 tests from ./tests/identity/normalize.test.ts
+normalization: all six mandatory vectors pass exactly ... ok (2ms)
+normalization: idempotent for both keys ... ok (0ms)
+normalization: whitespace variants are invariant ... ok (0ms)
+normalization: Persian and Arabic digits fold to ASCII ... ok (0ms)
+normalization: scripts and punctuation never merge accidentally ... ok (0ms)
+running 3 tests from ./tests/identity/registry.integration.test.ts
+registry: only closed {type,id} refs with per-field allowlists are accepted ... ok (48ms)
+registry: existence and lifecycle distinguish missing, archived, and wrong type ...
+  active target resolves ... ok (13ms)
+  missing target is NOT_FOUND ... ok (5ms)
+  archived target is ARCHIVED ... ok (4ms)
+  a ref to another type is a wrong-type error ... ok (501ms)
+  collection/model/path/operator inputs are rejected ... ok (2ms)
+registry: existence and lifecycle distinguish missing, archived, and wrong type ... ok (1s)
+registry: merge chains follow at most five hops and cycles raise an admin flag ...
+  chain follows to the survivor ... ok (579ms)
+  cycle denies resolution with an admin flag ... ok (40ms)
+  a chain longer than five hops is denied and flagged ... ok (51ms)
+registry: merge chains follow at most five hops and cycles raise an admin flag ... ok (827ms)
+running 2 tests from ./tests/identity/resolution.integration.test.ts
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ...
+  exact verified identifier is FOUND ... ok (12ms)
+  unknown identifier is NOT_FOUND, not an error ... ok (3ms)
+  leading-zero GTIN resolves by matchValue ... ok (5ms)
+  jurisdiction narrows the exact lookup ... ok (10ms)
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ... ok (451ms)
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ...
+  two verified products for one identifier are AMBIGUOUS ... ok (9ms)
+  a disputed identifier returns DISPUTED with a note ... ok (5ms)
+  an unverified identifier returns UNVERIFIED ... ok (5ms)
+  retired identifiers do not resolve ... ok (2ms)
+  a merged tombstone redirects to the survivor ... ok (5ms)
+  invalid check digits fail before query ... ok (1ms)
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ... ok (452ms)
+running 1 test from ./tests/identity/search.integration.test.ts
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ...
+  exact matchKey ranks before prefix and tombstones are excluded ... ok (13ms)
+  a non-matching query is an explicit empty result ... ok (3ms)
+  regex metacharacters are escaped, not interpreted ... ok (7ms)
+  resolving a tombstone directly redirects to the survivor ... ok (5ms)
+  search never compares across types or schemes ... ok (271ms)
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ... ok (790ms)
+running 5 tests from ./tests/identity/url.test.ts
+url: lowercases host, removes default port and fragment ... ok (1ms)
+url: strips tracking parameters and keeps meaningful query values ... ok (0ms)
+url: trailing slash policy removes one slash except at the root ... ok (0ms)
+url: internationalized hosts become punycode ... ok (0ms)
+url: non-http schemes and malformed URLs are rejected ... ok (1ms)
+running 1 test from ./tests/identity/verifyIdentifier.integration.test.ts
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ...
+  adds a GTIN string with a 14-digit lookup value ... ok (667ms)
+  moves UNVERIFIED to VERIFIED without losing the raw value ... ok (171ms)
+  a retired identifier is terminal ... ok (233ms)
+  invalid GTIN and blocked schemes fail before write ... ok (6ms)
+  stale version and a contributor fail closed ... ok (10ms)
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ... ok (2s)
+running 7 tests from ./tests/infrastructure/config.test.ts
+valid development configuration loads with redacted URL ... ok (1ms)
+missing required configuration is reported together ... ok (0ms)
+placeholder and short JWT secrets are rejected ... ok (0ms)
+non-replica-set MongoDB is rejected outside test ... ok (0ms)
+asset provider configuration fails fast when incomplete ... ok (0ms)
+invalid numeric and CORS values are rejected ... ok (0ms)
+Mongo credentials are redacted ... ok (0ms)
+running 3 tests from ./tests/infrastructure/time.test.ts
+UTC Date round-trips through ISO without losing precision ... ok (0ms)
+unknown dates stay null and invalid dates are rejected ... ok (0ms)
+UTC Date and null round-trip through a MongoDB replica set ... ok (387ms)
+running 15 tests from ./tests/invariants/invariants.test.ts
+I01 - Product, Brand, and Organization are distinct identity types ... ok (0ms)
+I02 - UNKNOWN is not FALSE and NOT_SUPPORTED is not a negative boolean ... ok (0ms)
+I03 - Review, assessment, publication, legal, and campaign statuses stay separate ... ok (0ms)
+I14 - Array caps are enforced in validators with 422, never silent discard ... ok (0ms)
+I04 - Public projections never return internal data ... ok (0ms)
+I12 - No universal score, color, badge, or verdict is produced ... ok (0ms)
+I05 - SUPPORTED requires evidence and an assessor other than the creator ... ignored (0ms)
+I06 - PUBLISHED requires a passing publication gate ... ignored (0ms)
+I07 - SENSITIVE and HIGH_RISK findings require author, assessor, and publisher separation ... ignored (0ms)
+I08 - SourceSnapshot content identity is immutable ... ignored (0ms)
+I09 - AuditEvent is append-only ... ignored (0ms)
+I10 - Corrections never apply a raw patch ... ignored (0ms)
+I11 - No transitive ownership or control inference without written methodology ... ignored (0ms)
+I13 - Identifiers are strings and leading zeros are preserved ... ignored (0ms)
+I15 - Identity merge is tombstone plus redirect; historical references are never rewritten ... ignored (0ms)
+running 1 test from ./tests/invariants/inventory.test.ts
+invariant inventory is complete, unique, and mapped ... ok (1ms)
+running 6 tests from ./tests/models/common.test.ts
+common: DocMeta and Mergeable shapes are declared once ... ok (0ms)
+common: Validity is half-open with explicit unknown precision ... ok (1ms)
+common: Alias, LocalizedName, IdentityProvenance, and Sensitivity ... ok (2ms)
+common: snapshots and audit events carry no mutable metadata ... ok (0ms)
+common: categoryCode is validated against the taxonomy file ... ok (1ms)
+common: exactly eleven models and exactly two relations ... ok (0ms)
+running 6 tests from ./tests/models/governance.test.ts
+governance: correction target is optional only for ADD_MISSING ... ok (2ms)
+governance: correction evidence reference cap is enforced ... ok (3ms)
+governance: users have exactly six roles and trust is separate ... ok (0ms)
+governance: audit summaries are flat and redact forbidden keys ... ok (0ms)
+governance: audit events are append-only in shape ... ok (1ms)
+governance: forbidden update patch fields are rejected ... ok (0ms)
+running 5 tests from ./tests/models/graph-research.test.ts
+graph: exactly five predicates and three claim types are representable ... ok (0ms)
+graph: relationship endpoint matrix and required context are enforced ... ok (8ms)
+graph: matrix helper returns a stable domain error ... ok (0ms)
+research: each claim type has an exhaustive structured value ... ok (1ms)
+research: claim caps and character limits are enforced ... ok (1ms)
+running 7 tests from ./tests/models/identity.test.ts
+identity: product fields match spec 5.1 and reject ownership/score fields ... ok (5ms)
+identity: product identifier cap is enforced at boundary and over limit ... ok (2ms)
+identity: localizedNames and typed attributes obey caps and closed keys ... ok (2ms)
+identity: brand has no owner field and aliases are capped ... ok (1ms)
+identity: organizations keep kind, legal profile, and capped aliases ... ok (0ms)
+identity: categoryCode must exist in taxonomy.v1.json ... ok (1ms)
+identity: multi-brand and multi-category are not representable ... ok (0ms)
+running 1 test from ./tests/models/indexes.integration.test.ts
+indexes: every declared index supports its named query with IXSCAN ...
+  declared indexes exist ... ok (20ms)
+  only the allowed unique indexes exist ... ok (14ms)
+  each named query returns an IXSCAN plan ...
+------- post-test output -------
+PLAN03_INDEX_EVIDENCE [{"index":"products_identifier","query":"resolve a scanned identifier by scheme/value/jurisdiction","used":"products_identifier"},{"index":"products_matchValue","query":"resolve a GTIN matchValue","used":"products_matchValue"},{"index":"products_matchKey","query":"exact normalized product name candidate lookup","used":"products_matchKey"},{"index":"products_brand_lifecycle","query":"list active products for a brand","used":"products_brand_lifecycle"},{"index":"products_category_lifecycle","query":"list active products in a category","used":"products_category_lifecycle"},{"index":"brands_matchKey","query":"exact normalized brand lookup","used":"brands_matchKey"},{"index":"brands_alias_matchKey","query":"brand lookup through an alias","used":"brands_alias_matchKey"},{"index":"brands_lifecycle_updatedAt","query":"recently updated active/archived brands","used":"brands_lifecycle_updatedAt"},{"index":"organizations_matchKey","query":"exact normalized organization lookup","used":"organizations_matchKey"},{"index":"organizations_identifier","query":"resolve an organization official identifier","used":"organizations_identifier"},{"index":"organizations_kind_lifecycle","query":"list organizations by kind and lifecycle","used":"organizations_kind_lifecycle"},{"index":"relationships_subject_predicate","query":"find outgoing edges for a subject and predicate","used":"relationships_subject_predicate"},{"index":"relationships_object_predicate","query":"find incoming edges for an object and predicate","used":"relationships_object_predicate"},{"index":"relationships_review_queue","query":"global review queue by status, newest first","used":"relationships_review_queue"},{"index":"relationships_review_assignee","query":"assignee review queue by status, newest first","used":"relationships_review_assignee"},{"index":"relationships_publication","query":"publication queue by status, newest first","used":"relationships_publication"},{"index":"relationships_market_predicate","query":"market-scoped active edges by predicate","used":"relationships_market_predicate"},{"index":"claims_about_type","query":"find claims about an entity and claim type","used":"claims_about_type"},{"index":"claims_review_queue","query":"global claim review queue, newest first","used":"claims_review_queue"},{"index":"claims_review_assignee","query":"assignee claim review queue, newest first","used":"claims_review_assignee"},{"index":"claims_publication","query":"claim publication queue, newest first","used":"claims_publication"},{"index":"sources_canonicalUrl","query":"find a source by canonical URL","used":"sources_canonicalUrl"},{"index":"sources_type_lifecycle","query":"list sources by type and lifecycle","used":"sources_type_lifecycle"},{"index":"snapshots_source_retrievedAt","query":"recent snapshots for a source","used":"snapshots_source_retrievedAt"},{"index":"snapshots_contentHash","query":"deduplicate captured bytes by SHA-256","used":"snapshots_contentHash"},{"index":"corrections_status_submittedAt","query":"correction queue by status, newest first","used":"corrections_status_submittedAt"},{"index":"corrections_submitter_submittedAt","query":"a submitter's corrections, newest first","used":"corrections_submitter_submittedAt"},{"index":"corrections_target_status","query":"corrections for one target by status","used":"corrections_target_status"},{"index":"corrections_application_idempotency","query":"prevent double application by idempotency key","used":"corrections_application_idempotency"},{"index":"audit_target_occurredAt","query":"audit trail for one target, newest first","used":"audit_target_occurredAt"},{"index":"audit_actor_occurredAt","query":"audit trail for one actor, newest first","used":"audit_actor_occurredAt"},{"index":"audit_correlationId","query":"group audit events by workflow correlation","used":"audit_correlationId"}]
+----- post-test output end -----
+  each named query returns an IXSCAN plan ... ok (75ms)
+  representative Relationship/Claim BSON stays far below 1 MiB ...
+------- post-test output -------
+PLAN03_BSON_SIZES {"relationship":497,"claim":467}
+----- post-test output end -----
+  representative Relationship/Claim BSON stays far below 1 MiB ... ok (1ms)
+indexes: every declared index supports its named query with IXSCAN ... ok (13s)
+running 4 tests from ./tests/models/provenance.test.ts
+provenance: source has no latest snapshot pointer or reliability score ... ok (2ms)
+provenance: snapshot is immutable and hashes original bytes ... ok (3ms)
+provenance: asset carries metadata only, never bytes ... ok (1ms)
+provenance: captureMetadata allowlist, key cap, and depth are enforced ... ok (0ms)
+running 3 tests from ./tests/models/relations.integration.test.ts
+relations: Product.brand snapshot and bounded Brand.productsPreview ...
+  optional brand may be absent ... ok (197ms)
+  brand snapshot embeds identity fields and excludes aliases ... ok (38ms)
+  reverse preview is limited to 20 and not authoritative ... ok (1s)
+  relation snapshots are stale until refreshed through the API ... ok (95ms)
+relations: Product.brand snapshot and bounded Brand.productsPreview ... ok (1s)
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ...
+  required source relation cannot be omitted ... ok (2ms)
+  reverse preview is limited to 10, newest first ... ok (667ms)
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ... ok (1s)
+relations: removed single relation is represented as {} and treated as absent ... ok (574ms)
+running 5 tests from ./tests/projections/classification.test.ts
+projections: every model field is classified at a known level ... ok (4ms)
+projections: every nested model field is covered by a classification ... ok (1ms)
+projections: unclassified fields fail closed ... ok (0ms)
+projections: nested path overrides remove internal subfields ... ok (0ms)
+projections: levels are monotonic and no public document exposes score ... ok (0ms)
+running 6 tests from ./tests/projections/i04.test.ts
+I04: role x collection x internal field matrix keeps every cell closed ... ok (7ms)
+I04: guests and contributors are public, reviewers research, admins admin ... ok (0ms)
+I04: public views never expose research notes, PII, roles, or private assets ... ok (1ms)
+I04: published claims cannot reveal restricted sources or private assets ... ok (0ms)
+I04: merged tombstones expose a redirect but not internal merge metadata ... ok (0ms)
+I04: retracted and unpublished findings are absent from public views ... ok (0ms)
+running 1 test from ./tests/provenance/capture.integration.test.ts
+provenance: source identity, immutable snapshots, redaction, and audit ...
+  enforces source roles, URL canonicalization, and DATASET license ... ok (7ms)
+  captures an immutable snapshot with a hash and RESEARCH_ONLY asset ... ok (10ms)
+  records lastCapturedAt and a bounded recent snapshot preview ... ok (103ms)
+  rejects content-identity patches and keeps the original hash ... ok (6ms)
+  creates a superseding snapshot without mutating the previous one ... ok (74ms)
+  redacts through a retained original and a public derivative ... ok (107ms)
+  signed delivery rejects expiry, tampering, and visibility changes ... ok (171ms)
+  rejects MIME mismatch, oversized uploads, and quarantined delivery ... ok (28ms)
+  rejects snapshot/asset hash mismatch and redaction without an original ... ok (100ms)
+  detects stored-byte tampering on signed delivery ... ok (137ms)
+  daily upload quota uses the shared 429 envelope ... ok (81ms)
+  purge removes bytes and leaves a tombstone ... ok (106ms)
+provenance: source identity, immutable snapshots, redaction, and audit ... ok (2s)
+running 1 test from ./tests/provenance/evidence.integration.test.ts
+provenance: evidence lifecycle, caps, restricted citation, and audit ...
+  adds evidence through a versioned, audited update ... ok (43ms)
+  rejects duplicates, version races, and unauthorized actors ... ok (16ms)
+  rejects restricted-source citations without recording a link ... ok (5ms)
+  reviews stance and removes links with audit ... ok (357ms)
+  supports Relationship evidence with the same pinned lifecycle ... ok (554ms)
+  allows commutative concurrent appends under the cap ... ok (203ms)
+provenance: evidence lifecycle, caps, restricted citation, and audit ... ok (3s)
+running 6 tests from ./tests/provenance/fetcher.test.ts
+fetcher: URL scheme, port, credentials, and literal-address blocks ... ok (2ms)
+fetcher: address classifier covers IPv4, IPv6, and mapped forms ... ok (0ms)
+fetcher: private DNS answers are rejected before transport ... ok (0ms)
+fetcher: redirects revalidate DNS, address, and scheme ... ok (1ms)
+fetcher: caps redirects, size, timeout, and non-2xx responses ... ok (9ms)
+fetcher: success pins the validated address and reports redirects ... ok (0ms)
+running 2 tests from ./tests/publicProfile/contract.test.ts
+I12: a score, verdict, badge, rating, or boycott field is rejected ... ok (1ms)
+I12: prose that states a universal verdict is rejected ... ok (0ms)
+running 6 tests from ./tests/publicProfile/profile.integration.test.ts
+public profile: inheritance is labeled, bounded, and deduplicated (I11/S19) ...
+  product, brand, and connected organization findings are separated ... ok (1ms)
+  one organization hop is allowed and a third hop is not ... ok (1ms)
+  an organization without a published edge is excluded ... ok (0ms)
+  evidence, responses, reply state, and unknowns are explicit ... ok (0ms)
+  a published correction notice is attached to the finding ... ok (0ms)
+  conflicting evidence stays separate and an evidence gap is explicit ... ok (159ms)
+  restricted source evidence is withheld with an explicit unknown ... ok (54ms)
+  no internal field, reviewer id, private note, or score leaks ... ok (1ms)
+public profile: inheritance is labeled, bounded, and deduplicated (I11/S19) ... ok (2s)
+public profile action: honest resolution states and merged redirect ...
+  FOUND returns the profile ... ok (317ms)
+  NOT_FOUND is useful, not an error ... ok (3ms)
+  AMBIGUOUS returns candidates and never chooses one ... ok (5ms)
+  DISPUTED is first class ... ok (25ms)
+  UNVERIFIED is first class ... ok (18ms)
+  a merged id redirects with a notice and the survivor profile ... ok (7ms)
+  invalid identifiers are sanitized ... ok (1ms)
+  disputed product id remains disputed through the id path ... ok (6ms)
+  S19 scan of a leading-zero GTIN resolves to the same profile ...
+------- post-test output -------
+{"scenario":"S19-scan","input":"gtin:0006381333935","resolution":"FOUND","findings":4,"unknowns":5}
+----- post-test output end -----
+  S19 scan of a leading-zero GTIN resolves to the same profile ... ok (14ms)
+  an absent brand is an explicit unknown, not a fabricated match ... ok (34ms)
+  an explicit scheme and value resolve like a scan ... ok (11ms)
+public profile action: honest resolution states and merged redirect ... ok (2s)
+read model: S30 byte-identical rebuild, repair queue, and freshness ...
+------- post-test output -------
+{"scenario":"S30","byteIdentical":true,"firstBytes":5112,"secondBytes":5112,"firstSha256":"a6ffc97b3e9f98c7d61daf76dd957274eec60f2f102e2de813ac92ab262b368e","secondSha256":"a6ffc97b3e9f98c7d61daf76dd957274eec60f2f102e2de813ac92ab262b368e","sourceVersionKeys":10}
+----- post-test output end -----
+  sourceVersions are ordered and detect stale payloads ... ok (0ms)
+  a stale read model is detected and rebuilt on read ... ok (168ms)
+  rebuild-all is repeatable ... ok (143ms)
+  a missed rebuild is queued and repaired ... ok (194ms)
+  a brand-relation change queues every product of the brand ... ok (45ms)
+  the unique productId index exists ... ok (2ms)
+read model: S30 byte-identical rebuild, repair queue, and freshness ... ok (5s)
+retraction: S24 synchronous read-model and surface purge, no resurrection ...
+  retraction deletes the read model and purges surfaces ...
+------- post-test output -------
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":1287.63,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+----- post-test output end -----
+  retraction deletes the read model and purges surfaces ... ok (1s)
+  rebuild cannot resurrect a retracted finding ... ok (113ms)
+  the retraction is audited ... ok (6ms)
+retraction: S24 synchronous read-model and surface purge, no resurrection ... ok (7s)
+retraction: a failed surface purge leaves a visible repair record ... ok (2s)
+S19: warm public profile p95 stays under 400 ms on the seeded profile ...
+------- post-test output -------
+{"scenario":"S19","query":"products.getPublicProfile by id (read model hit)","samples":60,"p50Ms":10.38,"p95Ms":15.29,"payloadBytes":5112,"platform":"linux x86_64","deno":"2.4.5","mongo":"8.0.13","lesan":"0.2.3","documents":{"products":1,"claims":4,"relationships":3,"sources":1,"snapshots":1}}
+----- post-test output end -----
+S19: warm public profile p95 stays under 400 ms on the seeded profile ... ok (2s)
+running 2 tests from ./tests/research/assessment.integration.test.ts
+assessment: I05 self-assessment and SUPPORTED evidence are enforced ...
+  SENSITIVE needs two independent sources or one official registry snapshot ... ok (776ms)
+  republications of one wire are one source ... ok (135ms)
+  one official registry snapshot satisfies SENSITIVE evidence ... ok (148ms)
+  ROUTINE needs one verified snapshot ... ok (116ms)
+assessment: I05 self-assessment and SUPPORTED evidence are enforced ... ok (2s)
+assessment: HIGH_RISK, partial wording, dispute basis, and neutral NOT_SUPPORTED ... ok (2s)
+running 3 tests from ./tests/research/claim.integration.test.ts
+claim: three closed types, registry resolution, and audit ...
+  adds MARKET_PRESENCE with default ROUTINE sensitivity ... ok (409ms)
+  accepts PRODUCT_ORIGIN and OFFICIAL_STATEMENT only with their shapes ... ok (87ms)
+  rejects OTHER_* and unknown claim types ... ok (7ms)
+  relatedEntities are capped and resolved through the registry ... ok (30ms)
+  caps statement and public wording at 2,000 characters ... ok (52ms)
+claim: three closed types, registry resolution, and audit ... ok (1s)
+claim: boundary lint returns 409 USE_RELATIONSHIP_INSTEAD ... ok (1s)
+claim: pure updates are CAS-guarded and cannot change identity ... ok (983ms)
+running 5 tests from ./tests/research/gate.integration.test.ts
+gate: PASS stores every check, is audited, and allows publication ... ok (1s)
+gate: any failed check blocks publication (S22) ... ok (2s)
+gate: waivers are narrow, ADMIN-only, reasoned, and audited ... ok (1s)
+gate: HIGH_RISK legal sign-off is required and non-waivable (I07) ... ok (1s)
+gate: restricted sources and stale gates block publication ... ok (2s)
+running 2 tests from ./tests/research/relationship.integration.test.ts
+relationship: S06 endpoint matrix, context, and forbidden rewrites ...
+  creates a directed OWNS edge with registry fields and audit ... ok (496ms)
+  rejects incompatible endpoints ... ok (12ms)
+  requires CONTROLS basis and market context ... ok (6ms)
+  rejects extra keys instead of storing untyped context ... ok (3ms)
+  S07 endEdge sets validTo but never recordLifecycle ... ok (84ms)
+  owner change is a new edge; pure updates cannot rewrite endpoints ... ok (104ms)
+  overlap is a review flag, never a rejection ... ok (90ms)
+relationship: S06 endpoint matrix, context, and forbidden rewrites ... ok (2s)
+relationship: canonical key normalizes context and is not unique ... ok (1s)
+running 3 tests from ./tests/research/response.integration.test.ts
+response: right-of-reply truth table blocks SENSITIVE publication (S23) ... ok (1ms)
+response: solicitation deadline, proof, outcomes, and caps ...
+  defaults the deadline to sentAt + 14 days and audits ... ok (55ms)
+  records each outcome with CAS and audit ... ok (52ms)
+  rejects missing organizations and invalid deadlines ... ok (6ms)
+  caps responseSolicitations at 10 ... ok (346ms)
+response: solicitation deadline, proof, outcomes, and caps ... ok (1s)
+response: attributed response links to solicitation and never changes assessment ...
+  links the response and marks the solicitation RESPONDED ... ok (318ms)
+  caps responseText and rejects unsafe public attachments ... ok (37ms)
+  PUBLIC requires reviewer approval and safe assets ... ok (67ms)
+  VERIFIED representative authority requires a reviewer ... ok (4ms)
+response: attributed response links to solicitation and never changes assessment ... ok (1s)
+running 2 tests from ./tests/research/retraction.integration.test.ts
+retraction: synchronous public read-model purge and append-only audit (S24) ...
+  rejects unauthorized retraction without purging ... ok (9ms)
+  purges affected profiles and records FINDING_RETRACTED ... ok (50ms)
+  a retracted finding is not returned as published ... ok (3ms)
+retraction: synchronous public read-model purge and append-only audit (S24) ... ok (1s)
+retraction: revision preview is capped and newest first ... ok (1ms)
+running 1 test from ./tests/research/status.integration.test.ts
+status: review, assessment, publication stay independent ...
+  review transitions touch review only and are audited ... ok (148ms)
+  DRAFT cannot jump straight to PUBLISHED ... ok (20ms)
+  DRAFT -> PENDING_REVIEW is allowed and changes only publication ... ok (77ms)
+  PUBLISHED without a PASS gate is rejected ... ok (79ms)
+  PUBLISHED requires a publisher role and four distinct eyes ... ok (63ms)
+  withholding and re-review follow the truth table ... ok (166ms)
+status: review, assessment, publication stay independent ... ok (2s)
+
+ok | 151 passed (183 steps) | 0 failed | 9 ignored (1m56s)
+
