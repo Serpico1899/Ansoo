@@ -390,6 +390,19 @@ export const ACQUISITION_TIERS = [
 ] as const;
 export type AcquisitionTier = typeof ACQUISITION_TIERS[number];
 
+export const ACQUISITION_TIER_ROLE: Record<AcquisitionTier, "EVIDENCE" | "LEAD_ONLY"> = {
+  A_OFFICIAL_MACHINE_READABLE: "EVIDENCE",
+  B_OFFICIAL_PUBLIC_LOOKUP: "EVIDENCE",
+  C_OFFICIAL_AUTHENTICATED_ACCESS: "EVIDENCE",
+  D_FORMAL_INFORMATION_REQUEST: "EVIDENCE",
+  E_RESEARCH_OR_COMMUNITY: "LEAD_ONLY",
+};
+
+export function isLeadOnlyAcquisitionTier(value: unknown): boolean {
+  const tier = String(value ?? "") as AcquisitionTier;
+  return ACQUISITION_TIER_ROLE[tier] === "LEAD_ONLY";
+}
+
 export const CAPTURE_METHODS = ["MANUAL", "CRAWLER", "API", "UPLOAD"] as const;
 export type CaptureMethod = typeof CAPTURE_METHODS[number];
 

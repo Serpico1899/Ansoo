@@ -6,7 +6,7 @@
 import type { Db } from "lesan";
 import { ObjectId } from "lesan";
 import { assertCharacterCap } from "../domain/caps.ts";
-import { EVIDENCE_STANCES, HARD_CAPS } from "../domain/constants.ts";
+import { EVIDENCE_STANCES, HARD_CAPS, isLeadOnlyAcquisitionTier } from "../domain/constants.ts";
 import { createEntityRegistry } from "../identity/registry.ts";
 import { validateClaim } from "../../models/claim.ts";
 import { validateRelationship } from "../../models/relationship.ts";
@@ -161,6 +161,14 @@ async function assertCitableSnapshot(db: Db, snapshotId: ObjectId): Promise<void
       "restricted or internal sources cannot be cited as published evidence",
       422,
       { sourceAccess: String(sourceDoc.access) },
+    );
+  }
+  if (isLeadOnlyAcquisitionTier(resolved.doc.acquisitionTier)) {
+    throw new ProvenanceError(
+      "LEAD_ONLY_TIER",
+      "research and aggregator sources are lead-only and cannot be cited as evidence",
+      422,
+      { acquisitionTier: String(resolved.doc.acquisitionTier) },
     );
   }
 }

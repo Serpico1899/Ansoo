@@ -216,6 +216,7 @@ export async function evaluatePublicationGate(input: {
     publicWordingOk: publicWording !== "",
     sourceAccessOk: evidence.entries.length > 0 &&
       evidence.invalidSnapshotIds.length === 0 &&
+      evidence.leadOnlySnapshotIds.length === 0 &&
       evidence.entries.every((entry) => entry.access === "PUBLIC"),
     noScoreOk: !hasForbiddenScoreField(doc),
   };

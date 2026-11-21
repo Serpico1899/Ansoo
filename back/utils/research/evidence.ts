@@ -3,6 +3,7 @@
 // publisher AND origin, never a count of links.
 import type { Db } from "lesan";
 import { ObjectId } from "lesan";
+import { isLeadOnlyAcquisitionTier } from "../domain/constants.ts";
 import { createEntityRegistry } from "../identity/registry.ts";
 
 export type EvidenceEntry = {
@@ -23,6 +24,7 @@ export type EvidenceEvaluation = {
   count: number;
   entries: EvidenceEntry[];
   invalidSnapshotIds: ObjectId[];
+  leadOnlySnapshotIds: ObjectId[];
   verifiedSnapshots: number;
   officialCount: number;
   officialRegistrySnapshots: number;
@@ -62,6 +64,7 @@ export async function evaluateEvidence(
   const seen = new Set<string>();
   const entries: EvidenceEntry[] = [];
   const invalidSnapshotIds: ObjectId[] = [];
+  const leadOnlySnapshotIds: ObjectId[] = [];
 
   for (const raw of list) {
     if (raw === null || typeof raw !== "object") {
@@ -114,6 +117,10 @@ export async function evaluateEvidence(
     const originKey = hostOf(source.canonicalUrl);
     const sourceType = String(source.sourceType ?? "");
     const acquisitionTier = String(snapshot.acquisitionTier ?? "");
+    if (isLeadOnlyAcquisitionTier(acquisitionTier)) {
+      leadOnlySnapshotIds.push(snapshotId);
+      continue;
+    }
     const publisherVerified = source.publisherVerified === true;
     const officialRegistry = sourceType === "OFFICIAL_REGISTRY" &&
       (acquisitionTier === "A_OFFICIAL_MACHINE_READABLE" ||
@@ -158,6 +165,7 @@ export async function evaluateEvidence(
     count: entries.length,
     entries,
     invalidSnapshotIds,
+    leadOnlySnapshotIds,
     verifiedSnapshots,
     officialCount,
     officialRegistrySnapshots,
