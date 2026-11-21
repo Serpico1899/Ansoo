@@ -87,6 +87,7 @@ async function snapshot(
   h: Awaited<ReturnType<typeof createHarness>>,
   sourceId: ObjectId,
   title: string,
+  acquisitionTier = "A_OFFICIAL_MACHINE_READABLE",
 ) {
   const _id = new ObjectId();
   await h.db.collection("source_snapshots").insertOne({
@@ -96,7 +97,7 @@ async function snapshot(
     contentHash: "a".repeat(64),
     hashAlgorithm: "SHA256",
     captureMethod: "CRAWLER",
-    acquisitionTier: "A_OFFICIAL_MACHINE_READABLE",
+    acquisitionTier,
     lifecycle: "AVAILABLE",
     schemaVersion: 1,
     createdAt: new Date(),
@@ -168,6 +169,7 @@ async function sensitiveFinding(
     assessor: { type: "USER"; id: ObjectId };
     publicWording?: string;
     restrictedSource?: boolean;
+    aggregatorEvidence?: boolean;
     solicitation?: "NONE" | "PENDING" | "NO_RESPONSE";
     sensitivity?: "SENSITIVE" | "HIGH_RISK";
   },
@@ -201,10 +203,26 @@ async function sensitiveFinding(
   });
   const n1 = await snapshot(h, s1, "Independent report");
   const n2 = await snapshot(h, s2, "Official filing");
-  let version = await attachEvidence(h, created.id, [
+  const links = [
     evidenceLink(n1, options.author.id),
     evidenceLink(n2, options.author.id),
-  ]);
+  ];
+  if (options.aggregatorEvidence) {
+    const aggregator = await source(h, {
+      title: "Aggregator lead",
+      publisherName: "Aggregator",
+      canonicalUrl: "https://aggregator.example/company/1",
+      sourceType: "DATASET",
+    });
+    const n3 = await snapshot(
+      h,
+      aggregator,
+      "Aggregator lead",
+      "E_RESEARCH_OR_COMMUNITY",
+    );
+    links.push(evidenceLink(n3, options.author.id));
+  }
+  let version = await attachEvidence(h, created.id, links);
   if (options.solicitation && options.solicitation !== "NONE") {
     version = await attachSolicitation(
       h,
@@ -370,6 +388,51 @@ Deno.test({
       });
       assertEquals(gateTwo.gate.result, "FAIL");
       assertEquals(gateTwo.gate.failures.includes("rightOfReplyOk"), true);
+    } finally {
+      await h.close();
+    }
+  },
+});
+
+Deno.test({
+  name: "gate: aggregator-tier evidence is lead-only and blocks publication",
+  ignore: !MONGO_ENABLED,
+  sanitizeOps: false,
+  sanitizeResources: false,
+  async fn() {
+    const h = await createHarness("ansoo_plan05_gate_aggregator");
+    try {
+      const author = await actor(h, ["RESEARCHER"]);
+      const assessor = await actor(h, ["RESEARCH_REVIEWER"]);
+      const publisher = await actor(h, ["MODERATOR"]);
+      const finding = await sensitiveFinding(h, {
+        author,
+        assessor,
+        publicWording: "The parent organization owns the child.",
+        solicitation: "NO_RESPONSE",
+        aggregatorEvidence: true,
+      });
+
+      const pending = await transitionPublication({
+        db: h.db,
+        targetType: "RELATIONSHIP",
+        targetId: finding.id,
+        to: "PENDING_REVIEW",
+        expectedVersion: finding.version,
+        reason: "ready for decision",
+        actor: author,
+      });
+
+      const evaluated = await evaluatePublicationGate({
+        db: h.db,
+        targetType: "RELATIONSHIP",
+        targetId: finding.id,
+        expectedVersion: pending.version,
+        actor: publisher,
+      });
+      assertEquals(evaluated.gate.result, "FAIL");
+      assertEquals(evaluated.gate.checks.sourceAccessOk, false);
+      assertEquals(evaluated.gate.failures.includes("sourceAccessOk"), true);
     } finally {
       await h.close();
     }

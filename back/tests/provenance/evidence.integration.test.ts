@@ -107,6 +107,17 @@ Deno.test({
         access: "RESTRICTED",
         actor: researcher,
       });
+      const aggregatorSource = await createSource({
+        db: h.db,
+        title: "Aggregator lead",
+        canonicalUrl: "https://aggregator.example/company/1",
+        sourceType: "DATASET",
+        publisherName: "Aggregator",
+        publisherVerified: true,
+        licenseCode: "PROPRIETARY_LEAD_ONLY",
+        attributionRequired: true,
+        actor: researcher,
+      });
 
       const snapshotOne = await captureSnapshot({
         db: h.db,
@@ -135,6 +146,16 @@ Deno.test({
         bytes: text("restricted evidence"),
         retrievedAt: new Date("2026-02-03T00:00:00Z"),
         captureMethod: "MANUAL",
+        acquisitionTier: "E_RESEARCH_OR_COMMUNITY",
+        actor: researcher,
+      });
+      const aggregatorSnapshot = await captureSnapshot({
+        db: h.db,
+        provider,
+        sourceId: aggregatorSource.id,
+        bytes: text("aggregator lead"),
+        retrievedAt: new Date("2026-02-03T00:00:00Z"),
+        captureMethod: "CRAWLER",
         acquisitionTier: "E_RESEARCH_OR_COMMUNITY",
         actor: researcher,
       });
@@ -217,6 +238,25 @@ Deno.test({
         assertEquals(doc?.version, 2);
         assertEquals(doc?.evidence.length, 1);
       });
+
+      await t.step(
+        "rejects aggregator-tier citations even for public verified publishers",
+        async () => {
+          const error = await rejection(addEvidence({
+            db: h.db,
+            claimId: claim.id,
+            snapshotId: aggregatorSnapshot.snapshotId,
+            stance: "SUPPORTS",
+            actor: researcher,
+            expectedVersion: 2,
+          }));
+          assertEquals(error.code, "LEAD_ONLY_TIER");
+          assertEquals(error.status, 422);
+          const doc = await h.db.collection("claims").findOne({ _id: claim.id });
+          assertEquals(doc?.version, 2);
+          assertEquals(doc?.evidence.length, 1);
+        },
+      );
 
       await t.step("reviews stance and removes links with audit", async () => {
         const second = await addEvidence({
