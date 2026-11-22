@@ -1,6 +1,6 @@
 # Plan 11 - Verification, Hardening, and Launch (v3.1)
 
-**Status:** Not started
+**Status:** Verification complete; launch NO-GO (2026-11-21)
 **Depends on:** 02-10
 **Blocks:** production launch
 **Canonical contract:** `../../../CONSUMER_TRANSPARENCY_DOMAIN_SPEC_v3.1.md`
@@ -21,10 +21,10 @@ whether the MVP is ready for real users. This is the final gate, not a feature p
 
 ## Pre-Flight
 
-- [ ] Read spec Sections 12, 16, 20-24.
-- [ ] Confirm plans 02-10 are complete and their reports exist.
-- [ ] Confirm a production-like dataset and environment are available.
-- [ ] Confirm legal counsel and the research/editorial owners are available for the launch decision.
+- [x] Read spec Sections 12, 16, 20-24.
+- [x] Confirm plans 02-10 are complete and their reports exist.
+- [ ] BLOCKED: only the deterministic synthetic seed exists; no production-like corpus.
+- [ ] BLOCKED: no legal counsel, Lead Researcher, or Reviewer is named.
 
 ## Tasks
 
@@ -66,32 +66,32 @@ evidence path.
 | S29 | SSRF | all forbidden addresses blocked, including redirects and DNS rebinding |
 | S30 | Read model rebuild | full rebuild from canonical collections, byte-identical output |
 
-- [ ] Run each scenario against real and synthetic data where appropriate.
-- [ ] Keep tests deterministic and isolated; no shared mutable database state.
-- [ ] Record failures as failures; do not mark a scenario pass from intent.
+- [x] Run each scenario against real and synthetic data where appropriate. S15, S16, and S18 fail.
+- [x] Keep tests deterministic and isolated; no shared mutable database state.
+- [x] Record failures as failures; do not mark a scenario pass from intent.
 
 **Exit:** every scenario has a result and an evidence path; failures have owners.
 
 ### 2. Invariant closure
 
-- [ ] Verify I01-I15 each have a green named test.
-- [ ] Verify the test fails when the enforcement is removed (mutation check for the critical invariants).
-- [ ] Verify I04 covers every role (including guest) x every internal field.
-- [ ] Verify I09 at the DB privilege layer, not only the service.
-- [ ] Record the invariant-to-test-to-scenario map.
+- [x] Verify I01-I15 each have a green named test. All 15 now run; 0 ignored.
+- [x] Verify the test fails when the enforcement is removed (mutation check for the critical invariants). I05, I06, I08 mutation-checked.
+- [x] Verify I04 covers every role (including guest) x every internal field.
+- [x] Verify I09 at the DB privilege layer, not only the service. Privilege specification only; no live least-privilege role yet.
+- [x] Record the invariant-to-test-to-scenario map. See report 11 section 4.
 
 **Exit:** no invariant is prose-only.
 
 ### 3. Concurrency and failure injection
 
-- [ ] S13: stale version -> 409; no partial write.
-- [ ] S17: inject failure between target write and correction/audit write; repair leaves no permanent
+- [x] S13: stale version -> 409; no partial write.
+- [x] S17: inject failure between target write and correction/audit write; repair leaves no permanent
   inconsistency.
-- [ ] S27: 50 concurrent evidence appends; no lost write and no spurious conflict.
-- [ ] Test commutative appends at the cap boundary; exceed -> 422.
-- [ ] Test merge CAS + outbox/transaction behaviour.
-- [ ] Test retraction during concurrent rebuild and read.
-- [ ] Test concurrent correction application with the same and different idempotency keys.
+- [x] S27: 50 concurrent evidence appends; no lost write and no spurious conflict.
+- [x] Test commutative appends at the cap boundary; exceed -> 422.
+- [ ] PARTIAL: merge CAS and audit are tested; no durable outbox exists.
+- [x] Test retraction during concurrent rebuild and read. In-process surfaces only.
+- [x] Test concurrent correction application with the same and different idempotency keys.
 
 **Exit:** concurrency and crash windows are evidenced, not assumed.
 
@@ -100,42 +100,42 @@ evidence path.
 Measure with a production-like dataset and record hardware, OS, Deno, Lesan, MongoDB, document count,
 payload size, and query type:
 
-- [ ] Identifier lookup, product listing, relationship lists, research queues, snapshot history, audit
-  queries, public profile read.
-- [ ] p50/p95/p99 for public profile; target < 400 ms.
-- [ ] Retraction end-to-end; target < 60 s.
-- [ ] Relation sync cost/lag, outbox queue depth, repair count, conflict rate, gate denial rate.
-- [ ] BSON size of representative Relationship/Claim; warn before 1 MiB, hard stop before 16 MiB.
-- [ ] `explain("executionStats")` for every core query; no collection scan.
-- [ ] Researcher-minutes per edge from plan 10.
+- [x] Identifier lookup, product listing, relationship lists, research queues, snapshot history, audit
+  queries, public profile read. Index plans and S19 measured; no production-like volume.
+- [x] p50/p95/p99 for public profile; target < 400 ms. 13.22 / 17.01 / 26.20 ms on the synthetic seed.
+- [x] Retraction end-to-end; target < 60 s. 10 runs, p95 977.75 ms on in-memory surfaces.
+- [ ] NOT MEASURED: no production outbox, repair job, or metrics sink.
+- [x] BSON size of representative Relationship/Claim; warn before 1 MiB, hard stop before 16 MiB. 497 / 467 B.
+- [x] `explain("executionStats")` for every core query; no collection scan. 32/32 IXSCAN.
+- [ ] BLOCKED: plan 10 produced zero completed edges.
 
 **Exit:** performance targets met or explicitly renegotiated with a written reason.
 
 ### 5. Security and privacy review
 
-- [ ] Auth: DB roles, token header, no `Bearer`, expired/bad signature, suspended/closed, inflated claims.
-- [ ] Projection: deep client request, merged/retracted/restricted cases, no PII/roles/private keys/score.
-- [ ] SSRF: direct, redirect, DNS rebinding, credentials, port/scheme, body/redirect caps.
-- [ ] Uploads: MIME sniffing, size/type allowlist, quarantine, EXIF, signed URL expiry/tampering.
-- [ ] Audit: append-only, redaction, no nested summaries, no PII/secrets.
-- [ ] Corrections: allowlist, operators, `$where`/prototype pollution, idempotency, quota.
-- [ ] Rate limits and abuse flags.
-- [ ] Secrets: no defaults, no repo secrets, rotation documented.
-- [ ] DB privileges: audit immutable; snapshot content immutable; least-privilege application user.
-- [ ] Backups: PITR + object versioning; monthly restore test executed at least once.
-- [ ] Retention/purge: legal hold respected; policy decision recorded.
+- [x] Auth: DB roles, token header, no `Bearer`, expired/bad signature, suspended/closed, inflated claims.
+- [x] Projection: deep client request, merged/retracted/restricted cases, no PII/roles/private keys/score.
+- [x] SSRF: direct, redirect, DNS rebinding, credentials, port/scheme, body/redirect caps.
+- [x] Uploads: MIME sniffing, size/type allowlist, quarantine, EXIF, signed URL expiry/tampering.
+- [x] Audit: append-only, redaction, no nested summaries, no PII/secrets.
+- [x] Corrections: allowlist, operators, `$where`/prototype pollution, idempotency, quota.
+- [x] Rate limits and abuse flags. In-process only; no shared store.
+- [x] Secrets: no defaults, no repo secrets, rotation documented.
+- [ ] SPEC ONLY: privilege definitions pass; no live least-privilege user is provisioned.
+- [ ] PARTIAL: local mongodump/mongorestore drill passed; PITR and object versioning are not configured.
+- [x] Retention/purge: legal hold respected; policy decision recorded. Service-level only.
 
 **Exit:** security negatives pass and residual risks are listed with owners.
 
 ### 6. Stage gates A-F
 
-- [ ] A Discovery: report current structure, installed versions, delta against spec.
-- [ ] B Models: 11 collections, 2 relations, 5 predicates, 3 claim types, contracts, caps.
-- [ ] C Indexes: every core query index-backed or documented.
-- [ ] D Actions: invariants, auth, concurrency, audit, idempotency enforced.
-- [ ] E Projection/Auth: role x field matrix passes; no leak.
-- [ ] F Scenarios: S01-S30 executed with evidence.
-- [ ] Write the stage-gate report and link every claim to evidence.
+- [x] A Discovery: report current structure, installed versions, delta against spec.
+- [x] B Models: 11 collections, 2 relations, 5 predicates, 3 claim types, contracts, caps.
+- [x] C Indexes: every core query index-backed or documented.
+- [x] D Actions: invariants, auth, concurrency, audit, idempotency enforced at the domain-service layer; only five HTTP actions are exposed.
+- [x] E Projection/Auth: role x field matrix passes; no leak.
+- [ ] FAIL: S15, S16, and S18 do not pass.
+- [x] Write the stage-gate report and link every claim to evidence.
 
 **Exit:** all six gates are reported; no gate is skipped.
 
@@ -150,36 +150,36 @@ Review the six genuinely open decisions from spec Section 22:
 5. [ ] Transactions or Outbox in the real deployment.
 6. [ ] Exact asset retention policy.
 
-- [ ] Each decision is answered by an ADR or recorded as blocked with an owner and consequence.
-- [ ] No decision is silently encoded in code or defaults.
-- [ ] Legal counsel has reviewed the first sensitive publication and the operator/researcher safety model.
-- [ ] Methodology, funding/independence, and symmetric standards are published or explicitly gated.
-- [ ] Research operations have a named Lead Researcher and Reviewer.
+- [x] Each decision is answered by an ADR or recorded as blocked with an owner and consequence. All six are blocked with owners.
+- [x] No decision is silently encoded in code or defaults.
+- [ ] BLOCKED: no legal counsel is engaged.
+- [ ] BLOCKED: methodology is a 0.2 draft; funding and symmetric standards are not published.
+- [ ] BLOCKED: no names accepted.
 
 **Exit:** launch is legally and operationally defensible, or explicitly blocked.
 
 ### 8. Production readiness checklist
 
-- [ ] MongoDB replica set + backups/PITR + restore test.
-- [ ] Object storage provider + lifecycle/retention + legal hold.
-- [ ] Secrets management, least-privilege DB users, network policy.
-- [ ] Observability: request ids, error rates, latency, queue depth, repair count, gate denials.
-- [ ] Rate limits, abuse monitoring, incident response contact.
-- [ ] Deployment/rollback runbook; index migration plan; type generation in CI.
-- [ ] Health checks and fail-fast config.
-- [ ] Frontend contract regenerated from production models; no hand-edited types.
-- [ ] Documentation updated: summary, ADRs, methodology, runbook.
-- [ ] Final go/no-go signed by product, engineering, research, and legal.
+- [ ] PARTIAL: replica set and a local restore drill pass; PITR is absent.
+- [ ] BLOCKED: local dev provider only.
+- [ ] BLOCKED: no production secrets manager or DB user.
+- [ ] PARTIAL: request ids and command summaries exist; no metrics sink.
+- [ ] PARTIAL: in-process rate limits and flood flag; no shared store or incident contact.
+- [ ] BLOCKED: none of the three exists.
+- [x] Health checks and fail-fast config.
+- [x] Frontend contract regenerated from production models; no hand-edited types.
+- [ ] PARTIAL: summary, ADRs, and methodology draft exist; runbook is missing.
+- [ ] BLOCKED: recommendation is unsigned; legal and research owners are unavailable.
 
 **Exit:** the launch checklist is complete or every open item has an explicit owner and date.
 
 ### 9. Final report and spec feedback
 
-- [ ] Write `reports/11-verification-hardening-and-launch.md`.
-- [ ] Include S01-S30 results, invariants, performance, security, stage gates, open decisions, launch
+- [x] Write `reports/11-verification-hardening-and-launch.md`.
+- [x] Include S01-S30 results, invariants, performance, security, stage gates, open decisions, launch
   recommendation, and residual risks.
-- [ ] Record where reality contradicts the spec; propose spec edits through the ADR process.
-- [ ] Do not declare the ERD production-final before all stage gates are reported.
+- [x] Record where reality contradicts the spec; propose spec edits through the ADR process.
+- [x] Do not declare the ERD production-final before all stage gates are reported.
 
 ## Deliverables
 

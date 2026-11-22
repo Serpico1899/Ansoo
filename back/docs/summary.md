@@ -10,6 +10,10 @@ disagree, the spec wins and this summary must be corrected.
   v3.1 models, embedded contracts, cap validators, two Lesan relations, starting indexes, identity,
   research, provenance, governance, auth, projections, the dispatcher, public-profile assembly, and the
   rebuildable read model exist.
+- **Plan 11 verification complete (2026-11-21); production launch NO-GO.** All 15 invariants have green
+  named tests, the full suite is 153 passed / 0 ignored, and S19/S24/S27/S30 pass. S15 (dashboard), S16
+  (production-like growth), and S18 (cascade) fail; legal, research-owner, and acquisition gates remain
+  blocked. See `reports/11-verification-hardening-and-launch.md`.
 - **Plan 09 complete (2026-11-19).** Honest identifier resolution, scoped/inherited public findings with
   explicit unknowns and no universal score, the `product_public_profiles` read model with rebuild/repair,
   and synchronous retraction invalidation are in place. S19 p95 was measured at 15.29 ms for 60 warm

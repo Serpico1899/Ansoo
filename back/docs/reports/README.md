@@ -37,4 +37,4 @@ A report must not claim a test passed, a target was met, or a decision was final
 | `08-auth-projections-and-api-contract.md` | 08 | Complete |
 | `09-public-profile-read-model-and-vertical-slice.md` | 09 | Complete |
 | `10-data-acquisition-and-research-operations.md` | 10 | Complete with acquisition blockers |
-| `11-verification-hardening-and-launch.md` | 11 | Not started |
+| `11-verification-hardening-and-launch.md` | 11 | Verification complete; launch NO-GO |

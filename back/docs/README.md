@@ -24,9 +24,9 @@ override v3.1. See `adr/0001-v3.1-single-canonical-spec.md`.
 | Domain specification | v3.1 canonical (LOCKED baseline) |
 | Backend code | Models, domain services, the authenticated action/dispatcher layer, and the public profile/read model implemented |
 | Architecture spike | Complete against the superseded draft; archived under `archive/01-architecture-spike/` |
-| Execution plans | Plans 02-10 complete (2026-11-21); plan 11 defined for v3.1; plan 01 is historical |
+| Execution plans | Plans 02-11 complete (2026-11-21); plan 01 is historical |
 | Data acquisition | Toolchain and tier rule validated; primary-source capture blocked (plan 10) |
-| Production readiness | Not started |
+| Production readiness | Blocked: report 11 is NO-GO (data, legal, S15, S16, S18) |
 
 ## Documentation Map
 
