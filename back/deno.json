@@ -8,6 +8,7 @@
     "start": "deno run --allow-all mod.ts",
     "test": "deno test --allow-all tests/",
     "test:invariants": "deno test --allow-all tests/invariants/",
+    "e2e": "deno run --allow-all scripts/run-e2e.ts",
     "fmt": "deno fmt",
     "fmt:check": "deno fmt --check",
     "lint": "deno lint",
