@@ -1,0 +1,13 @@
+seeded=100
+2026-11-21T11:51:46.743+0330	writing ansoo_plan11_restore.items to /tmp/opencode/plan11-backup/ansoo_plan11_restore/items.bson
+2026-11-21T11:51:46.745+0330	done dumping ansoo_plan11_restore.items (100 documents)
+dropped
+2026-11-21T11:51:47.758+0330	preparing collections to restore from
+2026-11-21T11:51:47.758+0330	don't know what to do with file "/tmp/opencode/plan11-backup/ansoo_plan11_restore/prelude.json", skipping...
+2026-11-21T11:51:47.758+0330	reading metadata for ansoo_plan11_restore.items from /tmp/opencode/plan11-backup/ansoo_plan11_restore/items.metadata.json
+2026-11-21T11:51:48.002+0330	restoring ansoo_plan11_restore.items from /tmp/opencode/plan11-backup/ansoo_plan11_restore/items.bson
+2026-11-21T11:51:48.025+0330	finished restoring ansoo_plan11_restore.items (100 documents, 0 failures)
+2026-11-21T11:51:48.026+0330	no indexes to restore for collection ansoo_plan11_restore.items
+2026-11-21T11:51:48.026+0330	100 document(s) restored successfully. 0 document(s) failed to restore.
+restored=100 indexSum=4950
+{ ok: 1, dropped: 'ansoo_plan11_restore' }

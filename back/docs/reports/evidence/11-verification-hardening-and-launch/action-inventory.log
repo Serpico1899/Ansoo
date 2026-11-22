@@ -1,0 +1,19 @@
+Implemented API actions:
+    action: "products.getPublicProfile",
+    action: "claims.getResearch",
+    action: "auditEvents.gets",
+    action: "users.login",
+    action: "users.getMe",
+
+Unimplemented API actions:
+    action: "corrections.submit",
+    action: "products.searchPublic",
+    action: "relationships.getPublic",
+    action: "assets.upload",
+    action: "users.setRoles",
+
+Dashboard/S15 references in src/:
+none
+
+Archive/cascade action references in src/:
+none

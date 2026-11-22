@@ -1,0 +1,10 @@
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":443.66,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":407.38,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":403.96,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":424.25,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":422.87,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":412.21,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":399.34,"surfaces":[{"surface":"cache-cdn","durationMs":1},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":977.75,"surfaces":[{"surface":"cache-cdn","durationMs":1},{"surface":"search-index","durationMs":0}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":935.44,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":1}]}
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":850.56,"surfaces":[{"surface":"cache-cdn","durationMs":1},{"surface":"search-index","durationMs":0}]}

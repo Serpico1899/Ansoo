@@ -1,0 +1,5 @@
+[0m[32mTask[0m [0m[36mconfig:check[0m deno run --allow-env scripts/check-config.ts
+Invalid configuration:
+- MONGO_URL is required
+- DB_NAME is required
+- JWT_SECRET is required

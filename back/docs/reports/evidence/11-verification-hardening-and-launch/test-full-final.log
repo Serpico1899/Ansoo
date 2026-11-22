@@ -1,0 +1,492 @@
+[0m[32mTask[0m [0m[36mtest[0m deno test --allow-all tests/
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/api/dispatch.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/api/errors.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/api/inventory.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/auth/capabilities.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/auth/jwt.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/domain/constants.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/domain/taxonomy.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/audit-coverage.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/audit.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/corrections.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/retention.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/governance/users.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/brandMapping.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/entities.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/identifier.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/merge.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/normalize.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/registry.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/resolution.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/search.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/url.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/identity/verifyIdentifier.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/infrastructure/config.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/infrastructure/time.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/invariants/invariants.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/invariants/inventory.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/common.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/governance.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/graph-research.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/identity.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/indexes.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/provenance.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/models/relations.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/projections/classification.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/projections/i04.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/capture.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/evidence.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/provenance/fetcher.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/publicProfile/contract.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/publicProfile/profile.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/assessment.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/claim.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/gate.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/relationship.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/response.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/retraction.integration.test.ts
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/status.integration.test.ts
+[0m[38;5;245mrunning 1 test from ./tests/api/dispatch.integration.test.ts[0m
+api: auth, capability, envelope, projections, and strict validation ...
+  guests may read public data; deep get cannot widen it ... [0m[32mok[0m [0m[38;5;245m(254ms)[0m
+  valid GTIN resolves the same public projection ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+  ambiguous id plus GTIN is rejected ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  invalid GTIN is a sanitized validation error ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  suspended accounts are denied before the action runs ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  Bearer prefix and malformed tokens are 401 ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  research reads require a DB-derived role ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+  audit reads are limited to legal, moderator, and admin ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  getMe returns a safe self projection only ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  unknown actions are 404 and never list registered names ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  validators reject unknown keys and opaque paths without echoing values ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+  request ids are accepted or generated and returned ... [0m[32mok[0m [0m[38;5;245m(25ms)[0m
+  login is rate limited with the stable 429 envelope ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+api: auth, capability, envelope, projections, and strict validation ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 1 test from ./tests/api/errors.test.ts[0m
+errors: codes, statuses, and messages are stable and sanitized ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/api/inventory.test.ts[0m
+actions: registered actions match the documented inventory ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/auth/capabilities.test.ts[0m
+capabilities: every role can read public data and guests are public-only ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+capabilities: baseline matrix matches the approved plan ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+capabilities: every role x capability cell obeys the matrix ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+capabilities: denials are 403 and trustLevel never grants access ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+capabilities: uploads are a separate policy from research writes ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/auth/jwt.integration.test.ts[0m
+auth: tokens carry identity only; roles and status come from the database ...
+  valid token authenticates with DB roles ... [0m[32mok[0m [0m[38;5;245m(13ms)[0m
+  inflated token claims are ignored ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  Bearer prefix is rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  missing, malformed, expired, and wrong-signature tokens fail 401 ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  issuer, audience, subject, and user existence are validated ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+  suspended and closed accounts are denied even with a valid token ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  login exchanges a provider assertion for a session token ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+  login rejects bad assertions, unknown users, and disabled providers ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+auth: tokens carry identity only; roles and status come from the database ... [0m[32mok[0m [0m[38;5;245m(407ms)[0m
+[0m[38;5;245mrunning 10 tests from ./tests/domain/constants.test.ts[0m
+closed entity registry is exactly v3.1 Section 4.1 ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+per-field endpoint allowlists are exact ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+exactly five predicates with the spec matrix ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+exactly three claim types, no OTHER escape hatch ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+status domains are declared separately and closure is exact ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+publication gate checks and waivers match v3.1 Section 10.5 ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+audit actions are the exact Section 9.3 allowlist ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+hard caps match v3.1 Section 4.5 and fail with 422 ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier, source, asset, response, correction, and user vocabularies are closed ... [0m[32mok[0m [0m[38;5;245m(17ms)[0m
+assertNever throws on an unexpected runtime value ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+[0m[38;5;245mrunning 4 tests from ./tests/domain/taxonomy.test.ts[0m
+the repository taxonomy file loads with schema version 1 ... [0m[32mok[0m [0m[38;5;245m(17ms)[0m
+valid taxonomy codes are known and parent links resolve ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+duplicate, missing-parent, self-parent, and cyclic codes are rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+taxonomy structure requires labels and a known schema version ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/governance/audit-coverage.test.ts[0m
+audit coverage: every mutation action is mapped and tested ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+audit coverage: governance actions are covered by Plan 07 tests ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/governance/audit.test.ts[0m
+I09 - AuditEvent is append-only ...
+  appends and lists through the closed repository ... [0m[32mok[0m [0m[38;5;245m(205ms)[0m
+  rejects unknown actions and unregistered targets ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  rejects nested, array, forbidden-key, and secret summaries ... [0m[32mok[0m [0m[38;5;245m(22ms)[0m
+  rejects non-allowlisted summary keys per action ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+  every closed action has an explicit summary allowlist ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I09 - AuditEvent is append-only ... [0m[32mok[0m [0m[38;5;245m(783ms)[0m
+audit: production role denies update and delete at the DB layer ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/governance/corrections.integration.test.ts[0m
+I10 - Corrections never apply a raw patch (S12/S13/S17) ...
+  S12 rejects unknown target, field, operation, and value shapes ... [0m[32mok[0m [0m[38;5;245m(39ms)[0m
+  submits an allowlisted proposal and is idempotent per submitter ... [0m[32mok[0m [0m[38;5;245m(420ms)[0m
+  enforces per-user and per-IP daily quotas with a 429 envelope ... [0m[32mok[0m [0m[38;5;245m(982ms)[0m
+  flags coordinated dispute floods without auto-penalizing ... [0m[32mok[0m [0m[38;5;245m(147ms)[0m
+  submission does not mutate the target ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  only reviewers decide, and the submitter cannot self-approve ... [0m[32mok[0m [0m[38;5;245m(115ms)[0m
+  approval changes review metadata only, never the target ... [0m[32mok[0m [0m[38;5;245m(19ms)[0m
+  S13 rejects a stale target version and records FAILED ... [0m[32mok[0m [0m[38;5;245m(47ms)[0m
+  re-applies the approved proposal through CAS and audits it ... [0m[32mok[0m [0m[38;5;245m(27ms)[0m
+  repeated application is idempotent and never double-writes ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+  S17 failure after target write rolls back and can be repaired ... [0m[32mok[0m [0m[38;5;245m(106ms)[0m
+  published public wording changes emit a notice and purge profiles ... [0m[32mok[0m [0m[38;5;245m(484ms)[0m
+  withdrawal is submitter-only and only before a terminal decision ... [0m[32mok[0m [0m[38;5;245m(41ms)[0m
+I10 - Corrections never apply a raw patch (S12/S13/S17) ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+[0m[38;5;245mrunning 1 test from ./tests/governance/retention.integration.test.ts[0m
+retention: purge is legal-hold aware, due-date aware, and audited ...
+  explicit purge refuses before retentionUntil ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  scheduler purges only due, non-held, unpurged assets ... [0m[32mok[0m [0m[38;5;245m(225ms)[0m
+  a second run is a no-op ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  held bytes remain readable ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+retention: purge is legal-hold aware, due-date aware, and audited ... [0m[32mok[0m [0m[38;5;245m(637ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/governance/users.integration.test.ts[0m
+users: roles, trust, status, and PII purge are authorized and audited ...
+  roles require ADMIN and are validated against the closed enum ... [0m[32mok[0m [0m[38;5;245m(515ms)[0m
+  trust is not authorization and never bypasses roles ... [0m[32mok[0m [0m[38;5;245m(86ms)[0m
+  status changes are moderated and suspended users cannot act ... [0m[32mok[0m [0m[38;5;245m(84ms)[0m
+  PII purge leaves a tombstone and never mutates audit ... [0m[32mok[0m [0m[38;5;245m(110ms)[0m
+  public projection never exposes PII or roles ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+users: roles, trust, status, and PII purge are authorized and audited ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/brandMapping.integration.test.ts[0m
+brand mapping: only VERIFIED populates Product.brand, history is audited ...
+  a candidate does not populate the brand relation ... [0m[32mok[0m [0m[38;5;245m(204ms)[0m
+  VERIFIED sets Product.brand through the relation API ... [0m[32mok[0m [0m[38;5;245m(82ms)[0m
+  a later dispute removes the verified relation ... [0m[32mok[0m [0m[38;5;245m(56ms)[0m
+  a different verified brand replaces the relation ... [0m[32mok[0m [0m[38;5;245m(73ms)[0m
+  every review writes a valid AuditEvent ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  a contributor may not review a mapping ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  stale version is a CAS conflict ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  VERIFIED without a candidate and unknown brands fail closed ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+brand mapping: only VERIFIED populates Product.brand, history is audited ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/entities.integration.test.ts[0m
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ...
+  S01 brand creation normalizes the two keys and audits ... [0m[32mok[0m [0m[38;5;245m(359ms)[0m
+  S02 a product resolves through its brand relation snapshot ... [0m[32mok[0m [0m[38;5;245m(328ms)[0m
+  organization creation keeps identity kinds separate ... [0m[32mok[0m [0m[38;5;245m(190ms)[0m
+  rename re-normalizes and enforces CAS ... [0m[32mok[0m [0m[38;5;245m(79ms)[0m
+  a contributor may not create identities ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+S01/S02 identity creation: normalization, brand relation snapshot, rename CAS ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/identity/identifier.test.ts[0m
+I13 - Identifiers are strings and leading zeros are preserved ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+identifier: GTIN accepts 8/12/13/14 digits and rejects bad check digits ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+identifier: unknown or unruled schemes fail closed ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: different schemes are never compared ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: status transitions are explicit and RETIRED is terminal ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identifier: GS1 prefix is metadata only, never country/ownership inference ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/identity/merge.integration.test.ts[0m
+I15 - Identity merge is tombstone plus redirect; historical references are never rewritten ... [0m[32mok[0m [0m[38;5;245m(936ms)[0m
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ...
+  contradictory GTINs block a product merge ... [0m[32mok[0m [0m[38;5;245m(204ms)[0m
+  stale expected version is a CAS conflict ... [0m[32mok[0m [0m[38;5;245m(191ms)[0m
+  source and target may not be the same identity ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  a contributor may not merge identities ... [0m[32mok[0m [0m[38;5;245m(39ms)[0m
+  target of a different type is rejected ... [0m[32mok[0m [0m[38;5;245m(191ms)[0m
+merge: contradictory official identifiers, CAS, self-merge, and authorization fail closed ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/identity/normalize.test.ts[0m
+normalization: all six mandatory vectors pass exactly ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+normalization: idempotent for both keys ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: whitespace variants are invariant ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: Persian and Arabic digits fold to ASCII ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+normalization: scripts and punctuation never merge accidentally ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/identity/registry.integration.test.ts[0m
+registry: only closed {type,id} refs with per-field allowlists are accepted ... [0m[32mok[0m [0m[38;5;245m(59ms)[0m
+registry: existence and lifecycle distinguish missing, archived, and wrong type ...
+  active target resolves ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  missing target is NOT_FOUND ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  archived target is ARCHIVED ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  a ref to another type is a wrong-type error ... [0m[32mok[0m [0m[38;5;245m(157ms)[0m
+  collection/model/path/operator inputs are rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+registry: existence and lifecycle distinguish missing, archived, and wrong type ... [0m[32mok[0m [0m[38;5;245m(499ms)[0m
+registry: merge chains follow at most five hops and cycles raise an admin flag ...
+  chain follows to the survivor ... [0m[32mok[0m [0m[38;5;245m(184ms)[0m
+  cycle denies resolution with an admin flag ... [0m[32mok[0m [0m[38;5;245m(35ms)[0m
+  a chain longer than five hops is denied and flagged ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+registry: merge chains follow at most five hops and cycles raise an admin flag ... [0m[32mok[0m [0m[38;5;245m(372ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/identity/resolution.integration.test.ts[0m
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ...
+  exact verified identifier is FOUND ... [0m[32mok[0m [0m[38;5;245m(14ms)[0m
+  unknown identifier is NOT_FOUND, not an error ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  leading-zero GTIN resolves by matchValue ... [0m[32mok[0m [0m[38;5;245m(6ms)[0m
+  jurisdiction narrows the exact lookup ... [0m[32mok[0m [0m[38;5;245m(15ms)[0m
+resolveProduct: exact, not found, ambiguous, jurisdiction, leading zeros ... [0m[32mok[0m [0m[38;5;245m(413ms)[0m
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ...
+  two verified products for one identifier are AMBIGUOUS ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  a disputed identifier returns DISPUTED with a note ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  an unverified identifier returns UNVERIFIED ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+  retired identifiers do not resolve ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  a merged tombstone redirects to the survivor ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  invalid check digits fail before query ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+resolveProduct: ambiguity, disputes, unverified, retired, and merge redirect ... [0m[32mok[0m [0m[38;5;245m(426ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/search.integration.test.ts[0m
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ...
+  exact matchKey ranks before prefix and tombstones are excluded ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  a non-matching query is an explicit empty result ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  regex metacharacters are escaped, not interpreted ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  resolving a tombstone directly redirects to the survivor ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  search never compares across types or schemes ... [0m[32mok[0m [0m[38;5;245m(169ms)[0m
+search: exact matchKey first, escaped prefix, no fuzzy, merge redirects ... [0m[32mok[0m [0m[38;5;245m(632ms)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/identity/url.test.ts[0m
+url: lowercases host, removes default port and fragment ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+url: strips tracking parameters and keeps meaningful query values ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: trailing slash policy removes one slash except at the root ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: internationalized hosts become punycode ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+url: non-http schemes and malformed URLs are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/identity/verifyIdentifier.integration.test.ts[0m
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ...
+  adds a GTIN string with a 14-digit lookup value ... [0m[32mok[0m [0m[38;5;245m(222ms)[0m
+  moves UNVERIFIED to VERIFIED without losing the raw value ... [0m[32mok[0m [0m[38;5;245m(49ms)[0m
+  a retired identifier is terminal ... [0m[32mok[0m [0m[38;5;245m(30ms)[0m
+  invalid GTIN and blocked schemes fail before write ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  stale version and a contributor fail closed ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+verifyIdentifier: leading zeros, status transition, audit, and negative cases ... [0m[32mok[0m [0m[38;5;245m(840ms)[0m
+[0m[38;5;245mrunning 7 tests from ./tests/infrastructure/config.test.ts[0m
+valid development configuration loads with redacted URL ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+missing required configuration is reported together ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+placeholder and short JWT secrets are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+non-replica-set MongoDB is rejected outside test ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+asset provider configuration fails fast when incomplete ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+invalid numeric and CORS values are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+Mongo credentials are redacted ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/infrastructure/time.test.ts[0m
+UTC Date round-trips through ISO without losing precision ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+unknown dates stay null and invalid dates are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+UTC Date and null round-trip through a MongoDB replica set ... [0m[32mok[0m [0m[38;5;245m(416ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/invariants/invariants.test.ts[0m
+I01 - Product, Brand, and Organization are distinct identity types ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I02 - UNKNOWN is not FALSE and NOT_SUPPORTED is not a negative boolean ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I03 - Review, assessment, publication, legal, and campaign statuses stay separate ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I14 - Array caps are enforced in validators with 422, never silent discard ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I04 - Public projections never return internal data ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I12 - No universal score, color, badge, or verdict is produced ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/invariants/inventory.test.ts[0m
+invariant inventory is complete, unique, and mapped ... [0m[32mok[0m [0m[38;5;245m(460ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/models/common.test.ts[0m
+common: DocMeta and Mergeable shapes are declared once ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+common: Validity is half-open with explicit unknown precision ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+common: Alias, LocalizedName, IdentityProvenance, and Sensitivity ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+common: snapshots and audit events carry no mutable metadata ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+common: categoryCode is validated against the taxonomy file ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+common: exactly eleven models and exactly two relations ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/models/governance.test.ts[0m
+governance: correction target is optional only for ADD_MISSING ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+governance: correction evidence reference cap is enforced ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+governance: users have exactly six roles and trust is separate ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+governance: audit summaries are flat and redact forbidden keys ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+governance: audit events are append-only in shape ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+governance: forbidden update patch fields are rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/models/graph-research.test.ts[0m
+graph: exactly five predicates and three claim types are representable ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+graph: relationship endpoint matrix and required context are enforced ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+graph: matrix helper returns a stable domain error ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+research: each claim type has an exhaustive structured value ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+research: claim caps and character limits are enforced ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+[0m[38;5;245mrunning 7 tests from ./tests/models/identity.test.ts[0m
+identity: product fields match spec 5.1 and reject ownership/score fields ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+identity: product identifier cap is enforced at boundary and over limit ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+identity: localizedNames and typed attributes obey caps and closed keys ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+identity: brand has no owner field and aliases are capped ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+identity: organizations keep kind, legal profile, and capped aliases ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+identity: categoryCode must exist in taxonomy.v1.json ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+identity: multi-brand and multi-category are not representable ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/models/indexes.integration.test.ts[0m
+indexes: every declared index supports its named query with IXSCAN ...
+  declared indexes exist ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+  only the allowed unique indexes exist ... [0m[32mok[0m [0m[38;5;245m(14ms)[0m
+  each named query returns an IXSCAN plan ...
+[0m[38;5;245m------- post-test output -------[0m
+PLAN03_INDEX_EVIDENCE [{"index":"products_identifier","query":"resolve a scanned identifier by scheme/value/jurisdiction","used":"products_identifier"},{"index":"products_matchValue","query":"resolve a GTIN matchValue","used":"products_matchValue"},{"index":"products_matchKey","query":"exact normalized product name candidate lookup","used":"products_matchKey"},{"index":"products_brand_lifecycle","query":"list active products for a brand","used":"products_brand_lifecycle"},{"index":"products_category_lifecycle","query":"list active products in a category","used":"products_category_lifecycle"},{"index":"brands_matchKey","query":"exact normalized brand lookup","used":"brands_matchKey"},{"index":"brands_alias_matchKey","query":"brand lookup through an alias","used":"brands_alias_matchKey"},{"index":"brands_lifecycle_updatedAt","query":"recently updated active/archived brands","used":"brands_lifecycle_updatedAt"},{"index":"organizations_matchKey","query":"exact normalized organization lookup","used":"organizations_matchKey"},{"index":"organizations_identifier","query":"resolve an organization official identifier","used":"organizations_identifier"},{"index":"organizations_kind_lifecycle","query":"list organizations by kind and lifecycle","used":"organizations_kind_lifecycle"},{"index":"relationships_subject_predicate","query":"find outgoing edges for a subject and predicate","used":"relationships_subject_predicate"},{"index":"relationships_object_predicate","query":"find incoming edges for an object and predicate","used":"relationships_object_predicate"},{"index":"relationships_review_queue","query":"global review queue by status, newest first","used":"relationships_review_queue"},{"index":"relationships_review_assignee","query":"assignee review queue by status, newest first","used":"relationships_review_assignee"},{"index":"relationships_publication","query":"publication queue by status, newest first","used":"relationships_publication"},{"index":"relationships_market_predicate","query":"market-scoped active edges by predicate","used":"relationships_market_predicate"},{"index":"claims_about_type","query":"find claims about an entity and claim type","used":"claims_about_type"},{"index":"claims_review_queue","query":"global claim review queue, newest first","used":"claims_review_queue"},{"index":"claims_review_assignee","query":"assignee claim review queue, newest first","used":"claims_review_assignee"},{"index":"claims_publication","query":"claim publication queue, newest first","used":"claims_publication"},{"index":"sources_canonicalUrl","query":"find a source by canonical URL","used":"sources_canonicalUrl"},{"index":"sources_type_lifecycle","query":"list sources by type and lifecycle","used":"sources_type_lifecycle"},{"index":"snapshots_source_retrievedAt","query":"recent snapshots for a source","used":"snapshots_source_retrievedAt"},{"index":"snapshots_contentHash","query":"deduplicate captured bytes by SHA-256","used":"snapshots_contentHash"},{"index":"corrections_status_submittedAt","query":"correction queue by status, newest first","used":"corrections_status_submittedAt"},{"index":"corrections_submitter_submittedAt","query":"a submitter's corrections, newest first","used":"corrections_submitter_submittedAt"},{"index":"corrections_target_status","query":"corrections for one target by status","used":"corrections_target_status"},{"index":"corrections_application_idempotency","query":"prevent double application by idempotency key","used":"corrections_application_idempotency"},{"index":"audit_target_occurredAt","query":"audit trail for one target, newest first","used":"audit_target_occurredAt"},{"index":"audit_actor_occurredAt","query":"audit trail for one actor, newest first","used":"audit_actor_occurredAt"},{"index":"audit_correlationId","query":"group audit events by workflow correlation","used":"audit_correlationId"}]
+[0m[38;5;245m----- post-test output end -----[0m
+  each named query returns an IXSCAN plan ... [0m[32mok[0m [0m[38;5;245m(95ms)[0m
+  representative Relationship/Claim BSON stays far below 1 MiB ...
+[0m[38;5;245m------- post-test output -------[0m
+PLAN03_BSON_SIZES {"relationship":497,"claim":467}
+[0m[38;5;245m----- post-test output end -----[0m
+  representative Relationship/Claim BSON stays far below 1 MiB ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+indexes: every declared index supports its named query with IXSCAN ... [0m[32mok[0m [0m[38;5;245m(9s)[0m
+[0m[38;5;245mrunning 4 tests from ./tests/models/provenance.test.ts[0m
+provenance: source has no latest snapshot pointer or reliability score ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+provenance: snapshot is immutable and hashes original bytes ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+provenance: asset carries metadata only, never bytes ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+provenance: captureMetadata allowlist, key cap, and depth are enforced ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/models/relations.integration.test.ts[0m
+relations: Product.brand snapshot and bounded Brand.productsPreview ...
+  optional brand may be absent ... [0m[32mok[0m [0m[38;5;245m(180ms)[0m
+  brand snapshot embeds identity fields and excludes aliases ... [0m[32mok[0m [0m[38;5;245m(33ms)[0m
+  reverse preview is limited to 20 and not authoritative ... [0m[32mok[0m [0m[38;5;245m(860ms)[0m
+  relation snapshots are stale until refreshed through the API ... [0m[32mok[0m [0m[38;5;245m(83ms)[0m
+relations: Product.brand snapshot and bounded Brand.productsPreview ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ...
+  required source relation cannot be omitted ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  reverse preview is limited to 10, newest first ... [0m[32mok[0m [0m[38;5;245m(543ms)[0m
+relations: SourceSnapshot.source is required and reverse preview is limited to 10 ... [0m[32mok[0m [0m[38;5;245m(827ms)[0m
+relations: removed single relation is represented as {} and treated as absent ... [0m[32mok[0m [0m[38;5;245m(458ms)[0m
+[0m[38;5;245mrunning 5 tests from ./tests/projections/classification.test.ts[0m
+projections: every model field is classified at a known level ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+projections: every nested model field is covered by a classification ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+projections: unclassified fields fail closed ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+projections: nested path overrides remove internal subfields ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+projections: levels are monotonic and no public document exposes score ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/projections/i04.test.ts[0m
+I04: role x collection x internal field matrix keeps every cell closed ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+I04: guests and contributors are public, reviewers research, admins admin ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I04: public views never expose research notes, PII, roles, or private assets ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+I04: published claims cannot reveal restricted sources or private assets ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I04: merged tombstones expose a redirect but not internal merge metadata ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I04: retracted and unpublished findings are absent from public views ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/provenance/capture.integration.test.ts[0m
+I08 - SourceSnapshot content identity is immutable ...
+  enforces source roles, URL canonicalization, and DATASET license ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+  captures an immutable snapshot with a hash and RESEARCH_ONLY asset ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  records lastCapturedAt and a bounded recent snapshot preview ... [0m[32mok[0m [0m[38;5;245m(103ms)[0m
+  rejects content-identity patches and keeps the original hash ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  creates a superseding snapshot without mutating the previous one ... [0m[32mok[0m [0m[38;5;245m(52ms)[0m
+  redacts through a retained original and a public derivative ... [0m[32mok[0m [0m[38;5;245m(152ms)[0m
+  signed delivery rejects expiry, tampering, and visibility changes ... [0m[32mok[0m [0m[38;5;245m(169ms)[0m
+  rejects MIME mismatch, oversized uploads, and quarantined delivery ... [0m[32mok[0m [0m[38;5;245m(55ms)[0m
+  rejects snapshot/asset hash mismatch and redaction without an original ... [0m[32mok[0m [0m[38;5;245m(84ms)[0m
+  detects stored-byte tampering on signed delivery ... [0m[32mok[0m [0m[38;5;245m(70ms)[0m
+  daily upload quota uses the shared 429 envelope ... [0m[32mok[0m [0m[38;5;245m(89ms)[0m
+  purge removes bytes and leaves a tombstone ... [0m[32mok[0m [0m[38;5;245m(85ms)[0m
+I08 - SourceSnapshot content identity is immutable ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/provenance/evidence.integration.test.ts[0m
+provenance: evidence lifecycle, caps, restricted citation, and audit ...
+  adds evidence through a versioned, audited update ... [0m[32mok[0m [0m[38;5;245m(26ms)[0m
+  rejects duplicates, version races, and unauthorized actors ... [0m[32mok[0m [0m[38;5;245m(11ms)[0m
+  rejects restricted-source citations without recording a link ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  rejects aggregator-tier citations even for public verified publishers ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  reviews stance and removes links with audit ... [0m[32mok[0m [0m[38;5;245m(271ms)[0m
+  supports Relationship evidence with the same pinned lifecycle ... [0m[32mok[0m [0m[38;5;245m(527ms)[0m
+  allows commutative concurrent appends under the cap ... [0m[32mok[0m [0m[38;5;245m(145ms)[0m
+provenance: evidence lifecycle, caps, restricted citation, and audit ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+S27: 50 concurrent evidence appends fill the cap without loss or spurious conflict ...
+  50 concurrent appends all land and no writer gets 409 ... [0m[32mok[0m [0m[38;5;245m(408ms)[0m
+  the 51st append is rejected with 422 CAP_EXCEEDED ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+S27: 50 concurrent evidence appends fill the cap without loss or spurious conflict ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/provenance/fetcher.test.ts[0m
+fetcher: URL scheme, port, credentials, and literal-address blocks ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+fetcher: address classifier covers IPv4, IPv6, and mapped forms ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+fetcher: private DNS answers are rejected before transport ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+fetcher: redirects revalidate DNS, address, and scheme ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+fetcher: caps redirects, size, timeout, and non-2xx responses ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+fetcher: success pins the validated address and reports redirects ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/publicProfile/contract.test.ts[0m
+I12: a score, verdict, badge, rating, or boycott field is rejected ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+I12: prose that states a universal verdict is rejected ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/publicProfile/profile.integration.test.ts[0m
+I11 - No transitive ownership or control inference without written methodology (S14/S19) ...
+  product, brand, and connected organization findings are separated ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  one organization hop is allowed and a third hop is not ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  an organization without a published edge is excluded ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  evidence, responses, reply state, and unknowns are explicit ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  a published correction notice is attached to the finding ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  conflicting evidence stays separate and an evidence gap is explicit ... [0m[32mok[0m [0m[38;5;245m(61ms)[0m
+  restricted source evidence is withheld with an explicit unknown ... [0m[32mok[0m [0m[38;5;245m(50ms)[0m
+  no internal field, reviewer id, private note, or score leaks ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I11 - No transitive ownership or control inference without written methodology (S14/S19) ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+public profile action: honest resolution states and merged redirect ...
+  FOUND returns the profile ... [0m[32mok[0m [0m[38;5;245m(194ms)[0m
+  NOT_FOUND is useful, not an error ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+  AMBIGUOUS returns candidates and never chooses one ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  DISPUTED is first class ... [0m[32mok[0m [0m[38;5;245m(24ms)[0m
+  UNVERIFIED is first class ... [0m[32mok[0m [0m[38;5;245m(15ms)[0m
+  a merged id redirects with a notice and the survivor profile ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  invalid identifiers are sanitized ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  disputed product id remains disputed through the id path ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+  S19 scan of a leading-zero GTIN resolves to the same profile ...
+[0m[38;5;245m------- post-test output -------[0m
+{"scenario":"S19-scan","input":"gtin:0006381333935","resolution":"FOUND","findings":4,"unknowns":5}
+[0m[38;5;245m----- post-test output end -----[0m
+  S19 scan of a leading-zero GTIN resolves to the same profile ... [0m[32mok[0m [0m[38;5;245m(17ms)[0m
+  an absent brand is an explicit unknown, not a fabricated match ... [0m[32mok[0m [0m[38;5;245m(51ms)[0m
+  an explicit scheme and value resolve like a scan ... [0m[32mok[0m [0m[38;5;245m(13ms)[0m
+public profile action: honest resolution states and merged redirect ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+read model: S30 byte-identical rebuild, repair queue, and freshness ...
+[0m[38;5;245m------- post-test output -------[0m
+{"scenario":"S30","byteIdentical":true,"firstBytes":5112,"secondBytes":5112,"firstSha256":"2fabb37845f91e77ca556c253c8998cfd6b1b749e5868ae7ebafa75987decdd3","secondSha256":"2fabb37845f91e77ca556c253c8998cfd6b1b749e5868ae7ebafa75987decdd3","sourceVersionKeys":10}
+[0m[38;5;245m----- post-test output end -----[0m
+  sourceVersions are ordered and detect stale payloads ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  a stale read model is detected and rebuilt on read ... [0m[32mok[0m [0m[38;5;245m(78ms)[0m
+  rebuild-all is repeatable ... [0m[32mok[0m [0m[38;5;245m(107ms)[0m
+  a missed rebuild is queued and repaired ... [0m[32mok[0m [0m[38;5;245m(113ms)[0m
+  a brand-relation change queues every product of the brand ... [0m[32mok[0m [0m[38;5;245m(16ms)[0m
+  the unique productId index exists ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+read model: S30 byte-identical rebuild, repair queue, and freshness ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+retraction: S24 synchronous read-model and surface purge, no resurrection ...
+  retraction deletes the read model and purges surfaces ...
+[0m[38;5;245m------- post-test output -------[0m
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":396.06,"surfaces":[{"surface":"cache-cdn","durationMs":0},{"surface":"search-index","durationMs":0}]}
+[0m[38;5;245m----- post-test output end -----[0m
+  retraction deletes the read model and purges surfaces ... [0m[32mok[0m [0m[38;5;245m(398ms)[0m
+  rebuild cannot resurrect a retracted finding ... [0m[32mok[0m [0m[38;5;245m(54ms)[0m
+  the retraction is audited ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+retraction: S24 synchronous read-model and surface purge, no resurrection ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+retraction: a failed surface purge leaves a visible repair record ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+S19: warm public profile p95 stays under 400 ms on the seeded profile ...
+[0m[38;5;245m------- post-test output -------[0m
+{"scenario":"S19","query":"products.getPublicProfile by id (read model hit)","samples":60,"p50Ms":13.99,"p95Ms":17.71,"p99Ms":23.29,"payloadBytes":5112,"platform":"linux x86_64","deno":"2.4.5","mongo":"8.0.13","lesan":"0.2.3","documents":{"products":1,"claims":4,"relationships":3,"sources":1,"snapshots":1}}
+[0m[38;5;245m----- post-test output end -----[0m
+S19: warm public profile p95 stays under 400 ms on the seeded profile ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/research/assessment.integration.test.ts[0m
+I05 - SUPPORTED requires evidence and an assessor other than the creator ...
+  SENSITIVE needs two independent sources or one official registry snapshot ... [0m[32mok[0m [0m[38;5;245m(426ms)[0m
+  republications of one wire are one source ... [0m[32mok[0m [0m[38;5;245m(150ms)[0m
+  one official registry snapshot satisfies SENSITIVE evidence ... [0m[32mok[0m [0m[38;5;245m(135ms)[0m
+  ROUTINE needs one verified snapshot ... [0m[32mok[0m [0m[38;5;245m(99ms)[0m
+I05 - SUPPORTED requires evidence and an assessor other than the creator ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+assessment: HIGH_RISK, partial wording, dispute basis, and neutral NOT_SUPPORTED ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/research/claim.integration.test.ts[0m
+claim: three closed types, registry resolution, and audit ...
+  adds MARKET_PRESENCE with default ROUTINE sensitivity ... [0m[32mok[0m [0m[38;5;245m(365ms)[0m
+  accepts PRODUCT_ORIGIN and OFFICIAL_STATEMENT only with their shapes ... [0m[32mok[0m [0m[38;5;245m(78ms)[0m
+  rejects OTHER_* and unknown claim types ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  relatedEntities are capped and resolved through the registry ... [0m[32mok[0m [0m[38;5;245m(31ms)[0m
+  caps statement and public wording at 2,000 characters ... [0m[32mok[0m [0m[38;5;245m(47ms)[0m
+claim: three closed types, registry resolution, and audit ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+claim: boundary lint returns 409 USE_RELATIONSHIP_INSTEAD ... [0m[32mok[0m [0m[38;5;245m(701ms)[0m
+claim: pure updates are CAS-guarded and cannot change identity ... [0m[32mok[0m [0m[38;5;245m(849ms)[0m
+[0m[38;5;245mrunning 6 tests from ./tests/research/gate.integration.test.ts[0m
+gate: PASS stores every check, is audited, and allows publication ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+I06 - PUBLISHED requires a passing publication gate (S22) ... [0m[32mok[0m [0m[38;5;245m(4s)[0m
+gate: aggregator-tier evidence is lead-only and blocks publication ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+gate: waivers are narrow, ADMIN-only, reasoned, and audited ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+I07 - SENSITIVE and HIGH_RISK findings require author, assessor, and publisher separation ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+gate: restricted sources and stale gates block publication ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/research/relationship.integration.test.ts[0m
+relationship: S06 endpoint matrix, context, and forbidden rewrites ...
+  creates a directed OWNS edge with registry fields and audit ... [0m[32mok[0m [0m[38;5;245m(886ms)[0m
+  rejects incompatible endpoints ... [0m[32mok[0m [0m[38;5;245m(5ms)[0m
+  requires CONTROLS basis and market context ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  rejects extra keys instead of storing untyped context ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+  S07 endEdge sets validTo but never recordLifecycle ... [0m[32mok[0m [0m[38;5;245m(55ms)[0m
+  owner change is a new edge; pure updates cannot rewrite endpoints ... [0m[32mok[0m [0m[38;5;245m(123ms)[0m
+  overlap is a review flag, never a rejection ... [0m[32mok[0m [0m[38;5;245m(82ms)[0m
+relationship: S06 endpoint matrix, context, and forbidden rewrites ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+relationship: canonical key normalizes context and is not unique ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 3 tests from ./tests/research/response.integration.test.ts[0m
+response: right-of-reply truth table blocks SENSITIVE publication (S23) ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+response: solicitation deadline, proof, outcomes, and caps ...
+  defaults the deadline to sentAt + 14 days and audits ... [0m[32mok[0m [0m[38;5;245m(44ms)[0m
+  records each outcome with CAS and audit ... [0m[32mok[0m [0m[38;5;245m(36ms)[0m
+  rejects missing organizations and invalid deadlines ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  caps responseSolicitations at 10 ... [0m[32mok[0m [0m[38;5;245m(302ms)[0m
+response: solicitation deadline, proof, outcomes, and caps ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+response: attributed response links to solicitation and never changes assessment ...
+  links the response and marks the solicitation RESPONDED ... [0m[32mok[0m [0m[38;5;245m(219ms)[0m
+  caps responseText and rejects unsafe public attachments ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+  PUBLIC requires reviewer approval and safe assets ... [0m[32mok[0m [0m[38;5;245m(60ms)[0m
+  VERIFIED representative authority requires a reviewer ... [0m[32mok[0m [0m[38;5;245m(4ms)[0m
+response: attributed response links to solicitation and never changes assessment ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+[0m[38;5;245mrunning 2 tests from ./tests/research/retraction.integration.test.ts[0m
+retraction: synchronous public read-model purge and append-only audit (S24) ...
+  rejects unauthorized retraction without purging ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+  purges affected profiles and records FINDING_RETRACTED ... [0m[32mok[0m [0m[38;5;245m(75ms)[0m
+  a retracted finding is not returned as published ... [0m[32mok[0m [0m[38;5;245m(3ms)[0m
+retraction: synchronous public read-model purge and append-only audit (S24) ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+retraction: revision preview is capped and newest first ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+[0m[38;5;245mrunning 1 test from ./tests/research/status.integration.test.ts[0m
+status: review, assessment, publication stay independent ...
+  review transitions touch review only and are audited ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+  DRAFT cannot jump straight to PUBLISHED ... [0m[32mok[0m [0m[38;5;245m(29ms)[0m
+  DRAFT -> PENDING_REVIEW is allowed and changes only publication ... [0m[32mok[0m [0m[38;5;245m(33ms)[0m
+  PUBLISHED without a PASS gate is rejected ... [0m[32mok[0m [0m[38;5;245m(42ms)[0m
+  PUBLISHED requires a publisher role and four distinct eyes ... [0m[32mok[0m [0m[38;5;245m(22ms)[0m
+  withholding and re-review follow the truth table ... [0m[32mok[0m [0m[38;5;245m(107ms)[0m
+status: review, assessment, publication stay independent ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+
+[0m[32mok[0m | 153 passed (186 steps) | 0 failed [0m[38;5;245m(1m40s)[0m
+

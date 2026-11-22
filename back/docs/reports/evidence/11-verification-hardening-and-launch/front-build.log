@@ -1,0 +1,21 @@
+
+> ansoo-front@0.1.0 build /home/serpico/Work/Projects/Ansoo/front
+> NODE_OPTIONS="--max-old-space-size=4096" next build
+
+▲ Next.js 16.2.9 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 11.3s
+  Running TypeScript ...
+  Finished TypeScript in 9.4s ...
+  Collecting page data using 2 workers ...
+  Generating static pages using 2 workers (0/1) ...
+✓ Generating static pages using 2 workers (1/1) in 1167ms
+  Finalizing page optimization ...
+
+
+Route (pages)
+─ ○ /404
+
+○  (Static)  prerendered as static content
+

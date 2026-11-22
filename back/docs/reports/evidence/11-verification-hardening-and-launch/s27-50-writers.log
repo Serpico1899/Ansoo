@@ -1,0 +1,17 @@
+[0m[38;5;245mrunning 2 tests from ./tests/provenance/evidence.integration.test.ts[0m
+provenance: evidence lifecycle, caps, restricted citation, and audit ...
+  adds evidence through a versioned, audited update ... [0m[32mok[0m [0m[38;5;245m(45ms)[0m
+  rejects duplicates, version races, and unauthorized actors ... [0m[32mok[0m [0m[38;5;245m(24ms)[0m
+  rejects restricted-source citations without recording a link ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+  rejects aggregator-tier citations even for public verified publishers ... [0m[32mok[0m [0m[38;5;245m(12ms)[0m
+  reviews stance and removes links with audit ... [0m[32mok[0m [0m[38;5;245m(412ms)[0m
+  supports Relationship evidence with the same pinned lifecycle ... [0m[32mok[0m [0m[38;5;245m(639ms)[0m
+  allows commutative concurrent appends under the cap ... [0m[32mok[0m [0m[38;5;245m(166ms)[0m
+provenance: evidence lifecycle, caps, restricted citation, and audit ... [0m[32mok[0m [0m[38;5;245m(3s)[0m
+S27: 50 concurrent evidence appends fill the cap without loss or spurious conflict ...
+  50 concurrent appends all land and no writer gets 409 ... [0m[32mok[0m [0m[38;5;245m(581ms)[0m
+  the 51st append is rejected with 422 CAP_EXCEEDED ... [0m[32mok[0m [0m[38;5;245m(51ms)[0m
+S27: 50 concurrent evidence appends fill the cap without loss or spurious conflict ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+
+[0m[32mok[0m | 2 passed (9 steps) | 0 failed [0m[38;5;245m(6s)[0m
+

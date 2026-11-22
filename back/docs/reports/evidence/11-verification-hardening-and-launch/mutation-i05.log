@@ -1,0 +1,30 @@
+[0m[32mCheck[0m file:///home/serpico/Work/Projects/Ansoo/back/tests/research/assessment.integration.test.ts
+[0m[38;5;245mrunning 2 tests from ./tests/research/assessment.integration.test.ts[0m
+I05 - SUPPORTED requires evidence and an assessor other than the creator ... [0m[31mFAILED[0m [0m[38;5;245m(1s)[0m
+assessment: HIGH_RISK, partial wording, dispute basis, and neutral NOT_SUPPORTED ... [0m[32mok[0m [0m[38;5;245m(1s)[0m
+
+[0m[1m[37m[41m ERRORS [0m
+
+I05 - SUPPORTED requires evidence and an assessor other than the creator [0m[38;5;245m=> ./tests/research/assessment.integration.test.ts:147:6[0m
+[0m[1m[31merror[0m: AssertionError: Values are not equal.
+
+
+    [90m[1m[Diff][22m[39m [31m[1mActual[22m[39m / [32m[1mExpected[22m[39m
+
+
+[31m[1m-   [41m[37mINSUFFICIENT_EVIDENCE[31m[49m
+[22m[39m[32m[1m+   [42m[37mSELF_ASSESSMENT[32m[49m
+[22m[39m
+
+  throw new AssertionError(message);
+[0m[31m        ^[0m
+    at [0m[1m[3massertEquals[0m ([0m[36mhttps://jsr.io/@std/assert/1.0.19/equals.ts[0m:[0m[33m67[0m:[0m[33m9[0m)
+    at [0m[1m[3mfn[0m ([0m[36mfile:///home/serpico/Work/Projects/Ansoo/back/tests/research/assessment.integration.test.ts[0m:[0m[33m180[0m:[0m[33m7[0m)
+
+[0m[1m[37m[41m FAILURES [0m
+
+I05 - SUPPORTED requires evidence and an assessor other than the creator [0m[38;5;245m=> ./tests/research/assessment.integration.test.ts:147:6[0m
+
+[0m[31mFAILED[0m | 1 passed | 1 failed [0m[38;5;245m(2s)[0m
+
+[0m[1m[31merror[0m: Test failed

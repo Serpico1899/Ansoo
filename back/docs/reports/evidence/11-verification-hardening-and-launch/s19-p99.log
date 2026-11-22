@@ -1,0 +1,57 @@
+[0m[38;5;245mrunning 6 tests from ./tests/publicProfile/profile.integration.test.ts[0m
+I11 - No transitive ownership or control inference without written methodology (S14/S19) ...
+  product, brand, and connected organization findings are separated ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  one organization hop is allowed and a third hop is not ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  an organization without a published edge is excluded ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  evidence, responses, reply state, and unknowns are explicit ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  a published correction notice is attached to the finding ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  conflicting evidence stays separate and an evidence gap is explicit ... [0m[32mok[0m [0m[38;5;245m(64ms)[0m
+  restricted source evidence is withheld with an explicit unknown ... [0m[32mok[0m [0m[38;5;245m(55ms)[0m
+  no internal field, reviewer id, private note, or score leaks ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+I11 - No transitive ownership or control inference without written methodology (S14/S19) ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+public profile action: honest resolution states and merged redirect ...
+  FOUND returns the profile ... [0m[32mok[0m [0m[38;5;245m(240ms)[0m
+  NOT_FOUND is useful, not an error ... [0m[32mok[0m [0m[38;5;245m(9ms)[0m
+  AMBIGUOUS returns candidates and never chooses one ... [0m[32mok[0m [0m[38;5;245m(10ms)[0m
+  DISPUTED is first class ... [0m[32mok[0m [0m[38;5;245m(24ms)[0m
+  UNVERIFIED is first class ... [0m[32mok[0m [0m[38;5;245m(24ms)[0m
+  a merged id redirects with a notice and the survivor profile ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  invalid identifiers are sanitized ... [0m[32mok[0m [0m[38;5;245m(1ms)[0m
+  disputed product id remains disputed through the id path ... [0m[32mok[0m [0m[38;5;245m(8ms)[0m
+  S19 scan of a leading-zero GTIN resolves to the same profile ...
+[0m[38;5;245m------- output -------[0m
+{"scenario":"S19-scan","input":"gtin:0006381333935","resolution":"FOUND","findings":4,"unknowns":5}
+[0m[38;5;245m----- output end -----[0m
+  S19 scan of a leading-zero GTIN resolves to the same profile ... [0m[32mok[0m [0m[38;5;245m(15ms)[0m
+  an absent brand is an explicit unknown, not a fabricated match ... [0m[32mok[0m [0m[38;5;245m(51ms)[0m
+  an explicit scheme and value resolve like a scan ... [0m[32mok[0m [0m[38;5;245m(18ms)[0m
+public profile action: honest resolution states and merged redirect ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+read model: S30 byte-identical rebuild, repair queue, and freshness ...
+[0m[38;5;245m------- output -------[0m
+{"scenario":"S30","byteIdentical":true,"firstBytes":5112,"secondBytes":5112,"firstSha256":"c64532422abe0f8d31829e00e099fb765c2807a03e983b37da9f7f91fa4df779","secondSha256":"c64532422abe0f8d31829e00e099fb765c2807a03e983b37da9f7f91fa4df779","sourceVersionKeys":10}
+[0m[38;5;245m----- output end -----[0m
+  sourceVersions are ordered and detect stale payloads ... [0m[32mok[0m [0m[38;5;245m(0ms)[0m
+  a stale read model is detected and rebuilt on read ... [0m[32mok[0m [0m[38;5;245m(98ms)[0m
+  rebuild-all is repeatable ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+  a missed rebuild is queued and repaired ... [0m[32mok[0m [0m[38;5;245m(105ms)[0m
+  a brand-relation change queues every product of the brand ... [0m[32mok[0m [0m[38;5;245m(7ms)[0m
+  the unique productId index exists ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+read model: S30 byte-identical rebuild, repair queue, and freshness ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+retraction: S24 synchronous read-model and surface purge, no resurrection ...
+  retraction deletes the read model and purges surfaces ...
+[0m[38;5;245m------- output -------[0m
+{"scenario":"S24","query":"retractFinding -> read model -> cache/CDN -> search index","endToEndMs":447.52,"surfaces":[{"surface":"cache-cdn","durationMs":1},{"surface":"search-index","durationMs":0}]}
+[0m[38;5;245m----- output end -----[0m
+  retraction deletes the read model and purges surfaces ... [0m[32mok[0m [0m[38;5;245m(450ms)[0m
+  rebuild cannot resurrect a retracted finding ... [0m[32mok[0m [0m[38;5;245m(62ms)[0m
+  the retraction is audited ... [0m[32mok[0m [0m[38;5;245m(2ms)[0m
+retraction: S24 synchronous read-model and surface purge, no resurrection ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+retraction: a failed surface purge leaves a visible repair record ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+S19: warm public profile p95 stays under 400 ms on the seeded profile ...
+[0m[38;5;245m------- output -------[0m
+{"scenario":"S19","query":"products.getPublicProfile by id (read model hit)","samples":60,"p50Ms":13.22,"p95Ms":17.01,"p99Ms":26.2,"payloadBytes":5112,"platform":"linux x86_64","deno":"2.4.5","mongo":"8.0.13","lesan":"0.2.3","documents":{"products":1,"claims":4,"relationships":3,"sources":1,"snapshots":1}}
+[0m[38;5;245m----- output end -----[0m
+S19: warm public profile p95 stays under 400 ms on the seeded profile ... [0m[32mok[0m [0m[38;5;245m(2s)[0m
+
+[0m[32mok[0m | 6 passed (28 steps) | 0 failed [0m[38;5;245m(14s)[0m
+
