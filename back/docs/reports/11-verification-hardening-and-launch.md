@@ -14,14 +14,19 @@ green with no ignored tests:
 | Check | Result |
 |---|---|
 | `RUN_MONGO_TESTS=1 deno task test` | **153 passed, 186 steps, 0 failed, 0 ignored** (1m40s) |
-| `deno task fmt:check` | Pass, 151 files |
-| `deno task lint` | Pass, 150 files |
+| `deno task fmt:check` | Pass, 152 files |
+| `deno task lint` | Pass, 151 files |
 | `deno task check` | Pass |
 | `deno task config:check` (valid env) | Pass |
 | `deno task config:check` (missing env) | Fails fast: `MONGO_URL`, `DB_NAME`, `JWT_SECRET` required |
 | `cd ../front && pnpm typecheck` | Pass |
 | `cd ../front && pnpm lint` | Pass |
 | `cd ../front && pnpm build` | Pass; Next.js builds only `/404` (frontend is a scaffold) |
+| `deno task e2e` | **44 HTTP requests, 1 file, 0 failed** (443 ms); real dispatcher, seeded DB, auth, projection, validation, CORS, and rate-limit negatives |
+
+The HTTP E2E suite starts the real server against a dedicated seeded database, logs in through provider
+assertions, and covers all five implemented actions plus auth, capability, projection, validation, CORS,
+health, and rate-limit negatives. It is reproducible with `deno task e2e`; no secret is committed.
 
 This is **not** a production-ready result. Three mandatory scenarios fail or are unreachable:
 
@@ -230,8 +235,9 @@ not published. No Lead Researcher or Reviewer is named.
 | Command | Result | Log |
 |---|---|---|
 | `RUN_MONGO_TESTS=1 deno task test` | 153 passed, 186 steps, 0 failed, 0 ignored | `test-full-final.log` |
-| `deno task fmt:check` | Pass, 151 files | `fmt-check.log` |
-| `deno task lint` | Pass, 150 files | `lint.log` |
+| `deno task e2e` | 44 HTTP requests, 0 failed | `http-e2e.log` |
+| `deno task fmt:check` | Pass, 152 files | `fmt-check.log` |
+| `deno task lint` | Pass, 151 files | `lint.log` |
 | `deno task check` | Pass | `check.log` |
 | `deno task config:check` (valid) | Pass | `config-check-pass.log` |
 | `deno task config:check` (missing env) | Fails closed | `config-check-fail.log` |
