@@ -127,6 +127,8 @@ Deno.test({
         const raw = await h.db.collection("products").findOne({ _id: product });
         assertEquals(raw?.brandMapping.status, "DISPUTED");
         assertEquals(raw?.brand, {});
+        const oldBrand = await h.db.collection("brands").findOne({ _id: brandA });
+        assertEquals((oldBrand?.productsPreview ?? []).length, 0);
       });
 
       await t.step("a different verified brand replaces the relation", async () => {
@@ -143,6 +145,11 @@ Deno.test({
         const raw = await h.db.collection("products").findOne({ _id: product });
         assertEquals(raw?.brand._id.toString(), brandB.toString());
         assertEquals(raw?.brand.name, "Brand B");
+        const oldBrand = await h.db.collection("brands").findOne({ _id: brandA });
+        assertEquals((oldBrand?.productsPreview ?? []).length, 0);
+        const newBrand = await h.db.collection("brands").findOne({ _id: brandB });
+        assertEquals(newBrand?.productsPreview.length, 1);
+        assertEquals(newBrand?.productsPreview[0]._id.toString(), product.toString());
       });
 
       await t.step("every review writes a valid AuditEvent", async () => {

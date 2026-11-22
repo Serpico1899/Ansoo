@@ -404,7 +404,7 @@ async function callProfile(
 }
 
 Deno.test({
-  name: "public profile: inheritance is labeled, bounded, and deduplicated (I11/S19)",
+  name: "I11 - No transitive ownership or control inference without written methodology (S14/S19)",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,
@@ -1041,6 +1041,7 @@ Deno.test({
       }
       samples.sort((left, right) => left - right);
       const p95 = samples[Math.min(samples.length - 1, Math.floor(samples.length * 0.95))];
+      const p99 = samples[Math.min(samples.length - 1, Math.floor(samples.length * 0.99))];
       const buildInfo = await h.db.admin().command({ buildInfo: 1 });
       console.log(JSON.stringify({
         scenario: "S19",
@@ -1048,6 +1049,7 @@ Deno.test({
         samples: samples.length,
         p50Ms: Number(samples[Math.floor(samples.length * 0.5)].toFixed(2)),
         p95Ms: Number(p95.toFixed(2)),
+        p99Ms: Number(p99.toFixed(2)),
         payloadBytes,
         platform: `${Deno.build.os} ${Deno.build.arch}`,
         deno: Deno.version.deno,

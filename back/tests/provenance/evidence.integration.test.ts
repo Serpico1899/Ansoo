@@ -1,5 +1,5 @@
 // Plan 06 - Evidence links pinned to snapshots, restricted citations, review.
-import { assertEquals } from "@std/assert";
+import { assert, assertEquals } from "@std/assert";
 import { ObjectId } from "lesan";
 import {
   addEvidence,
@@ -425,6 +425,130 @@ Deno.test({
     } finally {
       await h.close();
       await Deno.remove(root, { recursive: true }).catch(() => {});
+    }
+  },
+});
+
+Deno.test({
+  name: "S27: 50 concurrent evidence appends fill the cap without loss or spurious conflict",
+  ignore: !MONGO_ENABLED,
+  sanitizeOps: false,
+  sanitizeResources: false,
+  async fn(t) {
+    const h = await createHarness("ansoo_plan11_evidence_writers");
+    try {
+      const researcher = await actor(h);
+      const productId = new ObjectId();
+      await h.db.collection("products").insertOne({
+        _id: productId,
+        name: "S27 Product",
+        normalizedName: "s27 product",
+        matchKey: "s27product",
+        identifiers: [],
+        brandMapping: { status: "UNREVIEWED" },
+        lifecycle: "ACTIVE",
+        schemaVersion: 1,
+        version: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+      const claim = await addClaim({
+        db: h.db,
+        about: { type: "PRODUCT", id: productId },
+        claimType: "MARKET_PRESENCE",
+        statement: "The product is sold in Iran.",
+        structuredValue: {
+          claimType: "MARKET_PRESENCE",
+          marketCountryCode: "IR",
+          channel: "RETAIL",
+          observationBasis: "OFFICIAL_LIST",
+        },
+        actor: researcher,
+      });
+      const source = await createSource({
+        db: h.db,
+        title: "S27 public source",
+        canonicalUrl: "https://news.example/s27",
+        sourceType: "NEWS",
+        publisherName: "News",
+        publisherVerified: true,
+        actor: researcher,
+      });
+      const sourceDoc = await h.db.collection("sources").findOne({ _id: source.id });
+      assert(sourceDoc);
+
+      const snapshotIds: ObjectId[] = [];
+      for (let index = 0; index < 50; index++) {
+        const snapshotId = new ObjectId();
+        snapshotIds.push(snapshotId);
+        await h.db.collection("source_snapshots").insertOne({
+          _id: snapshotId,
+          source: { _id: source.id, title: sourceDoc.title },
+          retrievedAt: new Date(Date.UTC(2026, 2, 1, 0, 0, index)),
+          contentHash: `${index}`.padStart(64, "0"),
+          hashAlgorithm: "SHA256",
+          captureMethod: "CRAWLER",
+          acquisitionTier: "A_OFFICIAL_MACHINE_READABLE",
+          capturedBy: researcher.id,
+          lifecycle: "AVAILABLE",
+          schemaVersion: 1,
+          createdAt: new Date(),
+        });
+      }
+
+      await t.step("50 concurrent appends all land and no writer gets 409", async () => {
+        const results = await Promise.all(
+          snapshotIds.map((snapshotId) =>
+            addEvidence({
+              db: h.db,
+              claimId: claim.id,
+              snapshotId,
+              stance: "SUPPORTS",
+              actor: researcher,
+            })
+          ),
+        );
+        assertEquals(results.length, 50);
+        const doc = await h.db.collection("claims").findOne({ _id: claim.id });
+        assertEquals(doc?.evidence.length, 50);
+        assertEquals(doc?.version, 51);
+        assertEquals(
+          new Set(
+            doc?.evidence.map((item: Record<string, unknown>) => String(item.sourceSnapshotId)),
+          ).size,
+          50,
+        );
+      });
+
+      await t.step("the 51st append is rejected with 422 CAP_EXCEEDED", async () => {
+        const extraId = new ObjectId();
+        await h.db.collection("source_snapshots").insertOne({
+          _id: extraId,
+          source: { _id: source.id, title: sourceDoc.title },
+          retrievedAt: new Date("2026-03-02T00:00:00Z"),
+          contentHash: "f".repeat(64),
+          hashAlgorithm: "SHA256",
+          captureMethod: "CRAWLER",
+          acquisitionTier: "A_OFFICIAL_MACHINE_READABLE",
+          capturedBy: researcher.id,
+          lifecycle: "AVAILABLE",
+          schemaVersion: 1,
+          createdAt: new Date(),
+        });
+        const error = await rejection(addEvidence({
+          db: h.db,
+          claimId: claim.id,
+          snapshotId: extraId,
+          stance: "SUPPORTS",
+          actor: researcher,
+        }));
+        assertEquals(error.status, 422);
+        assertEquals(error.code, "CAP_EXCEEDED");
+        const doc = await h.db.collection("claims").findOne({ _id: claim.id });
+        assertEquals(doc?.evidence.length, 50);
+      });
+    } finally {
+      await h.close();
     }
   },
 });
