@@ -145,7 +145,7 @@ async function attachEvidence(
 }
 
 Deno.test({
-  name: "assessment: I05 self-assessment and SUPPORTED evidence are enforced",
+  name: "I05 - SUPPORTED requires evidence and an assessor other than the creator",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,

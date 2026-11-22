@@ -168,7 +168,7 @@ Deno.test({
   },
 });
 
-Deno.test("I09 - production audit role denies update and delete", () => {
+Deno.test("audit: production role denies update and delete at the DB layer", () => {
   const auditPrivilege = AUDIT_APP_PRIVILEGES.find((item) =>
     item.resource.collection === "audit_events"
   );

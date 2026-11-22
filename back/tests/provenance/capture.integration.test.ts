@@ -86,7 +86,7 @@ async function publicAsset(
 }
 
 Deno.test({
-  name: "provenance: source identity, immutable snapshots, redaction, and audit",
+  name: "I08 - SourceSnapshot content identity is immutable",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,

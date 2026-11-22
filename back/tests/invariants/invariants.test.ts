@@ -8,7 +8,6 @@
 import { assert, assertEquals } from "@std/assert";
 import * as domain from "../../utils/domain/constants.ts";
 import { assertCompleteClassification } from "../../utils/projections/mod.ts";
-import { type InvariantRecord, INVARIANTS } from "./inventory.ts";
 
 // Literal names let the CI inventory check prove every ID is registered. Keep
 // these aligned with tests/invariants/inventory.ts.
@@ -17,22 +16,9 @@ const TEST_NAMES = {
   I02: "I02 - UNKNOWN is not FALSE and NOT_SUPPORTED is not a negative boolean",
   I03: "I03 - Review, assessment, publication, legal, and campaign statuses stay separate",
   I04: "I04 - Public projections never return internal data",
-  I05: "I05 - SUPPORTED requires evidence and an assessor other than the creator",
-  I06: "I06 - PUBLISHED requires a passing publication gate",
-  I07: "I07 - SENSITIVE and HIGH_RISK findings require author, assessor, and publisher separation",
-  I08: "I08 - SourceSnapshot content identity is immutable",
-  I09: "I09 - AuditEvent is append-only",
-  I10: "I10 - Corrections never apply a raw patch",
-  I11: "I11 - No transitive ownership or control inference without written methodology",
   I12: "I12 - No universal score, color, badge, or verdict is produced",
-  I13: "I13 - Identifiers are strings and leading zeros are preserved",
   I14: "I14 - Array caps are enforced in validators with 422, never silent discard",
-  I15: "I15 - Identity merge is tombstone plus redirect; historical references are never rewritten",
 } as const;
-
-function testName(invariant: InvariantRecord): string {
-  return TEST_NAMES[invariant.id as keyof typeof TEST_NAMES];
-}
 
 Deno.test({
   name: TEST_NAMES.I01,
@@ -143,13 +129,3 @@ Deno.test({
     );
   },
 });
-
-for (const invariant of INVARIANTS.filter((item) => item.foundation === "blocked")) {
-  Deno.test({
-    name: testName(invariant),
-    ignore: true,
-    fn() {
-      throw new Error(`Invariant ${invariant.id} is not implemented yet`);
-    },
-  });
-}

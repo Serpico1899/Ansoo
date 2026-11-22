@@ -104,7 +104,7 @@ function nameChange(value = "Corrected") {
 }
 
 Deno.test({
-  name: "corrections: submit, review, and apply are separate and audited",
+  name: "I10 - Corrections never apply a raw patch (S12/S13/S17)",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,

@@ -15,7 +15,7 @@ function expectCode(fn: () => unknown, code: string): IdentifierError {
   return error;
 }
 
-Deno.test("identifier: GTIN strips separators and preserves leading zeros", () => {
+Deno.test("I13 - Identifiers are strings and leading zeros are preserved", () => {
   assertEquals(
     normalizeProductIdentifier("GTIN", "000 6381-333935"),
     {

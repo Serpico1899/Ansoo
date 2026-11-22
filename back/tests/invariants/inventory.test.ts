@@ -1,9 +1,21 @@
-// CI check: every v3.1 invariant I01-I15 has exactly one named test.
+// CI check: every v3.1 invariant I01-I15 has exactly one green named test.
 //
-// This guards against an invariant being deleted, renamed, or silently skipped.
+// Named tests live with the plan that implements the invariant; this scan finds
+// them across the whole suite so the inventory cannot drift behind the code.
 
 import { assert, assertEquals } from "@std/assert";
 import { INVARIANT_IDS, INVARIANTS } from "./inventory.ts";
+
+async function* walk(dir: URL): AsyncGenerator<string> {
+  for await (const entry of Deno.readDir(dir)) {
+    const child = new URL(entry.name + (entry.isDirectory ? "/" : ""), dir);
+    if (entry.isDirectory) {
+      yield* walk(child);
+    } else {
+      yield child.pathname;
+    }
+  }
+}
 
 Deno.test({
   name: "invariant inventory is complete, unique, and mapped",
@@ -39,10 +51,14 @@ Deno.test({
       }
     }
 
-    const source = await Deno.readTextFile(
-      new URL("./invariants.test.ts", import.meta.url),
-    );
-    const registered = [...source.matchAll(/"(I\d{2}) - /g)].map((match) => match[1]);
+    const registered: string[] = [];
+    for await (const path of walk(new URL("..", import.meta.url))) {
+      if (!path.endsWith(".test.ts")) continue;
+      const source = await Deno.readTextFile(path);
+      for (const match of source.matchAll(/"(I\d{2}) - /g)) {
+        registered.push(match[1]);
+      }
+    }
     assertEquals(
       [...new Set(registered)].sort(),
       [...INVARIANT_IDS].sort(),

@@ -65,7 +65,8 @@ async function seedProduct(h: Harness, identifiers: Array<Record<string, unknown
 }
 
 Deno.test({
-  name: "merge: tombstone, audit, and historical references are never rewritten",
+  name:
+    "I15 - Identity merge is tombstone plus redirect; historical references are never rewritten",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,

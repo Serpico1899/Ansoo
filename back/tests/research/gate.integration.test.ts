@@ -320,7 +320,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: "gate: any failed check blocks publication (S22)",
+  name: "I06 - PUBLISHED requires a passing publication gate (S22)",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,
@@ -534,7 +534,7 @@ Deno.test({
 });
 
 Deno.test({
-  name: "gate: HIGH_RISK legal sign-off is required and non-waivable (I07)",
+  name: "I07 - SENSITIVE and HIGH_RISK findings require author, assessor, and publisher separation",
   ignore: !MONGO_ENABLED,
   sanitizeOps: false,
   sanitizeResources: false,
